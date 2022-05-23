@@ -1,25 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firebase";
-import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyA2MvQ0rJjYGvcC0uUSBlvM-5Vj2n9EP78",
-  authDomain: "maze-game-generator.firebaseapp.com",
-  projectId: "maze-game-generator",
-  storageBucket: "maze-game-generator.appspot.com",
-  messagingSenderId: "354479561061",
-  appId: "1:354479561061:web:cda3a6603b5045c337298c",
-  measurementId: "G-3XR9PQPHX3"
+  apiKey: "AIzaSyBSZViOPkda5EVGEDA43sm-SXipESNSOMw",
+  authDomain: "maze-game-generator-0.firebaseapp.com",
+  projectId: "maze-game-generator-0",
+  storageBucket: "maze-game-generator-0.appspot.com",
+  messagingSenderId: "518784231859",
+  appId: "1:518784231859:web:21c8db29d4b3b1605083c6"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const db = getFirestore(app);
 
