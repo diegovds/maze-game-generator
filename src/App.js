@@ -17,7 +17,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
-import CreateMaze from './pages/CreateMaze/CreateMaze' 
+import CreateMaze from './pages/CreateMaze/CreateMaze'
 import Dashboard from './pages/Dashboard/Dashboard'
 
 function App() {
@@ -45,10 +45,22 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/mazes/create" element={<CreateMaze />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/register"
+                element={!user ? <Register /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/mazes/create"
+                element={user ? <CreateMaze /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dashboard"
+                element={user ? <Dashboard /> : <Navigate to="/login" />}
+              />
             </Routes>
           </div>
           <Footer />
