@@ -1,9 +1,18 @@
 import styles from './CreateMaze.module.css'
 
+import { useState } from 'react'
+import { useAuthValue } from "../../context/AuthContext"
+
 const CreateMaze = () => {
+  const {user} = useAuthValue()
+  const uid = user.uid
+
   return (
-    <div>
-      <h1>CreateMaze</h1>
+    <div className={styles.create_maze}>
+      <h2>Criar jogo</h2>
+      <p>Ao clicar no botão abaixo você será redirecionado para o página de criação do jogo.</p>
+      <a className="btn" target="_blank" href={"https://mapper-iota.vercel.app/index.html?uid=" + uid}>Ir</a>
+      {/*<a className="btn" href="https://mapper-iota.vercel.app/index.html?esteDeenvio">Ir</a>*/}
     </div>
   )
 }
