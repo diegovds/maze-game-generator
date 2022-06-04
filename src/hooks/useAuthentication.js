@@ -46,6 +46,16 @@ export const useAuthentication = () => {
         displayName: data.displayName
       })
 
+      const dataUser = new FormData();
+      dataUser.append('uid', user.uid)
+      dataUser.append('username', user.displayName)
+
+      /* await fetch('http://localhost:3333/api/users', { */
+      await fetch('https://maze-game-backend.herokuapp.com/api/users', {
+        method: "POST",
+        body: dataUser
+      })
+
       setLoading(false)
 
       return user
