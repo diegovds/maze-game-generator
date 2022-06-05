@@ -62,6 +62,7 @@ textarea {
   border-bottom: 1px solid #ccc;
   padding: .8em 0;
   background-color: transparent;
+  font-family: var(--font-name);
 }
 
 .btn {
