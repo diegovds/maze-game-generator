@@ -7,7 +7,9 @@ const CreateMaze = () => {
   const {user} = useAuthValue()
   const uid = user.uid
 
-  const [userId, setUserId] = useState([])
+  const [userId, setUserId] = useState(undefined)
+
+  const loadingUser = userId === undefined
 
   useEffect(() => {
     const searchUserId = async () => {
@@ -26,6 +28,9 @@ const CreateMaze = () => {
     searchUserId()
   }, [uid])
   
+  if (loadingUser) {
+    return <p>Carregando...</p>
+  }
 
   return (
     <div className={styles.create_maze}>
