@@ -35,7 +35,7 @@
   flex-wrap: wrap;
   max-width: 80%;
   margin: 0 auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .maze {
