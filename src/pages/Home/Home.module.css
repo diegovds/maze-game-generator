@@ -38,22 +38,3 @@
   justify-content: space-evenly;
 }
 
-.maze {
-  width: 17%;
-  margin-bottom: 3em;
-  text-align: center;
-}
-
-.maze img {
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.maze h3, .maze p {
-  margin-bottom: 1em;
-}
-
-.maze p {
-  font-style: italic;
-}
-

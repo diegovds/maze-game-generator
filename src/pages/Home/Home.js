@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 // components
+import MazeDetail from "../../components/MazeDetail"
 
 const Home = () => {
   const [query, setQuery] = useState('')
@@ -50,14 +51,7 @@ const Home = () => {
         <button className="btn btn-dark">Pesquisar</button>
       </form>
       <div className={styles.mazes_container}>
-        {mazes && mazes.map((maze) => (
-          <div key={maze.id} className={styles.maze}>
-            <img src="/sky.png" alt="Céu com estrelas" />
-            <h3>{maze.name}</h3>
-            <p id='date'>Criado em: {maze.created_at}</p>
-            <Link to="/" className='btn'>Detalhes</Link>
-          </div>
-        ))}
+        {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
         {mazes && mazes.length === 0 && (
           <div className={styles.nomazes}>
             <p>Não foram encontrados jogos</p>
