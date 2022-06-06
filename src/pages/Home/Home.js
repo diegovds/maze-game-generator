@@ -52,13 +52,13 @@ const Home = () => {
       </form>
       <div className={styles.mazes_container}>
         {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
-        {mazes && mazes.length === 0 && (
-          <div className={styles.nomazes}>
-            <p>Não foram encontrados jogos</p>
-            <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
-          </div>
-        )}
       </div>
+      {mazes && mazes.length === 0 && (
+        <div className={styles.nomazes}>
+          <p>Não foram encontrados jogos</p>
+          <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
+        </div>
+      )}
     </div>
   )
 }
