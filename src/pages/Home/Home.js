@@ -10,10 +10,16 @@ const Home = () => {
   const [query, setQuery] = useState('')
   const [mazes, setMazes] = useState(undefined)
 
+  const navigate = useNavigate()
+
   const loadingMazes = mazes === undefined
 
   const handleSubmit = e => {
     e.preventDefault()
+
+    if( query ){
+      return navigate(`/search?q=${query}`)
+    }
   }
 
   useEffect(() => {
