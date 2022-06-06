@@ -1,3 +1,7 @@
+h3, p {
+  margin: 0;
+}
+
 .maze {
   width: 17%;
   margin-bottom: 3em;
@@ -6,13 +10,15 @@
 
 .maze img {
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: .4em;
 }
 
-.maze h3, .maze p {
-  margin-bottom: 1em;
+.maze h3 {
+  margin-bottom: .4em;
 }
 
 .maze p {
   font-style: italic;
+  font-size: small;
+  margin-bottom: 1.5em;
 }
