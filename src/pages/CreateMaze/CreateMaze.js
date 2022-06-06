@@ -20,7 +20,7 @@ const CreateMaze = () => {
         for(var user in data[users]){
           if(data[users][user].uid === uid){
             setUserId(data[users][user].id)
-            console.log(data[users][user].id)
+            /*console.log(data[users][user].id)*/
           }
         }
       }

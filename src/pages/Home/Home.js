@@ -29,7 +29,7 @@ const Home = () => {
       })
 
       setMazes(data)
-      console.log(data)
+      /*console.log(data)*/
     }
     getAllMazes()
   }, [])
