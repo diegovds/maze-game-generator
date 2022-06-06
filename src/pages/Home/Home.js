@@ -55,7 +55,7 @@ const Home = () => {
             <img src="/sky.png" alt="Céu com estrelas" />
             <h3>{maze.name}</h3>
             <p id='date'>Criado em: {maze.created_at}</p>
-            <Link to="/about" className='btn'>Detalhes</Link>
+            <Link to="/" className='btn'>Detalhes</Link>
           </div>
         ))}
         {mazes && mazes.length === 0 && (
