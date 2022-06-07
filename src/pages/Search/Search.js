@@ -48,11 +48,11 @@ const Search = () => {
 
   return (
     <div className={styles.search_container}>
-      <h2>Busca:</h2>
+      <h2>Pesquisa por "{search}"</h2>
       <div>
         {mazes && mazes.length === 0 && (
           <>
-            <p>Não foram encontrados jogos a partir da sua busca...</p>
+            <p>Não foram encontrados jogos a partir da sua pesquisa...</p>
             <Link to="/" className="btn btn-dark">Voltar</Link>
           </>
         )}
