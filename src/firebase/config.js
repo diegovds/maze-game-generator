@@ -6,12 +6,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBSZViOPkda5EVGEDA43sm-SXipESNSOMw",
-  authDomain: "maze-game-generator-0.firebaseapp.com",
-  projectId: "maze-game-generator-0",
-  storageBucket: "maze-game-generator-0.appspot.com",
-  messagingSenderId: "518784231859",
-  appId: "1:518784231859:web:21c8db29d4b3b1605083c6"
+  apiKey: process.env.REACT_APP_API_API_KEY,
+  authDomain:  process.env.REACT_APP_API_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_API_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_API_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_API_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_API_APP_ID,
 };
 
 // Initialize Firebase
