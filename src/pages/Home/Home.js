@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <h1>Jogos mais recentes</h1>
+      <h2>Jogos criados recentemente</h2>
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
           type="text"

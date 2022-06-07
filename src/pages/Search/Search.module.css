@@ -19,5 +19,6 @@
 }
 
 .search_container p {
-  margin-bottom: 30px;
+  color: #aaa;
+  margin-bottom: 2em;
 }
