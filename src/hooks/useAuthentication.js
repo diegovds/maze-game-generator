@@ -52,7 +52,7 @@ export const useAuthentication = () => {
       dataUser.append('username', user.displayName)
 
       /* await fetch('http://localhost:3333/api/users', { */
-      await fetch(backend, {
+      await fetch(backend + "/users", {
         method: "POST",
         body: dataUser
       })

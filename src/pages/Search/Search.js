@@ -20,7 +20,7 @@ const Search = () => {
   useEffect(() => {
     const getFilterMazes = async () => {
       const response = await fetch(
-        backend
+        backend + "/mazes"
       )
       var data = await response.json()
       var filter = []
