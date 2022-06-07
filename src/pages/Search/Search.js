@@ -1,5 +1,6 @@
 import styles from './Search.module.css'
 
+import { backend } from '../../backend/config'
 import { Link } from "react-router-dom";
 
 // hook
@@ -19,7 +20,7 @@ const Search = () => {
   useEffect(() => {
     const getFilterMazes = async () => {
       const response = await fetch(
-        'https://maze-game-backend.herokuapp.com/api/mazes'
+        backend
       )
       var data = await response.json()
       var filter = []

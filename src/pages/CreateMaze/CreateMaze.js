@@ -1,5 +1,6 @@
 import styles from './CreateMaze.module.css'
 
+import { backend } from '../../backend/config'
 import { useAuthValue } from "../../context/AuthContext"
 import { useEffect, useState } from 'react'
 
@@ -13,7 +14,7 @@ const CreateMaze = () => {
 
   useEffect(() => {
     const searchUserId = async () => {
-      const response = await fetch("https://maze-game-backend.herokuapp.com/api/users")
+      const response = await fetch(backend)
       var data = await response.json()
   
       for(var users in data){

@@ -1,5 +1,6 @@
 import styles from './Home.module.css'
 
+import { backend } from '../../backend/config'
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
@@ -25,7 +26,7 @@ const Home = () => {
   useEffect(() => {
     const getAllMazes = async () => {
       const response = await fetch(
-        'https://maze-game-backend.herokuapp.com/api/mazes'
+        backend + '/mazes'
       )
       var data = await response.json()
 

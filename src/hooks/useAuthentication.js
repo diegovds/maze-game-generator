@@ -1,5 +1,6 @@
 import {db} from "../firebase/config" 
 
+import { backend } from '../backend/config'
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -51,7 +52,7 @@ export const useAuthentication = () => {
       dataUser.append('username', user.displayName)
 
       /* await fetch('http://localhost:3333/api/users', { */
-      await fetch('https://maze-game-backend.herokuapp.com/api/users', {
+      await fetch(backend, {
         method: "POST",
         body: dataUser
       })
