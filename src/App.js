@@ -20,6 +20,7 @@ import Register from './pages/Register/Register'
 import CreateMaze from './pages/CreateMaze/CreateMaze'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Search from './pages/Search/Search'
+import Maze from './pages/Maze/Maze'
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -47,6 +48,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/mazes/:id" element={<Maze />}/>
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}
