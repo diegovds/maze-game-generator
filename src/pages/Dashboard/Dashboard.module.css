@@ -1,0 +1,58 @@
+.dashboard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard h2 {
+  margin-bottom: 0.5em;
+}
+
+.dashboard p {
+  color: #aaa;
+  margin-bottom: 1em;
+}
+
+.nomazes {
+  text-align: center;
+}
+
+.nomazes p {
+  margin-bottom: 1.5em;
+}
+
+.nomazes a {
+  padding: 10px 25px;
+}
+
+.maze_header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  width: 80%;
+  padding: 10px;
+}
+
+.maze_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  width: 80%;
+  padding: 10px;
+}
+
+.maze_row p {
+  color: #000;
+}
+
+.maze_row button,
+.maze_row a {
+  margin: 0 5px;
+  height: 30px;
+  width: 100px;
+  font-size: 0.7em;
+}

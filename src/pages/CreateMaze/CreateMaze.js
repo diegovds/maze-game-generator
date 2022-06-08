@@ -16,13 +16,12 @@ const CreateMaze = () => {
     const searchUserId = async () => {
       const response = await fetch(backend + "/users")
       var data = await response.json()
+      data = data.data
   
-      for(var users in data){
-        for(var user in data[users]){
-          if(data[users][user].uid === uid){
-            setUserId(data[users][user].id)
-            /*console.log(data[users][user].id)*/
-          }
+      for(var user in data){
+        if(data[user].uid === uid){
+          setUserId(data[user].id)
+          /*console.log(data[user].id)*/
         }
       }
     };

@@ -101,8 +101,14 @@ textarea {
   background-color: #000;
 }
 
+.btn.btn-danger {
+  color: #fff;
+  background-color: #FF0000;
+  border-radius: 10px;
+}
+
 .btn.btn-danger:hover {
-  background-color: #dc3545;
+  background-color: rgb(240,0,0);
 }
 
 button[disabled] {
