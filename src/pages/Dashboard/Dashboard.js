@@ -5,7 +5,7 @@ import { backend } from '../../backend/config'
 
 // hooks
 import { useAuthValue } from "../../context/AuthContext"
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const Dashboard = () => {
   const {user} = useAuthValue()
@@ -15,26 +15,30 @@ const Dashboard = () => {
 
   const loadingUser = userData === undefined
 
-  useEffect(() => {
-    const searchUserData = async () => {
+  const searchUserData = useCallback ( async () => {
       var response = await fetch(backend + "/users")
       var data = await response.json()
       data = data.data
-  
+
       for(var user in data){
         if(data[user].uid === uid){
           setUserData(data[user])
           /*console.log(data[user].mazes.length)*/
         }
       }
-    };
+    },
+    [uid]
+  )
+
+  useEffect(() => {
     searchUserData()
-  }, [uid])
+  }, [searchUserData])
 
   const deleteMaze = async (id) => {
     await fetch(backend + "/mazes/" + id, {
       method: "DELETE"
     })
+    searchUserData()
   }
 
   if (loadingUser) {
@@ -52,7 +56,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className={styles.maze_header}>
-          <span>Nome</span>
+          <span>Nome(s)</span>
           <span>Ações</span>
         </div>
       )}

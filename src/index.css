@@ -105,6 +105,7 @@ textarea {
   color: #fff;
   background-color: #FF0000;
   border-radius: 10px;
+  transition: .4s;
 }
 
 .btn.btn-danger:hover {
