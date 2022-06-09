@@ -43,7 +43,14 @@ const Maze = () => {
   }, [id])
 
   if (loadingMaze || loadingUser) {
-    return <p>Carregando...</p>
+    return (
+      <div className="loading">
+        <div className="dual-ring"></div>
+        <div>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
