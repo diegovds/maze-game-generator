@@ -61,8 +61,7 @@ const Maze = () => {
           <img src="/sky.png" alt="Céu com estrelas" />
           <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {user.username}</p>
           <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>
-          {/*<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>*/}
-          <a className="btn" href={"https://mazegamegenerator.vercel.app/mazes/" + id}>Ir para o Maze Game</a>
+          <a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
           <Link to="/" className="btn btn-dark">Voltar</Link>
         </>
       )}
