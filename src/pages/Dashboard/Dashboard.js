@@ -12,6 +12,7 @@ const Dashboard = () => {
   const uid = user.uid
 
   const [userData, setUserData] = useState(undefined)
+  const [mazeId, setMazeId] = useState(undefined)
 
   const loadingUser = userData === undefined
 
@@ -35,6 +36,7 @@ const Dashboard = () => {
   }, [searchUserData])
 
   const deleteMaze = async (id) => {
+    setMazeId(id)
     await fetch(backend + "/mazes/" + id, {
       method: "DELETE"
     })
@@ -76,12 +78,19 @@ const Dashboard = () => {
               <Link to={`/mazes/${userData.id}`} className="btn">
                 Detalhes
               </Link>
-              <button
-                onClick={() => deleteMaze(userData.id)}
-                className="btn btn-outline btn-danger"
-              >
-                Excluir
-              </button>
+              {userData.id !== mazeId && (
+                <button
+                  onClick={() => deleteMaze(userData.id)}
+                  className="btn btn-outline btn-danger"
+                >
+                  Excluir
+                </button>
+              )}
+              {userData.id === mazeId && (
+                <button className="btn" disabled>
+                  Aguarde...
+                </button>
+              )}
             </div>
           </div>
         ))}
