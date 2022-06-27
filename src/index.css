@@ -82,6 +82,7 @@ textarea {
 .btn.btn-dark {
   background-color: #000;
   border-radius: 0;
+  transition: .4s;
 }
 
 .btn.btn-outline {
@@ -109,7 +110,7 @@ textarea {
 }
 
 .btn.btn-danger:hover {
-  background-color: rgb(240,0,0);
+  background-color: rgb(235,0,0);
 }
 
 button[disabled] {

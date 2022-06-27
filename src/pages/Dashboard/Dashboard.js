@@ -1,5 +1,7 @@
 import styles from './Dashboard.module.css'
 
+import Modal from 'react-modal'
+
 import { Link } from 'react-router-dom'
 import { backend } from '../../backend/config'
 
@@ -7,14 +9,25 @@ import { backend } from '../../backend/config'
 import { useAuthValue } from "../../context/AuthContext"
 import { useCallback, useEffect, useState } from 'react'
 
+Modal.setAppElement('#root')
+
 const Dashboard = () => {
   const {user} = useAuthValue()
   const uid = user.uid
 
   const [userData, setUserData] = useState(undefined)
   const [mazeId, setMazeId] = useState(undefined)
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   const loadingUser = userData === undefined
+
+  function handleOpenModal(){
+    setIsOpen(true)
+  }
+
+  function handleCloseModal(){
+    setIsOpen(false)
+  }
 
   const searchUserData = useCallback ( async () => {
       var response = await fetch(backend + "/users")
@@ -40,6 +53,7 @@ const Dashboard = () => {
     await fetch(backend + "/mazes/" + id, {
       method: "DELETE"
     })
+    handleOpenModal()
     searchUserData()
   }
 
@@ -92,6 +106,16 @@ const Dashboard = () => {
                 </button>
               )}
             </div>
+            <Modal 
+              isOpen={modalIsOpen}
+              onRequestClose={handleCloseModal}
+              contentLabel="Exemple Modal"
+              overlayClassName={styles.modal_overlay}
+              className={styles.modal_content}
+            >
+              <h3>Jogo excluído com sucesso!</h3>
+              <button onClick={handleCloseModal} className="btn btn-dark">Fechar</button>
+            </Modal>
           </div>
         ))}
     </div>
