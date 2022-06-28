@@ -42,6 +42,20 @@ const Maze = () => {
 
   }, [id])
 
+  const goToMaze = async () => {
+    const dataMaze = new FormData()
+    const execs = maze.executions + 1
+
+    dataMaze.append('executions', execs)
+
+    await fetch(backend + "/mazes/" + maze.id, {
+      method: "PUT",
+      body: dataMaze
+    })
+
+    window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels), '_blank');
+  }
+
   if (loadingMaze || loadingUser) {
     return (
       <div className="loading">
@@ -60,8 +74,11 @@ const Maze = () => {
           <h2>{maze.name}</h2>
           <img src="/background.png" alt="Centro de Tecnologia (CT) é uma unidade da Universidade Federal de Santa Maria" />
           <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {user.username}</p>
+          <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
+          <p className={styles.p_data}>Taxa de conclusão: ?%</p>
           <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>
-          <a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
+          <button onClick={() => goToMaze()} className="btn">Ir para o Maze Game</button>
+          {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>*/}
           <Link to="/" className="btn btn-dark">Voltar</Link>
         </>
       )}

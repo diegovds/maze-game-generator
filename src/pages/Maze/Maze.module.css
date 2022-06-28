@@ -7,19 +7,19 @@
 
 .maze_container img {
   width: 20%;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .p_data {
-  margin-bottom: 2em;
+  margin-bottom: .5em;
 }
 
 .p_a{
   color: #aaa;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
-.maze_container a {
+.maze_container button {
   margin-bottom: 1em;
 }
 
