@@ -77,6 +77,7 @@ textarea {
   padding: 10px 15px;
   font-size: 1em;
   font-family: var(--font-name);
+  transition: .4s;
 }
 
 .btn.btn-dark {
