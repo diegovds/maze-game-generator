@@ -3,7 +3,7 @@ import { backend } from '../../backend/config'
 import { Link } from "react-router-dom";
 
 // hooks
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const Maze = () => {
@@ -15,8 +15,7 @@ const Maze = () => {
   const loadingMaze = maze === undefined
   const loadingUser = user === undefined
   
-  useEffect(() => {
-    const getAMaze = async () => {
+  const getAMaze = useCallback ( async () => {
       var response = await fetch(
         backend + '/mazes/' + id
       )
@@ -34,13 +33,14 @@ const Maze = () => {
       user = user.data
 
       setMaze(maze)
-      /*console.log(maze)*/
       setUser(user)
-      /*console.log(user)*/
-    }
-    getAMaze()
+    },
+    [id]
+  )
 
-  }, [id])
+  useEffect(() => {
+    getAMaze()
+  }, [getAMaze])
 
   const goToMaze = async () => {
     const dataMaze = new FormData()
@@ -52,6 +52,8 @@ const Maze = () => {
       method: "PUT",
       body: dataMaze
     })
+
+    getAMaze()
 
     window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels), '_blank');
   }
