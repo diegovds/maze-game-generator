@@ -74,7 +74,7 @@ const Maze = () => {
       {maze && user && (
         <>
           <h2>{maze.name}</h2>
-          <img src="/background.png" alt="Centro de Tecnologia (CT) é uma unidade da Universidade Federal de Santa Maria" />
+          <img src={maze.url_image} alt={maze.image} />
           <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {user.username}</p>
           <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
           <p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>
