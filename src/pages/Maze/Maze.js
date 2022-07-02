@@ -55,7 +55,7 @@ const Maze = () => {
 
     getAMaze()
 
-    window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&mazeId=" + id, '_blank');
+    window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
   }
 
   if (loadingMaze || loadingUser) {
@@ -77,7 +77,7 @@ const Maze = () => {
           <img src={maze.url_image} alt={maze.image} />
           <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {user.username}</p>
           <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
-          <p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>
+          {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
           <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>
           <button onClick={() => goToMaze()} className="btn">Ir para o Maze Game</button>
           {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>*/}
