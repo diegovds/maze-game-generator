@@ -58,7 +58,7 @@
 }
 
 .modal_overlay {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0,0,0,0.3);
   position: fixed;
   top: 0;
   bottom: 0;

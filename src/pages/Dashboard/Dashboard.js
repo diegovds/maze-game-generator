@@ -86,25 +86,27 @@ const Dashboard = () => {
       
       {userData &&
         userData.mazes.map((userData) => (
-          <div className={styles.maze_row} key={userData.id}>
-            <p>{userData.name}</p>
-            <div className={styles.actions}>
-              <Link to={`/mazes/${userData.id}`} className="btn">
-                Detalhes
-              </Link>
-              {userData.id !== mazeId && (
-                <button
-                  onClick={() => deleteMaze(userData.id)}
-                  className="btn btn-outline btn-danger"
-                >
-                  Excluir
-                </button>
-              )}
-              {userData.id === mazeId && (
-                <button className="btn" disabled>
-                  Aguarde...
-                </button>
-              )}
+          <>  
+            <div className={styles.maze_row} key={userData.id}>
+              <p>{userData.name}</p>
+              <div className={styles.actions}>
+                <Link to={`/mazes/${userData.id}`} className="btn">
+                  Detalhes
+                </Link>
+                {userData.id !== mazeId && (
+                  <button
+                    onClick={() => deleteMaze(userData.id)}
+                    className="btn btn-outline btn-danger"
+                  >
+                    Excluir
+                  </button>
+                )}
+                {userData.id === mazeId && (
+                  <button className="btn" disabled>
+                    Aguarde...
+                  </button>
+                )}
+              </div>
             </div>
             <Modal 
               isOpen={modalIsOpen}
@@ -116,7 +118,7 @@ const Dashboard = () => {
               <h3>Jogo excluído com sucesso!</h3>
               <button onClick={handleCloseModal} className="btn btn-dark">Fechar</button>
             </Modal>
-          </div>
+          </>
         ))}
     </div>
   )
