@@ -1,7 +1,7 @@
 .mazes_container{
   display: flex;
   flex-wrap: wrap;
-  max-width: 80%;
+  max-width: 97%;
   margin: 0 auto;
   justify-content: space-evenly;
 }
