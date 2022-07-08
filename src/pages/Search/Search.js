@@ -55,15 +55,17 @@ const Search = () => {
   }
 
   return (
-    <div className={styles.search_container}>
-      <h2>Pesquisa por "{search}"</h2>
-      <div>
-        {mazes && mazes.length === 0 && (
-          <>
-            <p  className={styles.p_a}>Não foram encontrados jogos a partir da sua pesquisa...</p>
-            {/*<Link to="/" className="btn btn-dark">Voltar</Link>*/}
-          </>
-        )}
+    <>
+      <div className={styles.search_container}>
+        <h2>Pesquisa por "{search}"</h2>
+        <div>
+          {mazes && mazes.length === 0 && (
+            <>
+              <p  className={styles.p_a}>Não foram encontrados jogos a partir da sua pesquisa...</p>
+              {/*<Link to="/" className="btn btn-dark">Voltar</Link>*/}
+            </>
+          )}
+        </div>
       </div>
       <div className={styles.mazes_container}>
         {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
@@ -75,7 +77,7 @@ const Search = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   )
 }
 

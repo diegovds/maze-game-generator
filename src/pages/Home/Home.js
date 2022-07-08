@@ -43,18 +43,20 @@ const Home = () => {
   }
 
   return (
-    <div className={styles.home}>
-      <h2>Jogos criados recentemente</h2>
-      {/*
-      <form onSubmit={handleSubmit} className={styles.search_form}>
-        <input
-          type="text"
-          placeholder="Nome do jogo..."
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button className="btn btn-dark">Pesquisar</button>
-      </form>
-      */}
+    <>
+      <div className={styles.home}>
+        <h2>Jogos criados recentemente</h2>
+        {/*
+        <form onSubmit={handleSubmit} className={styles.search_form}>
+          <input
+            type="text"
+            placeholder="Nome do jogo..."
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button className="btn btn-dark">Pesquisar</button>
+        </form>
+        */}
+      </div>
       <div className={styles.mazes_container}>
         {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
       </div>
@@ -64,7 +66,7 @@ const Home = () => {
           <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
