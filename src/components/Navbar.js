@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
-        <span>Maze Game</span> Generator
+      My <span>Blockly Maze</span>
       </NavLink>
       <ul className={styles.links_list}>
         <li>

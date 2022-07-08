@@ -15,3 +15,12 @@
   margin-top: 15px;
   padding: 10px 15px;
 }
+
+.about h2 {
+  font-weight: 300;
+}
+
+.about span {
+  font-weight: 900;
+  text-transform: uppercase;
+}

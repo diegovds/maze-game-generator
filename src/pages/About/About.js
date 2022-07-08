@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className={styles.about}>
       <h2>
-        Sobre o <span>Maze Game</span> Generator
+        Sobre o My <span>Blockly Maze</span>
       </h2>
       <p>Descrição da aplicação...........</p>
       <Link to="/mazes/create" className="btn">

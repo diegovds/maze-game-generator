@@ -6,3 +6,8 @@
   justify-content: center;
   background-color: #edf3f6;
 }
+
+.footer span {
+  font-weight: 900;
+  text-transform: uppercase;
+}
