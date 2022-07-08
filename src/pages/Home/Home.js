@@ -56,6 +56,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <h2>Jogos criados recentemente</h2>
+      {/*
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
           type="text"
@@ -64,6 +65,7 @@ const Home = () => {
         />
         <button className="btn btn-dark">Pesquisar</button>
       </form>
+      */}
       <div className={styles.mazes_container}>
         {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
       </div>

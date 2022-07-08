@@ -16,6 +16,35 @@
   text-transform: uppercase;
 }
 
+.search_form {
+  max-width: 100%;
+  width: 15rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search_form input {
+  background-color: #fff;
+  margin-right: 10px;
+  width: 15rem;
+  border-radius: 5px;
+}
+
+.search_form button {
+  width: 15rem;
+  border-radius: 10px;
+  padding: 0.4em 0.6em;
+
+  background-color: #000;
+  color: #fff;
+}
+
+.search_form button:hover {
+  color: #fff;
+  background-color: #1a8918;
+}
+
 .links_list {
   display: flex;
   list-style: none;
@@ -27,6 +56,7 @@
 
 .links_list li a {
   padding: 0.4em 0.6em;
+  border-radius: 10px;
 }
 
 .active {
