@@ -27,12 +27,11 @@
 .search_form input {
   background-color: #fff;
   margin-right: 10px;
-  width: 15rem;
   border-radius: 5px;
+  padding: 0.4em 0.6em;
 }
 
 .search_form button {
-  width: 15rem;
   border-radius: 10px;
   padding: 0.4em 0.6em;
 

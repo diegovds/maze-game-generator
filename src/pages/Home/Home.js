@@ -2,26 +2,15 @@ import styles from './Home.module.css'
 
 import { backend } from '../../backend/config'
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // components
 import MazeDetail from "../../components/MazeDetail"
 
 const Home = () => {
-  const [query, setQuery] = useState('')
   const [mazes, setMazes] = useState(undefined)
 
-  const navigate = useNavigate()
-
   const loadingMazes = mazes === undefined
-
-  const handleSubmit = e => {
-    e.preventDefault()
-
-    if( query ){
-      return navigate(`/search?q=${query}`)
-    }
-  }
 
   useEffect(() => {
     const getAllMazes = async () => {

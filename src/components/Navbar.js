@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom'
 
 import { useAuthentication } from '../hooks/useAuthentication'
 
-import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useAuthValue } from '../context/AuthContext'
 
@@ -33,7 +33,7 @@ const Navbar = () => {
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
           type="text"
-          placeholder=" Nome do jogo..."
+          placeholder="Nome do jogo..."
           onChange={(e) => setQuery(e.target.value)}
         />
         <button>Pesquisar</button>
