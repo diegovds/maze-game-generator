@@ -60,7 +60,7 @@ const Search = () => {
       <div>
         {mazes && mazes.length === 0 && (
           <>
-            <p>Não foram encontrados jogos a partir da sua pesquisa...</p>
+            <p  className={styles.p_a}>Não foram encontrados jogos a partir da sua pesquisa...</p>
             {/*<Link to="/" className="btn btn-dark">Voltar</Link>*/}
           </>
         )}
