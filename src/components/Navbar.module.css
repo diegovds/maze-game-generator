@@ -17,16 +17,15 @@
 }
 
 .search_form {
-  max-width: 100%;
-  width: 15rem;
-  height: 2rem;
   display: flex;
   justify-content: center;
 }
 
 .search_form input {
+  width: 18rem;
   background-color: #fff;
-  margin-right: 10px;
+  margin-right: 1rem;
+  margin-left: 2rem;
   border-radius: 5px;
   padding: 0.4em 0.6em;
 }
