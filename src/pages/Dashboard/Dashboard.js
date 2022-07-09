@@ -81,45 +81,44 @@ const Dashboard = () => {
         <div className={styles.maze_header}>
           <span>Nome(s)</span>
           <span>Ações</span>
+          <Modal 
+            isOpen={modalIsOpen}
+            onRequestClose={handleCloseModal}
+            contentLabel="Exemple Modal"
+            overlayClassName={styles.modal_overlay}
+            className={styles.modal_content}
+          >
+            <h3>Jogo excluído com sucesso!</h3>
+            <button onClick={handleCloseModal} className="btn btn-dark">Fechar</button>
+          </Modal>
         </div>
       )}
       
       {userData &&
-        userData.mazes.map((userData) => (
-          <>  
-            <div className={styles.maze_row} key={userData.id}>
-              <p>{userData.name}</p>
-              <div className={styles.actions}>
-                <Link to={`/mazes/${userData.id}`} className="btn">
-                  Detalhes
-                </Link>
-                {userData.id !== mazeId && (
-                  <button
-                    onClick={() => deleteMaze(userData.id)}
-                    className="btn btn-outline btn-danger"
-                  >
-                    Excluir
-                  </button>
-                )}
-                {userData.id === mazeId && (
-                  <button className="btn" disabled>
-                    Aguarde...
-                  </button>
-                )}
-              </div>
+        userData.mazes.slice(0).reverse().map((userData) => (
+          <div className={styles.maze_row} key={userData.id}>
+            <p>{userData.name}</p>
+            <div className={styles.actions}>
+              <Link to={`/mazes/${userData.id}`} className="btn">
+                Detalhes
+              </Link>
+              {userData.id !== mazeId && (
+                <button
+                  onClick={() => deleteMaze(userData.id)}
+                  className="btn btn-outline btn-danger"
+                >
+                  Excluir
+                </button>
+              )}
+              {userData.id === mazeId && (
+                <button className="btn" disabled>
+                  Aguarde...
+                </button>
+              )}
             </div>
-            <Modal 
-              isOpen={modalIsOpen}
-              onRequestClose={handleCloseModal}
-              contentLabel="Exemple Modal"
-              overlayClassName={styles.modal_overlay}
-              className={styles.modal_content}
-            >
-              <h3>Jogo excluído com sucesso!</h3>
-              <button onClick={handleCloseModal} className="btn btn-dark">Fechar</button>
-            </Modal>
-          </>
-        ))}
+          </div>
+        ))
+      }
     </div>
   )
 }
