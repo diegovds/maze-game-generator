@@ -52,9 +52,8 @@
 .maze_row button,
 .maze_row a {
   margin: 0 5px;
-  height: 30px;
-  width: 100px;
-  font-size: 0.7em;
+  font-size: .8em;
+  padding: 0.4em 0.6em;
 }
 
 .modal_overlay {
