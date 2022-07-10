@@ -36,6 +36,11 @@ const Dashboard = () => {
 
       for(var user in data){
         if(data[user].uid === uid){
+
+          data[user].mazes.forEach(item => {
+            item.created_at = new Date(item.created_at).toLocaleDateString('pt-BR')
+          })
+
           setUserData(data[user])
           /*console.log(data[user].mazes.length)*/
         }
@@ -69,6 +74,7 @@ const Dashboard = () => {
   }
 
   return (
+    <>
     <div className={styles.dashboard}>
       <h2>Dashboard</h2>
       <p>Gerencie os seus jogos</p>
@@ -79,8 +85,8 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className={styles.maze_header}>
-          <span>Nome(s)</span>
-          <span>Ações</span>
+          {/*<span>Nome(s)</span>
+          <span>Ações</span>*/}
           <Modal 
             isOpen={modalIsOpen}
             onRequestClose={handleCloseModal}
@@ -93,8 +99,32 @@ const Dashboard = () => {
           </Modal>
         </div>
       )}
-      
-      {userData &&
+      </div>
+      <div className={styles.mazes_container}> 
+        {userData &&
+          userData.mazes.slice(0).reverse().map((userData) => (
+            <div key={userData.id} className={styles.maze}>
+              <img src={userData.url_image} alt={userData.image} />
+              <h3>{userData.name}</h3>
+              <p id='date'>Criado em: {userData.created_at}</p>
+              <Link to={`/mazes/${userData.id}`} className='btn'>Detalhes</Link>
+              {userData.id !== mazeId && (
+                <button
+                  onClick={() => deleteMaze(userData.id)}
+                  className="btn btn-outline btn-danger"
+                >
+                  Excluir
+                </button>
+              )}
+              {userData.id === mazeId && (
+                <button className="btn" disabled>
+                  Aguarde...
+                </button>
+              )}
+            </div>
+          ))}
+      </div>
+      {/*userData &&
         userData.mazes.slice(0).reverse().map((userData) => (
           <div className={styles.maze_row} key={userData.id}>
             <p>{userData.name}</p>
@@ -118,8 +148,8 @@ const Dashboard = () => {
             </div>
           </div>
         ))
-      }
-    </div>
+    */}
+    </>
   )
 }
 
