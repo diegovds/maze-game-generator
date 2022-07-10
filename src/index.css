@@ -80,7 +80,9 @@ textarea {
 
 .btn.btn-dark {
   background-color: #000;
-  border-radius: 0;
+  padding: 0.4em 0.6em;
+  border-radius: 10px;
+  margin-bottom: .2em;
   transition: .4s;
 }
 
