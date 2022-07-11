@@ -5,6 +5,15 @@
   justify-content: center;
 }
 
+.home h2 {
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #ccc;
+  width: 97%;
+}
+
 .search_form {
   max-width: 100%;
   width: 60%;

@@ -7,13 +7,14 @@ h3, p {
   margin-bottom: 3em;
   margin-right: 1em;
   text-align: center;
-  border: 1px solid #e4f2f7;
+  border: 1px solid #f6fcff;
   padding-top: .7rem;
   padding-bottom: 1rem;
   padding-left: .3rem;
   padding-right: .3rem;
-  border-radius: 5px;
-  background-color: #e4f2f7;
+  border-radius: 15px;
+  background-color: #f6fcff;
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px;
 }
 
 .maze img {
