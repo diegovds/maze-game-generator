@@ -32,13 +32,16 @@ const Search = () => {
       data = data.data
 
       data.forEach(item => {
-        item.created_at = new Date(item.created_at).toLocaleDateString('pt-BR')
-      })
+        if (item.name.length > 8) {
+          item.name = item.name.substr(0,8)
+          item.name = item.name.concat("...")
+        }
 
-      data.forEach(item => {
         if(item.name.toLowerCase().includes(search.toLowerCase())){
           filter.push(item)
         }
+
+        item.created_at = new Date(item.created_at).toLocaleDateString('pt-BR')
       })
 
       setMazes(filter)
