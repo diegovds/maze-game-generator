@@ -14,6 +14,10 @@ const Maze = () => {
 
   const loadingMaze = maze === undefined
   const loadingUser = user === undefined
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
   const getAMaze = useCallback ( async () => {
       var response = await fetch(

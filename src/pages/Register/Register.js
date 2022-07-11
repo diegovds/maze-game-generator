@@ -12,6 +12,10 @@ const Register = () => {
 
   const { createUser, error: authError, loading } = useAuthentication()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 

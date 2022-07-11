@@ -21,6 +21,10 @@ const Dashboard = () => {
 
   const loadingUser = userData === undefined
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   function handleOpenModal(){
     setIsOpen(true)
   }

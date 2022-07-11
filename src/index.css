@@ -2,6 +2,11 @@
   --font-name: 'Fredoka One', cursive;
 }
 
+html {
+  /* chrome://flags/#smooth-scrolling */
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f6fcff;
   padding: 0;
