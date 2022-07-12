@@ -52,7 +52,7 @@ function App() {
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <ScrollToTopPage/>
-          <ScrollToTop smooth style={{ backgroundColor: "#ADD8E6" }}/>
+          <ScrollToTop smooth style={{ backgroundColor: "#ADD8E6", height: 50,  width: 50 }}/>
           <Navbar />
           <div className="container">
             <Routes>
