@@ -1,5 +1,22 @@
-.register {
+.container {
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+}
+
+.register {
+  width: 90%;
+
+  border: 1px solid #fff;
+  padding-top: .7rem;
+  padding-bottom: 2rem;
+  padding-left: .3rem;
+  padding-right: .3rem;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px;
 }
 
 .register p {
