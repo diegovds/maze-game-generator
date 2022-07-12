@@ -40,11 +40,13 @@ const CreateMaze = () => {
   }
 
   return (
-    <div className={styles.create_maze}>
-      <h2>Criar jogo</h2>
-      <p>Ao clicar no botão abaixo você será redirecionado para a página de criação do jogo.</p>
-      <a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegamebuilder.vercel.app/index.html?userId=" + userId}>Ir para o Maze Builder</a>
-      {/*<a className="btn" href="https://mazegamebuilder.vercel.app/index.html?esteDeenvio">Ir</a>*/}
+    <div className={styles.maze_container}>
+      <div className={styles.create_maze}>
+        <h2>Criar jogo</h2>
+        <p>Ao clicar no botão abaixo você será redirecionado para a página de criação do jogo.</p>
+        <a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegamebuilder.vercel.app/index.html?userId=" + userId}>Ir para o Maze Builder</a>
+        {/*<a className="btn" href="https://mazegamebuilder.vercel.app/index.html?esteDeenvio">Ir</a>*/}
+      </div>
     </div>
   )
 }
