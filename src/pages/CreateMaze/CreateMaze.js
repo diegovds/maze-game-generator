@@ -13,10 +13,6 @@ const CreateMaze = () => {
   const loadingUser = userId === undefined
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
     const searchUserId = async () => {
       const response = await fetch(backend + "/users")
       var data = await response.json()

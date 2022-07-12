@@ -13,10 +13,6 @@ const Home = () => {
   const loadingMazes = mazes === undefined
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
     const getAllMazes = async () => {
       const response = await fetch(
         backend + '/mazes'

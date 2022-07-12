@@ -18,10 +18,6 @@ const Search = () => {
   const loadingMazes = mazes === undefined
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
     const getFilterMazes = async () => {
       const response = await fetch(
         backend + "/mazes"

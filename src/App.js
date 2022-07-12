@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import ScrollToTop from "react-scroll-to-top";
+import ScrollToTopPage from './components/ScrollToTopPage'
 
 // Hooks
 import { useState, useEffect } from 'react'
@@ -48,9 +49,10 @@ function App() {
 
   return (
     <div className="App">
-      <ScrollToTop smooth />
       <AuthProvider value={{ user }}>
         <BrowserRouter>
+          <ScrollToTopPage/>
+          <ScrollToTop smooth/>
           <Navbar />
           <div className="container">
             <Routes>
