@@ -13,13 +13,13 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #f6fcff;
+  border: 1px solid #fff;
   padding-top: .7rem;
   padding-bottom: 1rem;
   padding-left: .3rem;
   padding-right: .3rem;
   border-radius: 20px;
-  background-color: #f6fcff;
+  background-color: #fff;
   box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px;
 }
 
