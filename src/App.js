@@ -16,7 +16,6 @@ import { AuthProvider } from './context/AuthContext'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import CreateMaze from './pages/CreateMaze/CreateMaze'
@@ -61,7 +60,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
               <Route path="/mazes/:id" element={<Maze />}/>
-              <Route path="/404" element={<NotFound />}/>
+              <Route path="*" element={<NotFound />}/>
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}
@@ -80,7 +79,6 @@ function App() {
               />
             </Routes>
           </div>
-          {/*<Footer />*/}
         </BrowserRouter>
       </AuthProvider>
     </div>

@@ -1,6 +1,7 @@
 import styles from './Maze.module.css'
 import { backend } from '../../backend/config'
-import { Link, Navigate } from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom'
 
 // hooks
 import { useCallback, useEffect, useState } from 'react'
@@ -8,10 +9,10 @@ import { useParams } from 'react-router-dom'
 
 const Maze = () => {
   const {id} = useParams()
+  const navigate = useNavigate()
 
   const [maze, setMaze] = useState(undefined)
   const [user, setUser] = useState(undefined)
-  const [notFound, setnotFound] = useState(undefined)
 
   const loadingMaze = maze === undefined
   const loadingUser = user === undefined
@@ -37,10 +38,10 @@ const Maze = () => {
         setMaze(maze)
         setUser(user)
       } catch (error) {
-        setnotFound(error)
+        navigate("NotFound")
       }
     },
-    [id]
+    [id, navigate]
   )
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const Maze = () => {
     window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
   }
 
-  if ((loadingMaze || loadingUser) && notFound === undefined) {
+  if (loadingMaze || loadingUser) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
@@ -71,12 +72,6 @@ const Maze = () => {
           <p>Carregando...</p>
         </div>
       </div>
-    )
-  }
-
-  if (notFound !== undefined) {
-    return (
-      <Navigate to="/404" />
     )
   }
 
