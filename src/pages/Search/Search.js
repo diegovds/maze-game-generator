@@ -9,7 +9,6 @@ import { useQuery } from '../../hooks/useQuery'
 
 // components
 import MazeDetail from "../../components/MazeDetail"
-import { Fade } from 'react-reveal';
 
 const Search = () => {
   const query = useQuery()
@@ -72,9 +71,7 @@ const Search = () => {
         </div>
       </div>
       <div className={styles.mazes_container}>
-        <Fade>
-          {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
-        </Fade>
+        {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
       </div>
       <div>
         {mazes && mazes.length !== 0 && (

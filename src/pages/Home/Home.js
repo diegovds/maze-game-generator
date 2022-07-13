@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 // components
 import MazeDetail from "../../components/MazeDetail"
-import { Fade } from 'react-reveal'
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined)
@@ -63,9 +62,7 @@ const Home = () => {
         */}
       </div>
       <div className={styles.mazes_container}>
-        <Fade>
-          {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
-        </Fade>
+        {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
       </div>
       {mazes && mazes.length === 0 && (
         <div className={styles.nomazes}>
