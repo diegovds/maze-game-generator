@@ -6,7 +6,7 @@ const NotFound = () => {
       <div className={styles.info}>
         <h1>Erro 404</h1>
         <br />
-        <h2>A página que você procura não foi encontrada</h2>
+        <h2>A página não foi encontrada!</h2>
         <>
           {/*<p className={styles.p_a}>Ocorreu um erro ao procurar o jogo</p>
           <Link to="/" className="btn btn-dark">Voltar</Link>*/}
