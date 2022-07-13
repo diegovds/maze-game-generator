@@ -107,7 +107,7 @@ const Dashboard = () => {
       </div>
       <div className={styles.mazes_container}> 
         {userData &&
-          userData.mazes.slice(0).reverse().map((userData) => (
+          userData.mazes.map((userData) => (
             <div key={userData.id} className={styles.maze}>
               <img src={userData.url_image} alt={userData.image} />
               <h3>{userData.name}</h3>
