@@ -1,14 +1,17 @@
 import styles from './Home.module.css'
 
 import { backend } from '../../backend/config'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+
+import ScrollReveal from 'scrollreveal'
 
 // components
 import MazeDetail from "../../components/MazeDetail"
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined)
+  const elementRef = useRef();
 
   const loadingMazes = mazes === undefined
 
@@ -34,6 +37,18 @@ const Home = () => {
     }
     getAllMazes()
   }, [])
+
+  useEffect(() => {
+    const divElement = elementRef.current;
+    //console.log(divElement); // conteudo atualizado da div
+    if(!loadingMazes){
+      //console.log("ScrollReveal")
+      ScrollReveal().reveal(divElement, {
+        reset: true,
+        delay: 500
+      })
+    }
+  }, [loadingMazes]);
 
   if (loadingMazes) {
     return (
@@ -61,8 +76,10 @@ const Home = () => {
         </form>
         */}
       </div>
-      <div className={styles.mazes_container}>
-        {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
+      <div className='load-hidden'>
+        <div className={styles.mazes_container} ref={elementRef}>
+          {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
+        </div>
       </div>
       {mazes && mazes.length === 0 && (
         <div className={styles.nomazes}>
