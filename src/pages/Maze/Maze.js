@@ -1,6 +1,6 @@
 import styles from './Maze.module.css'
 import { backend } from '../../backend/config'
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 // hooks
 import { useCallback, useEffect, useState } from 'react'
@@ -11,29 +11,34 @@ const Maze = () => {
 
   const [maze, setMaze] = useState(undefined)
   const [user, setUser] = useState(undefined)
+  const [notFound, setnotFound] = useState(undefined)
 
   const loadingMaze = maze === undefined
   const loadingUser = user === undefined
 
   const getAMaze = useCallback ( async () => {
-      var response = await fetch(
-        backend + '/mazes/' + id
-      )
-      var maze = await response.json()
-
-      maze = maze.data
-
-      maze.created_at = new Date(maze.created_at).toLocaleDateString('pt-BR')
-      
-      response = await fetch(
-        backend + '/users/' + maze.user_id
-      )
-      var user = await response.json()
-
-      user = user.data
-
-      setMaze(maze)
-      setUser(user)
+      try {
+        var response = await fetch(
+          backend + '/mazes/' + id
+        )
+        var maze = await response.json()
+  
+        maze = maze.data
+  
+        maze.created_at = new Date(maze.created_at).toLocaleDateString('pt-BR')
+        
+        response = await fetch(
+          backend + '/users/' + maze.user_id
+        )
+        var user = await response.json()
+  
+        user = user.data
+  
+        setMaze(maze)
+        setUser(user)
+      } catch (error) {
+        setnotFound(error)
+      }
     },
     [id]
   )
@@ -58,7 +63,7 @@ const Maze = () => {
     window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
   }
 
-  if (loadingMaze || loadingUser) {
+  if ((loadingMaze || loadingUser) && notFound === undefined) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
@@ -66,6 +71,12 @@ const Maze = () => {
           <p>Carregando...</p>
         </div>
       </div>
+    )
+  }
+
+  if (notFound !== undefined) {
+    return (
+      <Navigate to="/404" />
     )
   }
 

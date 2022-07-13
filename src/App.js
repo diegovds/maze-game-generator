@@ -23,6 +23,7 @@ import CreateMaze from './pages/CreateMaze/CreateMaze'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Search from './pages/Search/Search'
 import Maze from './pages/Maze/Maze'
+import NotFound from './pages/404/NotFound';
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -60,6 +61,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
               <Route path="/mazes/:id" element={<Maze />}/>
+              <Route path="/404" element={<NotFound />}/>
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}
