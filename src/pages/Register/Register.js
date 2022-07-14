@@ -28,8 +28,9 @@ const Register = () => {
       return
     }
 
-    const res = await createUser(user)
+    await createUser(user)
 
+    //const res = await createUser(user)
     /*console.log(res)*/
   }
 

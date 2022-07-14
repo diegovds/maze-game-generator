@@ -20,8 +20,9 @@ const Login = () => {
       password
     }
 
-    const res = await login(user)
+    await login(user)
 
+    //const res = await login(user)
     /*console.log(res)*/
   }
 

@@ -1,7 +1,6 @@
 import styles from './Search.module.css'
 
 import { backend } from '../../backend/config'
-import { Link } from "react-router-dom";
 
 // hook
 import { useState, useEffect } from 'react'

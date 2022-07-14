@@ -119,7 +119,10 @@ export const useAuthentication = () => {
       setLoading(false)
 
     }
-
+    
+    if (db) {
+      
+    }
   }
 
   useEffect(() => {
