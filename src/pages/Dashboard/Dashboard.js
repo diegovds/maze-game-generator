@@ -47,6 +47,11 @@ const Dashboard = () => {
     searchUserData()
   }, [searchUserData])
 
+  const reload = () => {
+    setUserData(undefined)
+    searchUserData()
+  };
+
   if (loadingUser) {
     return (
       <div className="loading">
@@ -80,7 +85,7 @@ const Dashboard = () => {
         </div>
         <div className={styles.mazes_container}>
           {userData &&
-            userData.mazes.map((userData) => <MazeDelete key={userData.id} maze={userData} childToParent={searchUserData}/>)}
+            userData.mazes.map((userData) => <MazeDelete key={userData.id} maze={userData} childToParent={reload} />)}
         </div>
         {/*userData &&
           userData.mazes.slice(0).reverse().map((userData) => (
