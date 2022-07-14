@@ -1,5 +1,6 @@
 :root{
-  --font-name: 'Fredoka One', cursive;
+  --font-name: 'Fredoka', cursive;
+  font-size: 102%;
 }
 
 html {
