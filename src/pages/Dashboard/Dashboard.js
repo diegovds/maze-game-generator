@@ -63,30 +63,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     const divElement = elementRef.current;
-    //console.log(divElement); // conteudo atualizado da div
-    if(!loadingUser){
-      //console.log(divElement.getElementsByTagName('div')[1])
-      ScrollReveal({
-        
-      })
-      ScrollReveal().reveal(divElement.getElementsByTagName('div')[0], {
-        //origin: 'right',
-        //distance: '150em',
-        //duration: 1300
-      })
-      ScrollReveal().reveal(divElement.getElementsByTagName('div')[1], {
-        //origin: 'right',
-        //distance: '150em',
-        //duration: 1300
-
-        delay: 700,
-      })
-      ScrollReveal().reveal(divElement.getElementsByTagName('div')[2], {
-        //distance: '150em',
-        //duration: 1300,
-        
-        delay: 700,
-      })
+      if(!loadingUser){
+        ScrollReveal({
+          origin: 'top',
+          distance: '30px',
+          duration: 700
+        }).reveal(divElement)
     }
   }, [loadingUser]);
 
