@@ -10,6 +10,8 @@ import ScrollReveal from "scrollreveal";
 
 import { backend } from "../backend/config";
 
+import { ScrollRevealOptions } from "./ScrollRevealOptions"
+
 Modal.setAppElement('#root')
 
 const MazeDelete = ({ maze, childToParent }) => {
@@ -31,12 +33,7 @@ const MazeDelete = ({ maze, childToParent }) => {
 
   useEffect(() => {
     const divElement = elementRef.current;
-    ScrollReveal({
-      reset: true,
-      origin: "top",
-      distance: "30px",
-      duration: 700,
-    }).reveal(divElement);
+    ScrollReveal().reveal(divElement, ScrollRevealOptions);
   }, []);
 
   const deleteMaze = async (id) => {

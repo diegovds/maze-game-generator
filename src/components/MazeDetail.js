@@ -6,18 +6,15 @@ import { useRef, useEffect } from 'react'
 
 import ScrollReveal from 'scrollreveal'
 
+import { ScrollRevealOptions } from "./ScrollRevealOptions"
+
 const MazeDetail = ({ maze }) => {
   const elementRef = useRef();
 
 
   useEffect(() => {
     const divElement = elementRef.current;
-    ScrollReveal({
-      reset: true,
-      origin: 'top',
-      distance: '30px',
-      duration: 700
-    }).reveal(divElement)
+    ScrollReveal().reveal(divElement, ScrollRevealOptions);
   }, []);
 
   return (
