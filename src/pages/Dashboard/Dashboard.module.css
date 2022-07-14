@@ -37,9 +37,10 @@
 }
 
 .mazes_container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 97%;
+  margin: 0 auto;
   justify-content: space-evenly;
 }
 
