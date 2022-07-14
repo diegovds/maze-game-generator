@@ -1,6 +1,6 @@
 const ScrollRevealOptions = {
     reset: true,
-    origin: "top",
+    origin: "bottom",
     distance: "30px",
     duration: 700
 }
