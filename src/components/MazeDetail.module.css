@@ -31,3 +31,7 @@ h3, p {
   font-size: small;
   margin-bottom: 1.5em;
 }
+
+.maze a {
+  font-size: .9em;
+}
