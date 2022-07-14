@@ -23,7 +23,7 @@ const MazeDetail = ({ maze }) => {
         <div className={styles.maze}>
           <img src={maze.url_image} alt={maze.image} />
           <h3>{maze.name}</h3>
-          <p id='date'>Criado em: {maze.created_at}</p>
+          <p id='date'>Criado em:<br />{maze.created_at}</p>
           <Link to={`/mazes/${maze.id}`} className='btn'>Detalhes</Link>
         </div>
       </div>
