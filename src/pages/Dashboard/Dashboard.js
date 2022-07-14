@@ -1,13 +1,15 @@
 import styles from './Dashboard.module.css'
 
 import Modal from 'react-modal'
+import ScrollReveal from 'scrollreveal'
+
 
 import { Link } from 'react-router-dom'
 import { backend } from '../../backend/config'
 
 // hooks
 import { useAuthValue } from "../../context/AuthContext"
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 
 Modal.setAppElement('#root')
 
@@ -18,6 +20,7 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(undefined)
   const [mazeId, setMazeId] = useState(undefined)
   const [modalIsOpen, setIsOpen] = useState(false)
+  const elementRef = useRef();
 
   const loadingUser = userData === undefined
 
@@ -58,6 +61,35 @@ const Dashboard = () => {
     searchUserData()
   }, [searchUserData])
 
+  useEffect(() => {
+    const divElement = elementRef.current;
+    //console.log(divElement); // conteudo atualizado da div
+    if(!loadingUser){
+      //console.log(divElement.getElementsByTagName('div')[1])
+      ScrollReveal({
+        
+      })
+      ScrollReveal().reveal(divElement.getElementsByTagName('div')[0], {
+        //origin: 'right',
+        //distance: '150em',
+        //duration: 1300
+      })
+      ScrollReveal().reveal(divElement.getElementsByTagName('div')[1], {
+        //origin: 'right',
+        //distance: '150em',
+        //duration: 1300
+
+        delay: 700,
+      })
+      ScrollReveal().reveal(divElement.getElementsByTagName('div')[2], {
+        //distance: '150em',
+        //duration: 1300,
+        
+        delay: 700,
+      })
+    }
+  }, [loadingUser]);
+
   const deleteMaze = async (id) => {
     setMazeId(id)
     await fetch(backend + "/mazes/" + id, {
@@ -79,83 +111,92 @@ const Dashboard = () => {
   }
 
   return (
-    <>
-    <div className={styles.dashboard}>
-      <h2>Dashboard</h2>
-      <p>Gerencie os seus jogos</p>
-      {userData && userData.mazes.length === 0 ? (
-        <div className={styles.nomazes}>
-          <p>Não foram encontrados jogos</p>
-          <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
-        </div>
-      ) : (
-        <div className={styles.maze_header}>
-          {/*<span>Nome(s)</span>
-          <span>Ações</span>*/}
-          <Modal 
-            isOpen={modalIsOpen}
-            onRequestClose={handleCloseModal}
-            contentLabel="Exemple Modal"
-            overlayClassName={styles.modal_overlay}
-            className={styles.modal_content}
-          >
-            <h3>Jogo excluído com sucesso!</h3>
-            <button onClick={handleCloseModal} className="btn btn-dark">Fechar</button>
-          </Modal>
-        </div>
-      )}
-      </div>
-      <div className={styles.mazes_container}> 
-        {userData &&
-          userData.mazes.map((userData) => (
-            <div key={userData.id} className={styles.maze}>
-              <img src={userData.url_image} alt={userData.image} />
-              <h3>{userData.name}</h3>
-              <p id='date'>Criado em: {userData.created_at}</p>
-              <Link to={`/mazes/${userData.id}`} className='btn'>Detalhes</Link>
-              {userData.id !== mazeId && (
-                <button
-                  onClick={() => deleteMaze(userData.id)}
-                  className="btn btn-outline btn-danger"
-                >
-                  Excluir
-                </button>
-              )}
-              {userData.id === mazeId && (
-                <button className="btn" disabled>
-                  Aguarde...
-                </button>
-              )}
-            </div>
-          ))}
-      </div>
-      {/*userData &&
-        userData.mazes.slice(0).reverse().map((userData) => (
-          <div className={styles.maze_row} key={userData.id}>
-            <p>{userData.name}</p>
-            <div className={styles.actions}>
-              <Link to={`/mazes/${userData.id}`} className="btn">
-                Detalhes
+    <div className="load-hidden">
+      <div ref={elementRef}>
+        <div className={styles.dashboard}>
+          <h2>Dashboard</h2>
+          <p>Gerencie os seus jogos</p>
+          {userData && userData.mazes.length === 0 ? (
+            <div className={styles.nomazes}>
+              <br />
+              <p>Não foram encontrados jogos</p>
+              <Link to="/mazes/create" className="btn">
+                Criar primeiro jogo
               </Link>
-              {userData.id !== mazeId && (
-                <button
-                  onClick={() => deleteMaze(userData.id)}
-                  className="btn btn-outline btn-danger"
-                >
-                  Excluir
-                </button>
-              )}
-              {userData.id === mazeId && (
-                <button className="btn" disabled>
-                  Aguarde...
-                </button>
-              )}
             </div>
-          </div>
-        ))
-    */}
-    </>
-  )
-}
+          ) : (
+            <div className={styles.maze_header}>
+              {/*<span>Nome(s)</span>
+            <span>Ações</span>*/}
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={handleCloseModal}
+                contentLabel="Exemple Modal"
+                overlayClassName={styles.modal_overlay}
+                className={styles.modal_content}
+              >
+                <h3>Jogo excluído com sucesso!</h3>
+                <button onClick={handleCloseModal} className="btn btn-dark">
+                  Fechar
+                </button>
+              </Modal>
+            </div>
+          )}
+        </div>
+        <div className={styles.mazes_container}>
+          {userData &&
+            userData.mazes.map((userData) => (
+              <div key={userData.id} className={styles.maze}>
+                <img src={userData.url_image} alt={userData.image} />
+                <h3>{userData.name}</h3>
+                <p id="date">Criado em: {userData.created_at}</p>
+                <Link to={`/mazes/${userData.id}`} className="btn">
+                  Detalhes
+                </Link>
+                {userData.id !== mazeId && (
+                  <button
+                    onClick={() => deleteMaze(userData.id)}
+                    className="btn btn-outline btn-danger"
+                  >
+                    Excluir
+                  </button>
+                )}
+                {userData.id === mazeId && (
+                  <button className="btn" disabled>
+                    Aguarde...
+                  </button>
+                )}
+              </div>
+            ))}
+        </div>
+        {/*userData &&
+          userData.mazes.slice(0).reverse().map((userData) => (
+            <div className={styles.maze_row} key={userData.id}>
+              <p>{userData.name}</p>
+              <div className={styles.actions}>
+                <Link to={`/mazes/${userData.id}`} className="btn">
+                  Detalhes
+                </Link>
+                {userData.id !== mazeId && (
+                  <button
+                    onClick={() => deleteMaze(userData.id)}
+                    className="btn btn-outline btn-danger"
+                  >
+                    Excluir
+                  </button>
+                )}
+                {userData.id === mazeId && (
+                  <button className="btn" disabled>
+                    Aguarde...
+                  </button>
+                )}
+              </div>
+            </div>
+          ))
+      */}
+      </div>
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
