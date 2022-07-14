@@ -43,9 +43,20 @@ const Home = () => {
     //console.log(divElement); // conteudo atualizado da div
     if(!loadingMazes){
       //console.log("ScrollReveal")
-      ScrollReveal().reveal(divElement, {
-        reset: true,
-        delay: 500
+      //console.log(divElement.getElementsByTagName('div')[0]); // conteudo atualizado da div
+      ScrollReveal({
+        
+      })
+      ScrollReveal().reveal(divElement.getElementsByTagName('div')[0], {
+        //origin: 'right',
+        //distance: '150em',
+        //duration: 1300
+      })
+      ScrollReveal().reveal(divElement.getElementsByTagName('div')[1], {
+        //distance: '150em',
+        //duration: 1300,
+        
+        delay: 700,
       })
     }
   }, [loadingMazes]);
@@ -62,32 +73,34 @@ const Home = () => {
   }
 
   return (
-    <>
-      <div className={styles.home}>
-        <h2>Jogos criados recentemente:</h2>
-        {/*
-        <form onSubmit={handleSubmit} className={styles.search_form}>
-          <input
-            type="text"
-            placeholder="Nome do jogo..."
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button className="btn btn-dark">Pesquisar</button>
-        </form>
-        */}
-      </div>
-      <div className='load-hidden'>
-        <div className={styles.mazes_container} ref={elementRef}>
+    <div className='load-hidden'>
+      <div  ref={elementRef}>
+        <div className={styles.home}>
+          <h2>Jogos criados recentemente:</h2>
+          {/*
+          <form onSubmit={handleSubmit} className={styles.search_form}>
+            <input
+              type="text"
+              placeholder="Nome do jogo..."
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button className="btn btn-dark">Pesquisar</button>
+          </form>
+          */}
+        </div>
+        
+        <div className={styles.mazes_container}>
           {mazes && mazes.map((maze) => <MazeDetail key={maze.id} maze={maze}/>)}
         </div>
+        
+        {mazes && mazes.length === 0 && (
+          <div className={styles.nomazes}>
+            <p>Não foram encontrados jogos</p>
+            <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
+          </div>
+        )}
       </div>
-      {mazes && mazes.length === 0 && (
-        <div className={styles.nomazes}>
-          <p>Não foram encontrados jogos</p>
-          <Link to="/mazes/create" className='btn'>Criar primeiro jogo</Link>
-        </div>
-      )}
-    </>
+    </div>
   )
 }
 
