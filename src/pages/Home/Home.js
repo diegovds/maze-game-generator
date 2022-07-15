@@ -1,41 +1,39 @@
-import styles from './Home.module.css'
+import styles from "./Home.module.css";
 
-import { backend } from '../../backend/config'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { backend } from "../../backend/config";
+import { Link } from "react-router-dom";
+
+// hooks
+import useFetch from "react-fetch-hook";
+import { useEffect, useState } from "react";
 
 // components
-import MazeDetail from "../../components/MazeDetail"
+import MazeDetail from "../../components/MazeDetail";
 
 const Home = () => {
-  const [mazes, setMazes] = useState(undefined)
+  const { isLoading, error, data } = useFetch(backend + "/mazes");
+  const [mazes, setMazes] = useState(undefined);
 
-  const loadingMazes = mazes === undefined
+  const loadingDate = mazes === undefined;
 
   useEffect(() => {
-    const getAllMazes = async () => {
-      const response = await fetch(
-        backend + '/mazes'
-      )
-      var data = await response.json()
+    const dateUpdate = () => {
+      var filter = [];
 
-      data = data.data
+      if (!isLoading && !error) {
+        data.data.forEach((item) => {
+          item.created_at = new Date(item.created_at).toLocaleDateString(
+            "pt-BR"
+          );
+          filter.push(item);
+        });
+        setMazes(filter);
+      }
+    };
+    dateUpdate();
+  }, [data, isLoading, error]);
 
-      data.forEach(item => {
-        if (item.name.length > 8) {
-          item.name = item.name.substr(0,8)
-          item.name = item.name.concat("...")
-        }
-        item.created_at = new Date(item.created_at).toLocaleDateString('pt-BR')
-      })
-
-      setMazes(data)
-      /*console.log(data)*/
-    }
-    getAllMazes()
-  }, [])
-
-  if (loadingMazes) {
+  if (isLoading || loadingDate) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
@@ -43,7 +41,15 @@ const Home = () => {
           <p>Carregando...</p>
         </div>
       </div>
-    )
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="loading">
+        <p>Ocorreu um erro, por favor tente mais tarde.</p>
+      </div>
+    );
   }
 
   return (
