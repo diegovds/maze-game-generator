@@ -33,7 +33,7 @@ const Home = () => {
     dateUpdate();
   }, [data, isLoading, error]);
 
-  if (isLoading || loadingDate) {
+  if (isLoading && loadingDate) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
