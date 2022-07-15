@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-
+    e.target.reset();
     if( query ){
       return navigate(`/search?q=${query}`)
     }
