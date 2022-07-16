@@ -1,8 +1,12 @@
 const ScrollRevealOptions = {
-    reset: true,
-    origin: "bottom",
-    distance: "30px",
-    duration: 700
-}
+  reset: true,
+  duration: 1000,
+  rotate: {
+    x: 180,
+    y: 180,
+    z: 180,
+  },
+  scale: 0,
+};
 
-export {ScrollRevealOptions}
+export { ScrollRevealOptions };
