@@ -5,23 +5,13 @@ import { backend } from "../../backend/config";
 // hook
 import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "../../hooks/useQuery";
-import useFetch from "react-fetch-hook";
-import createTrigger from "react-use-trigger";
-import useTrigger from "react-use-trigger/useTrigger";
 
 // components
 import MazeDetail from "../../components/MazeDetail";
 
-const requestTrigger = createTrigger();
-
 const Search = () => {
   const query = useQuery();
   const search = query.get("q");
-
-  const requestTriggerValue = useTrigger(requestTrigger);
-  const { isLoading, data, error } = useFetch(backend + "/mazes", {
-    depends: [requestTriggerValue],
-  });
 
   const [key, setKey] = useState(undefined);
   const [mazes, setMazes] = useState(undefined);
@@ -30,50 +20,43 @@ const Search = () => {
   if (key !== search && key !== undefined) {
     setMazes(undefined);
     setKey(search);
-    requestTrigger();
   }
 
   const getFilterMazes = useCallback(async () => {
-    if (!isLoading && error === undefined && loadingMazes) {
-      var filter = [];
+    const response = await fetch(backend + "/mazes");
+    var data = await response.json();
+    var filter = [];
 
-      data.data.forEach((item) => {
-        if (item.name.toLowerCase().includes(search.toLowerCase())) {
-          filter.push(item);
-        }
+    data = data.data;
 
-        if (item.name.length > 8) {
-          item.name = item.name.substr(0, 8);
-          item.name = item.name.concat("...");
-        }
+    data.forEach((item) => {
+      if (item.name.toLowerCase().includes(search.toLowerCase())) {
+        filter.push(item);
+      }
 
-        item.created_at = new Date(item.created_at).toLocaleDateString("pt-BR");
-      });
-      setKey(search);
-      setMazes(filter);
-      /*console.log(filter)*/
-    }
-  }, [search, data, error, isLoading, loadingMazes]);
+      if (item.name.length > 8) {
+        item.name = item.name.substr(0, 8);
+        item.name = item.name.concat("...");
+      }
+
+      item.created_at = new Date(item.created_at).toLocaleDateString("pt-BR");
+    });
+    setKey(search);
+    setMazes(filter);
+    /*console.log(filter)*/
+  }, [search]);
 
   useEffect(() => {
     getFilterMazes();
   }, [getFilterMazes]);
 
-  if (loadingMazes && isLoading) {
+  if (loadingMazes) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
         <div>
           <p>Carregando...</p>
         </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="loading">
-        <p>Ocorreu um erro, por favor tente mais tarde.</p>
       </div>
     );
   }
