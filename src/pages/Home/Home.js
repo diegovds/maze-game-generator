@@ -2,27 +2,22 @@ import styles from "./Home.module.css";
 
 import { backend } from "../../backend/config";
 import { useEffect, useState } from "react";
+import useFetch from "react-fetch-hook";
 import { Link } from "react-router-dom";
 
 // components
 import MazeDetail from "../../components/MazeDetail";
 
 const Home = () => {
+  const { isLoading, data, error } = useFetch(backend + "/mazes");
   const [mazes, setMazes] = useState(undefined);
-  const [error, setError] = useState(undefined);
 
   const loadingMazes = mazes === undefined;
-  const loadingError = error === undefined;
 
   useEffect(() => {
     const getAllMazes = async () => {
-      try {
-        const response = await fetch(backend + "/mazes");
-        var data = await response.json();
-
-        data = data.data;
-
-        data.forEach((item) => {
+      if (!isLoading && !error && loadingMazes) {
+        data.data.forEach((item) => {
           if (item.name.length > 8) {
             item.name = item.name.substr(0, 8);
             item.name = item.name.concat("...");
@@ -32,16 +27,14 @@ const Home = () => {
           );
         });
 
-        setMazes(data);
+        setMazes(data.data);
         /*console.log(data)*/
-      } catch (error) {
-        setError(1);
       }
     };
     getAllMazes();
-  }, []);
+  }, [data, error, isLoading, loadingMazes]);
 
-  if (loadingMazes && loadingError) {
+  if (loadingMazes && isLoading) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
@@ -52,7 +45,7 @@ const Home = () => {
     );
   }
 
-  if (!loadingError) {
+  if (error) {
     return (
       <div className="loading">
         <p>Ocorreu um erro, por favor tente mais tarde.</p>
