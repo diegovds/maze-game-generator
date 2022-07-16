@@ -12,10 +12,8 @@ const Maze = () => {
   const navigate = useNavigate()
 
   const [maze, setMaze] = useState(undefined)
-  const [user, setUser] = useState(undefined)
 
   const loadingMaze = maze === undefined
-  const loadingUser = user === undefined
 
   const getAMaze = useCallback ( async () => {
       try {
@@ -28,15 +26,7 @@ const Maze = () => {
   
         maze.created_at = new Date(maze.created_at).toLocaleDateString('pt-BR')
         
-        response = await fetch(
-          backend + '/users/' + maze.user_id
-        )
-        var user = await response.json()
-  
-        user = user.data
-  
         setMaze(maze)
-        setUser(user)
       } catch (error) {
         navigate("NotFound")
       }
@@ -64,7 +54,7 @@ const Maze = () => {
     window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
   }
 
-  if (loadingMaze || loadingUser) {
+  if (loadingMaze) {
     return (
       <div className="loading">
         <div className="dual-ring"></div>
@@ -78,11 +68,11 @@ const Maze = () => {
   return (
     <div className={styles.maze_container}>
       <div className={styles.maze}>
-        {maze && user && (
+        {maze && (
           <>
             <h2>{maze.name}</h2>
             <img src={maze.url_image} alt={maze.image} />
-            <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {user.username}</p>
+            <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {maze.username}</p>
             <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
             {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
             <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>
