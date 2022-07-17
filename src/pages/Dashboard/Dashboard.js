@@ -9,6 +9,7 @@ import MazeDelete from "../../components/MazeDelete";
 // hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useCallback, useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 const Dashboard = () => {
   const { user } = useAuthValue();
@@ -47,12 +48,7 @@ const Dashboard = () => {
 
   if (loadingUser) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     );
   }
 

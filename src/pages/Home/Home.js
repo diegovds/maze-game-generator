@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 // components
 import MazeDetail from "../../components/MazeDetail";
+import Loading from "../../components/Loading";
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined);
@@ -43,12 +44,7 @@ const Home = () => {
 
   if (loadingMazes && loadingError) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     );
   }
 

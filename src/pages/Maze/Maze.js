@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 // hooks
 import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Loading from '../../components/Loading'
 
 const Maze = () => {
   const {id} = useParams()
@@ -56,12 +57,7 @@ const Maze = () => {
 
   if (loadingMaze) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     )
   }
 

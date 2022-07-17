@@ -3,6 +3,7 @@ import styles from "./CreateMaze.module.css";
 import { backend } from "../../backend/config";
 import { useAuthValue } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 const CreateMaze = () => {
   const { user } = useAuthValue();
@@ -25,12 +26,7 @@ const CreateMaze = () => {
 
   if (loadingUser) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     );
   }
 

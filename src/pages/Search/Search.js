@@ -8,6 +8,7 @@ import { useQuery } from "../../hooks/useQuery";
 
 // components
 import MazeDetail from "../../components/MazeDetail";
+import Loading from "../../components/Loading";
 
 const Search = () => {
   const query = useQuery();
@@ -23,7 +24,7 @@ const Search = () => {
   }
 
   const getFilterMazes = useCallback(async () => {
-    const response = await fetch(backend + "/mazes");
+    const response = await fetch(backend + "/maze");
     var data = await response.json();
     var filter = [];
 
@@ -52,12 +53,7 @@ const Search = () => {
 
   if (loadingMazes) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     );
   }
 

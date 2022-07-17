@@ -23,6 +23,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Search from './pages/Search/Search'
 import Maze from './pages/Maze/Maze'
 import NotFound from './pages/404/NotFound';
+import Loading from './components/Loading';
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -38,12 +39,7 @@ function App() {
 
   if (loadingUser) {
     return (
-      <div className="loading">
-        <div className="dual-ring"></div>
-        <div>
-          <p>Carregando...</p>
-        </div>
-      </div>
+      <Loading/>
     )
   }
 
