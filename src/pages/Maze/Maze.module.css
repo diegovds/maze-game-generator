@@ -7,7 +7,7 @@
 }
 
 .maze {
-  width: 90%;
+  width: 60%;
 
   
 
@@ -22,7 +22,7 @@
 }
 
 .maze_container img {
-  width: 22%;
+  width: 30%;
   margin-bottom: 1em;
 }
 
