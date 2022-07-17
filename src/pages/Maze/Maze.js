@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom'
 // hooks
 import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+
 import Loading from '../../components/Loading'
+
+import copy from 'copy-to-clipboard';
 
 const Maze = () => {
   const {id} = useParams()
@@ -55,6 +58,10 @@ const Maze = () => {
     window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
   }
 
+  const clipboard = () => {
+    copy(window.location.href);
+  }
+
   if (loadingMaze) {
     return (
       <Loading/>
@@ -71,6 +78,7 @@ const Maze = () => {
             <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {maze.username}</p>
             <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
             {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
+            <button onClick={() => clipboard()} className="btn">Copiar link de compartilhamento</button>
             <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>
             <button onClick={() => goToMaze()} className="btn">Ir para o Maze Game</button>
             {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>

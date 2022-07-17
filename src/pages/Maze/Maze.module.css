@@ -8,7 +8,7 @@
 
 .maze {
   width: 60%;
-
+  margin-top: 3rem;
   
 
   border: 1px solid #fff;
@@ -36,6 +36,6 @@
 }
 
 .maze_container button {
-  margin-bottom: 1em;
+  margin-bottom: .5em;
 }
 
