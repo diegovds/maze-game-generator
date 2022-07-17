@@ -24,7 +24,7 @@ const Search = () => {
   }
 
   const getFilterMazes = useCallback(async () => {
-    const response = await fetch(backend + "/maze");
+    const response = await fetch(backend + "/mazes");
     var data = await response.json();
     var filter = [];
 
