@@ -42,7 +42,7 @@ const MazeDelete = ({ maze, childToParent }) => {
       method: "DELETE",
     });
     handleOpenModal()
-    await sleep(1000) //sleep(5000) wait 5 seconds
+    await sleep(1500) //sleep(5000) wait 5 seconds
     childToParent()
   };
 
@@ -56,7 +56,7 @@ const MazeDelete = ({ maze, childToParent }) => {
         className={styles.modal_content}
       >
         <h3>Jogo excluído com sucesso!</h3>
-        <button onClick={handleCloseModal} className="btn btn-dark">
+        <button onClick={handleCloseModal} className="btn">
           Fechar
         </button>
       </Modal>
