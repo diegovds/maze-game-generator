@@ -1,5 +1,6 @@
 const ScrollRevealOptions = {
-  reset: true,
+  //reset: true,
+  duration: 700,
 };
 
 export { ScrollRevealOptions };

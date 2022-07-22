@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
-      My <span>Blockly Maze</span>
+      My <span>Blockly</span> Maze
       </NavLink>
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
