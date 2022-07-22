@@ -22,7 +22,7 @@ const Home = () => {
           if (response.ok) {
             return response.json();
           }
-          throw new Error("Something went wrong");
+          throw new Error("Ocorreu um erro, por favor tente mais tarde.");
         })
         .then((data) => {
           data = data.data;
@@ -53,7 +53,7 @@ const Home = () => {
   if (!loadingError) {
     return (
       <div className="loading">
-        <p>Ocorreu um erro, por favor tente mais tarde.</p>
+        <p>{error.message}</p>
       </div>
     );
   }
