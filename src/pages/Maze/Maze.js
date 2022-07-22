@@ -1,8 +1,6 @@
 import styles from './Maze.module.css'
 import { backend } from '../../backend/config'
 
-import { useNavigate } from 'react-router-dom'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,29 +14,33 @@ import copy from 'copy-to-clipboard';
 
 const Maze = () => {
   const {id} = useParams()
-  const navigate = useNavigate()
 
   const [maze, setMaze] = useState(undefined)
+  const [error, setError] = useState(undefined);
 
   const loadingMaze = maze === undefined
+  const loadingError = error === undefined;
 
   const getAMaze = useCallback ( async () => {
-      try {
-        var response = await fetch(
-          backend + '/mazes/' + id
-        )
-        var maze = await response.json()
-  
-        maze = maze.data
-  
-        maze.created_at = new Date(maze.created_at).toLocaleDateString('pt-BR')
-        
-        setMaze(maze)
-      } catch (error) {
-        navigate("NotFound")
+    fetch(backend + "/mazes/" + id)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
       }
+      throw new Error("Jogo não encontrado.");
+    })
+    .then((maze) => {
+      maze = maze.data;
+
+      maze.created_at = new Date(maze.created_at).toLocaleDateString("pt-BR");
+
+      setMaze(maze);
+    })
+    .catch((error) => {
+      setError(error)
+    });
     },
-    [id, navigate]
+    [id]
   )
 
   useEffect(() => {
@@ -51,14 +53,24 @@ const Maze = () => {
 
     dataMaze.append('executions', execs)
 
-    await fetch(backend + "/mazes/" + maze.id, {
+    fetch(backend + "/mazes/" + maze.id, {
       method: "PUT",
       body: dataMaze
     })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Ocorreu um erro, por favor tente mais tarde.");
+    })
+    .then((data) => {
+      getAMaze()
 
-    getAMaze()
-
-    window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
+      window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
+    })
+    .catch((error) => {
+      setError(error)
+    });
   }
 
   const notify = () => {
@@ -78,10 +90,18 @@ const Maze = () => {
     copy(window.location.href);
   }
 
-  if (loadingMaze) {
+  if (loadingMaze  && loadingError) {
     return (
       <Loading/>
     )
+  }
+
+  if (!loadingError) {
+    return (
+      <div className="loading">
+        <p>{error.message}</p>
+      </div>
+    );
   }
 
   return (
