@@ -17,35 +17,37 @@ const Home = () => {
 
   useEffect(() => {
     const getAllMazes = async () => {
-      try {
-        const response = await fetch(backend + "/mazes");
-        var data = await response.json();
-
-        data = data.data;
-
-        data.forEach((item) => {
-          if (item.name.length > 8) {
-            item.name = item.name.substr(0, 8);
-            item.name = item.name.concat("...");
+      fetch(backend + "/mazes")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
           }
-          item.created_at = new Date(item.created_at).toLocaleDateString(
-            "pt-BR"
-          );
-        });
+          throw new Error("Something went wrong");
+        })
+        .then((data) => {
+          data = data.data;
 
-        setMazes(data);
-        /*console.log(data)*/
-      } catch (error) {
-        setError(1);
-      }
+          data.forEach((item) => {
+            if (item.name.length > 8) {
+              item.name = item.name.substr(0, 8);
+              item.name = item.name.concat("...");
+            }
+            item.created_at = new Date(item.created_at).toLocaleDateString(
+              "pt-BR"
+            );
+          });
+
+          setMazes(data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
     };
     getAllMazes();
   }, []);
 
   if (loadingMazes && loadingError) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   if (!loadingError) {
