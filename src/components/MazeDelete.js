@@ -45,18 +45,20 @@ const MazeDelete = ({ maze, childToParent }) => {
         error: 'Ocorreu um erro ao tentar excluir o jogo 🤯',
       }, {
         position: "top-left",
+        autoClose: 2000,
         closeButton: false,
         hideProgressBar: true,
         closeOnClick: false,
         pauseOnHover: false,
-        draggable: false
+        draggable: false,
+        theme: "colored"
       }
     );
     //handleOpenModal()
     
     setTimeout(() => {
       childToParent()
-    }, 1500) // aguarda 1.5 segundos para chamar childToParent()
+    }, 2000) // aguarda 2 segundos para chamar childToParent()
 
   };
 
