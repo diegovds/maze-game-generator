@@ -2,7 +2,9 @@ import styles from "./MazeDelete.module.css";
 
 import { Link } from "react-router-dom";
 
-import Modal from 'react-modal'
+//import Modal from 'react-modal'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useRef, useEffect, useState } from "react";
 
@@ -12,24 +14,20 @@ import { backend } from "../backend/config";
 
 import { ScrollRevealOptions } from "./ScrollRevealOptions"
 
-Modal.setAppElement('#root')
+//Modal.setAppElement('#root')
 
 const MazeDelete = ({ maze, childToParent }) => {
   const [mazeId, setMazeId] = useState(undefined);
-  const [modalIsOpen, setIsOpen] = useState(false)
+  //const [modalIsOpen, setIsOpen] = useState(false)
   const elementRef = useRef();
 
-  function handleOpenModal(){
+  /*function handleOpenModal(){
     setIsOpen(true)
   }
 
   function handleCloseModal(){
     setIsOpen(false)
-  }
-
-  const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
+  }*/
 
   useEffect(() => {
     const divElement = elementRef.current;
@@ -38,17 +36,33 @@ const MazeDelete = ({ maze, childToParent }) => {
 
   const deleteMaze = async (id) => {
     setMazeId(id);
-    await fetch(backend + "/mazes/" + id, {
-      method: "DELETE",
-    });
-    handleOpenModal()
-    await sleep(1500) //sleep(5000) wait 5 seconds
-    childToParent()
+    await toast.promise(
+      fetch(backend + "/mazes/" + id, {
+        method: "DELETE",
+      }), {
+        pending: 'Processando solicitação',
+        success: 'Jogo excluído com sucesso 👌',
+        error: 'Ocorreu um erro ao tentar excluir o jogo 🤯',
+      }, {
+        position: "top-left",
+        closeButton: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false
+      }
+    );
+    //handleOpenModal()
+    
+    setTimeout(() => {
+      childToParent()
+    }, 1500) // aguarda 1.5 segundos para chamar childToParent()
+
   };
 
   return (
     <>
-      <Modal
+      {/*<Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
         contentLabel="Exemple Modal"
@@ -59,7 +73,7 @@ const MazeDelete = ({ maze, childToParent }) => {
         <button onClick={handleCloseModal} className="btn">
           Fechar
         </button>
-      </Modal>
+      </Modal>*/}
       <div className="load-hidden">
         <div ref={elementRef}>
           <div className={styles.maze}>
@@ -82,6 +96,7 @@ const MazeDelete = ({ maze, childToParent }) => {
                 Aguarde...
               </button>
             )}
+            <ToastContainer />
           </div>
         </div>
       </div>
