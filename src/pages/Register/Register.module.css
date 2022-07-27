@@ -9,6 +9,7 @@
 .register {
   width: 50%;
 
+  margin-top: 1rem;
   border: 1px solid #fff;
   padding-top: .7rem;
   padding-bottom: 2rem;
@@ -21,4 +22,5 @@
 
 .register p {
   color: #aaa;
+  margin-bottom: 1rem;
 }
