@@ -109,7 +109,7 @@ const Maze = () => {
       <div className={styles.maze}>
         {maze && (
           <>
-            <h2>{maze.name}</h2>
+            <h2>{maze.name} (Cód. {maze.code})</h2>
             <img src={maze.url_image} alt={maze.image} />
             <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {maze.username}</p>
             <p className={styles.p_data}>Quantidade de níveis: {maze.levels.length}</p>
