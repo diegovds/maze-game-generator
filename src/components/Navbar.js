@@ -33,7 +33,7 @@ const Navbar = () => {
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
           type="text"
-          placeholder="Nome do jogo..."
+          placeholder="Nome ou código do jogo..."
           onChange={(e) => setQuery(e.target.value)}
         />
         <button>Pesquisar</button>
