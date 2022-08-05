@@ -66,7 +66,7 @@ const Maze = () => {
     .then((data) => {
       getAMaze()
 
-      window.open("https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
+      window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
     })
     .catch((error) => {
       setError(error)
