@@ -47,6 +47,12 @@ const Maze = () => {
     getAMaze();
   };
 
+  const errorReturn = () => {
+    const e = new Error("Ocorreu um erro, por favor tente mais tarde.");
+    // e.message is 'Ocorreu um erro, por favor tente mais tarde.'
+    throw setError(e);
+  }
+
   if (loadingMaze && loadingError) {
     return <Loading />;
   }
@@ -62,7 +68,7 @@ const Maze = () => {
   return (
     <div className={styles.maze_container}>
       <div className={styles.maze}>
-        {maze && <MazePage key={maze.id} maze={maze} childToParent={reload} />}
+        {maze && <MazePage key={maze.id} maze={maze} childToParent={reload} childToParent2={errorReturn} />}
       </div>
     </div>
   );

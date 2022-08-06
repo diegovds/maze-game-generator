@@ -11,7 +11,7 @@ import copy from 'copy-to-clipboard';
 import ScrollReveal from 'scrollreveal'
 import { ScrollRevealOptions } from "./ScrollRevealOptions"
 
-const MazePage = ({ maze, childToParent }) => {
+const MazePage = ({ maze, childToParent, childToParent2 }) => {
     const elementRef = useRef();
 
     useEffect(() => {
@@ -42,6 +42,7 @@ const MazePage = ({ maze, childToParent }) => {
         })
         .catch((error) => {
             //setError(error)
+            childToParent2()
         });
     }
 
