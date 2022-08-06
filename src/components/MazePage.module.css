@@ -1,0 +1,19 @@
+.p_data {
+  margin-bottom: 0.5em;
+}
+
+.p_a {
+  color: #aaa;
+  margin-bottom: 1em;
+}
+
+.maze {
+  border: 1px solid #fff;
+  padding-top: .7rem;
+  padding-bottom: 1rem;
+  padding-left: .3rem;
+  padding-right: .3rem;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #3d3d3d
+}
