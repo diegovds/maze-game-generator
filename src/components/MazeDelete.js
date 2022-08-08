@@ -2,7 +2,8 @@ import styles from "./MazeDelete.module.css";
 
 import { Link } from "react-router-dom";
 
-//import Modal from 'react-modal'
+import Modal from 'react-modal'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,20 +15,20 @@ import { backend } from "../backend/config";
 
 import { ScrollRevealOptions } from "./ScrollRevealOptions"
 
-//Modal.setAppElement('#root')
+Modal.setAppElement('#root')
 
 const MazeDelete = ({ maze, childToParent }) => {
   const [mazeId, setMazeId] = useState(undefined);
-  //const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
   const elementRef = useRef();
 
-  /*function handleOpenModal(){
+  function handleOpenModal(){
     setIsOpen(true)
   }
 
   function handleCloseModal(){
     setIsOpen(false)
-  }*/
+  }
 
   useEffect(() => {
     const divElement = elementRef.current;
@@ -64,18 +65,27 @@ const MazeDelete = ({ maze, childToParent }) => {
 
   return (
     <>
-      {/*<Modal
+      <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
-        contentLabel="Exemple Modal"
+        contentLabel="Delete Modal"
         overlayClassName={styles.modal_overlay}
         className={styles.modal_content}
       >
-        <h3>Jogo excluído com sucesso!</h3>
-        <button onClick={handleCloseModal} className="btn">
-          Fechar
-        </button>
-      </Modal>*/}
+        <h3>Deseja excluir o jogo {maze.name} (Cód. {maze.code})?</h3>
+        <p>Essa ação não pode ser desfeita!</p>
+        <div className={styles.div_btn}>
+          <button
+            onClick={() => {deleteMaze(maze.id); handleCloseModal()}}
+            className="btn btn-outline btn-danger"
+          >
+            Excluir
+          </button>
+          <button onClick={handleCloseModal} className="btn">
+            Cancelar
+          </button>
+        </div>
+      </Modal>
       <div className="load-hidden">
         <div ref={elementRef}>
           <div className={styles.maze}>
@@ -87,7 +97,7 @@ const MazeDelete = ({ maze, childToParent }) => {
             </Link>
             {maze.id !== mazeId && (
               <button
-                onClick={() => deleteMaze(maze.id)}
+                onClick={() => handleOpenModal()}
                 className="btn btn-outline btn-danger"
               >
                 Excluir

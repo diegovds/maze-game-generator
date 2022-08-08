@@ -43,7 +43,7 @@
   padding: 0.4em 0.6em;
 }
 
-/*.modal_overlay {
+.modal_overlay {
   background: rgba(0,0,0,0.5);
   position: fixed;
   top: 0;
@@ -64,9 +64,24 @@
   background-color: #fff;
   padding: 0.6em 0.6em;
   border-radius: 5px;
+  width: 50%;
 }
 
 .modal_content h3 {
   margin-top: .2em;
-  margin-bottom: 1em;
-}*/
+  margin-bottom: .2em;
+}
+
+.modal_content p {
+  margin-bottom: .8em;
+}
+
+.div_btn {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: .2em;
+}
+
+.div_btn button{
+  margin-left: 1rem;
+}
