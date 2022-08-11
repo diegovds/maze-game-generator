@@ -5,6 +5,9 @@ import { backend } from "../../backend/config";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 import Loading from "../../components/Loading";
 
 import MazePage from "../../components/MazePage";
@@ -53,6 +56,19 @@ const Maze = () => {
     throw setError(e);
   }
 
+  const notify = () => {
+    toast.success("Link copiado com sucesso!", {
+        position: "top-left",
+        autoClose: 2000,
+        closeButton: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+    });
+  }
+
   if (loadingMaze && loadingError) {
     return <Loading />;
   }
@@ -68,7 +84,8 @@ const Maze = () => {
   return (
     <div className={styles.maze_container}>
       <div className={styles.maze}>
-        {maze && <MazePage key={maze.id} maze={maze} childToParent={reload} childToParent2={errorReturn} />}
+        {maze && <MazePage key={maze.id} maze={maze} childToParent={reload} childToParent2={errorReturn} childToParent3={notify} />}
+        <ToastContainer />
       </div>
     </div>
   );
