@@ -36,7 +36,7 @@ const Search = () => {
       }
       
       if (item.code !== null) {
-        if (item.code.toLowerCase().localeCompare(search.toLowerCase()) === 0) {
+        if (item.code.toLowerCase().includes(search.toLowerCase()) && (filter.find((filtered) => filtered.id === item.id)) === undefined) {
           filter.push(item);
         }
       }
