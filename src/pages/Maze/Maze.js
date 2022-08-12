@@ -8,9 +8,9 @@ import { useParams } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
-import Loading from "../../components/Loading";
-import LoadingError from "../../components/LoadingError";
-import MazePage from "../../components/MazePage";
+import Loading from "../../components/Loading/Loading";
+import LoadingError from "../../components/LoadingError/LoadingError";
+import MazePage from "../../components/MazePage/MazePage";
 
 const Maze = () => {
   const { id } = useParams();

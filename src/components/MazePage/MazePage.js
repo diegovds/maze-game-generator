@@ -1,13 +1,13 @@
 import styles from "./MazePage.module.css"
 
-import { backend } from "../backend/config";
+import { backend } from "../../backend/config";
 
 import { useEffect, useRef } from "react";
 
 import copy from 'copy-to-clipboard';
 
 import ScrollReveal from 'scrollreveal'
-import { ScrollRevealOptions } from "./ScrollRevealOptions"
+import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions"
 
 const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
     const elementRef = useRef();

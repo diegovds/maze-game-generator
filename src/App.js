@@ -3,7 +3,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import ScrollToTop from "react-scroll-to-top";
-import ScrollToTopPage from './components/ScrollToTopPage'
+import ScrollToTopPage from './components/Scroll/ScrollToTopPage'
+import Loading from './components/Loading/Loading';
+import Navbar from './components/Navbar/Navbar';
 
 // Hooks
 import { useState, useEffect } from 'react'
@@ -15,7 +17,6 @@ import { AuthProvider } from './context/AuthContext'
 // Pages
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
-import Navbar from './components/Navbar'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import CreateMaze from './pages/CreateMaze/CreateMaze'
@@ -23,7 +24,6 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Search from './pages/Search/Search'
 import Maze from './pages/Maze/Maze'
 import NotFound from './pages/404/NotFound';
-import Loading from './components/Loading';
 
 function App() {
   const [user, setUser] = useState(undefined)

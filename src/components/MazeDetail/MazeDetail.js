@@ -6,7 +6,7 @@ import { useRef, useEffect } from 'react'
 
 import ScrollReveal from 'scrollreveal'
 
-import { ScrollRevealOptions } from "./ScrollRevealOptions"
+import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions"
 
 const MazeDetail = ({ maze }) => {
   const elementRef = useRef();

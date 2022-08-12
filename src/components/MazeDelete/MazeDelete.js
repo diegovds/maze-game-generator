@@ -8,7 +8,7 @@ import { useRef, useEffect, useState } from "react";
 
 import ScrollReveal from "scrollreveal";
 
-import { ScrollRevealOptions } from "./ScrollRevealOptions"
+import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions"
 
 Modal.setAppElement('#root')
 

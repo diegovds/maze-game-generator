@@ -7,8 +7,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "../../hooks/useQuery";
 
 // components
-import MazeDetail from "../../components/MazeDetail";
-import Loading from "../../components/Loading";
+import MazeDetail from "../../components/MazeDetail/MazeDetail";
+import Loading from "../../components/Loading/Loading";
 
 const Search = () => {
   const query = useQuery();

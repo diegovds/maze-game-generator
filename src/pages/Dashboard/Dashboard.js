@@ -7,12 +7,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // components
-import MazeDelete from "../../components/MazeDelete";
+import MazeDelete from "../../components/MazeDelete/MazeDelete";
+import Loading from "../../components/Loading/Loading";
 
 // hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useCallback, useEffect, useState } from "react";
-import Loading from "../../components/Loading";
 
 const Dashboard = () => {
   const { user } = useAuthValue();

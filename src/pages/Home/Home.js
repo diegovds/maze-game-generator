@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // components
-import MazeDetail from "../../components/MazeDetail";
-import Loading from "../../components/Loading";
-import LoadingError from "../../components/LoadingError";
+import MazeDetail from "../../components/MazeDetail/MazeDetail";
+import Loading from "../../components/Loading/Loading";
+import LoadingError from "../../components/LoadingError/LoadingError";
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined);
