@@ -4,20 +4,15 @@ import { Link } from "react-router-dom";
 
 import Modal from 'react-modal'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useRef, useEffect, useState } from "react";
 
 import ScrollReveal from "scrollreveal";
-
-import { backend } from "../backend/config";
 
 import { ScrollRevealOptions } from "./ScrollRevealOptions"
 
 Modal.setAppElement('#root')
 
-const MazeDelete = ({ maze, childToParent }) => {
+const MazeDelete = ({ maze, returnDataChildToParent }) => {
   const [mazeId, setMazeId] = useState(undefined);
   const [modalIsOpen, setIsOpen] = useState(false)
   const elementRef = useRef();
@@ -35,32 +30,9 @@ const MazeDelete = ({ maze, childToParent }) => {
     ScrollReveal().reveal(divElement, ScrollRevealOptions);
   }, []);
 
-  const deleteMaze = async (id) => {
-    setMazeId(id);
-    await toast.promise(
-      fetch(backend + "/mazes/" + id, {
-        method: "DELETE",
-      }), {
-        pending: 'Processando solicitação',
-        success: 'Jogo excluído com sucesso 👌',
-        error: 'Ocorreu um erro ao tentar excluir o jogo 🤯',
-      }, {
-        position: "top-left",
-        autoClose: 2000,
-        closeButton: false,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "colored"
-      }
-    );
-    //handleOpenModal()
-    
-    setTimeout(() => {
-      childToParent()
-    }, 2000) // aguarda 2 segundos para chamar childToParent()
-
+  const deleteMaze = (id) => {
+    setMazeId(id)
+    returnDataChildToParent(id)
   };
 
   return (
@@ -108,7 +80,6 @@ const MazeDelete = ({ maze, childToParent }) => {
                 Aguarde...
               </button>
             )}
-            <ToastContainer />
           </div>
         </div>
       </div>

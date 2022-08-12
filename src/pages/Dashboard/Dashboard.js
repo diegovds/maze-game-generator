@@ -3,6 +3,9 @@ import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import { backend } from "../../backend/config";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // components
 import MazeDelete from "../../components/MazeDelete";
 
@@ -41,9 +44,36 @@ const Dashboard = () => {
     searchUserData();
   }, [searchUserData]);
 
-  const reload = () => {
-    setUserData(undefined);
-    searchUserData();
+  const deleteMaze = async (id) => {
+    await toast.promise(
+      fetch(backend + "/mazes/" + id, {
+        method: "DELETE",
+      }), {
+        pending: 'Processando solicitação',
+        success: 'Jogo excluído com sucesso 👌',
+        error: 'Ocorreu um erro ao tentar excluir o jogo 🤯',
+      }, {
+        position: "top-left",
+        autoClose: 2000,
+        closeButton: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored"
+      }
+    );
+    //handleOpenModal()
+    
+    setTimeout(() => {
+      setUserData(undefined);
+      searchUserData();
+    }, 2000) // aguarda 2 segundos para chamar childToParent()
+
+  };
+
+  const returnDataChildToParent = (data) => {
+    deleteMaze(data)
   };
 
   if (loadingUser) {
@@ -78,7 +108,7 @@ const Dashboard = () => {
             <MazeDelete
               key={userData.id}
               maze={userData}
-              childToParent={reload}
+              returnDataChildToParent={returnDataChildToParent}
             />
           ))}
       </div>
@@ -107,6 +137,7 @@ const Dashboard = () => {
             </div>
           ))
       */}
+      <ToastContainer />
     </>
   );
 };
