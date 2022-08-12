@@ -1,0 +1,11 @@
+.loadError {
+  color: #721c24;
+  margin: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+}

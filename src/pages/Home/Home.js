@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 // components
 import MazeDetail from "../../components/MazeDetail";
 import Loading from "../../components/Loading";
+import LoadingError from "../../components/LoadingError";
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined);
@@ -52,9 +53,7 @@ const Home = () => {
 
   if (!loadingError) {
     return (
-      <div className="loading">
-        <p>{error.message}</p>
-      </div>
+      <LoadingError message={error.message} />
     );
   }
 

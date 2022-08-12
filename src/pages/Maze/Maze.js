@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import Loading from "../../components/Loading";
-
+import LoadingError from "../../components/LoadingError";
 import MazePage from "../../components/MazePage";
 
 const Maze = () => {
@@ -75,9 +75,7 @@ const Maze = () => {
 
   if (!loadingError) {
     return (
-      <div className="loading">
-        <p>{error.message}</p>
-      </div>
+      <LoadingError message={error.message} />
     );
   }
 
