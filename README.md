@@ -1,4 +1,4 @@
-## Plataforma My Blockly Maze
+## Front-end da plataforma My Blockly Maze [(acesso à plataforma)](https://myblocklymaze.vercel.app/)
 <div align="center">
   <div style="display: flex;">
     <img height="250" width="500" src="https://i.imgur.com/lOHn1bD.png" />
@@ -57,5 +57,7 @@ npm start
 - Após a compilação, a página será aberta em seu navegador, caso contrário, basta acessar o localhost:3000
 
 ...
+## [Back-end](https://github.com/diegovds/blockly-backend)
 
+...
 ---
