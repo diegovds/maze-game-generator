@@ -31,6 +31,12 @@ A plataforma é dividida em outras duas aplicações:
 
 * [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 * [ReactJS](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
+* [Firebase](https://www.npmjs.com/package/firebase)
+* [react-modal](https://www.npmjs.com/package/react-modal)
+* [react-scroll-to-top](https://www.npmjs.com/package/react-scroll-to-top)
+* [react-toastify](https://www.npmjs.com/package/react-toastify)
+* [scrollreveal](https://www.npmjs.com/package/scrollreveal)
+* [copy-to-clipboard](https://www.npmjs.com/package/copy-to-clipboard)
 
 ...
 ## Iniciando ▶️
