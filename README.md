@@ -1,4 +1,4 @@
-## Sobre o projeto My Blockly Maze 💻
+## Plataforma My Blockly Maze
 <div align="center">
   <div style="display: flex;">
     <img height="250" width="500" src="https://i.imgur.com/lOHn1bD.png" />
@@ -7,6 +7,7 @@
 </div>
 <br/>
 
+## Sobre o projeto
 Este projeto foi implementado durante o meu trabalho de conclusão de curso. Nele foi desenvolvida uma plataforma de criação e compartilhamento de jogos de labirinto. Também é possível jogar suas criações e as da comunidade.
 
 Os jogos utilizam programação baseada em blocos para concluir os desafios.
