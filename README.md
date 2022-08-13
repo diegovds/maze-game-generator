@@ -8,13 +8,13 @@ Este projeto foi implementado durante o meu trabalho de conclusão de curso. Nel
 
 Os jogos utilizam programação baseada em blocos para concluir os desafios.
 
-
+...
 ## Linguagens, dependências e bibliotecas usadas 📚
 
 * [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 * [ReactJS](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
 
-
+...
 ## Iniciando ▶️
 
 - No terminal, clone o projeto:
@@ -32,6 +32,6 @@ npm start
 ```
 - Após a compilação, a página será aberta em seu navegador, caso contrário, basta acessar o localhost:3000
 
-
+...
 
 ---
