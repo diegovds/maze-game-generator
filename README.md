@@ -10,8 +10,8 @@ Os jogos utilizam programação baseada em blocos para concluir os desafios.
 
 A plataforma é dividida em outras duas aplicações:
 
-* [Maze Builder]
-* [Maze Game]
+- Maze Builder
+- Maze Game
 
 ...
 ## Linguagens, dependências e bibliotecas usadas 📚
