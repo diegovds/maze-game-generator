@@ -1,8 +1,8 @@
 ## Sobre o projeto My Blockly Maze 💻
 <div align="center">
   <div style="display: flex;">
-    <img height="250" width="450" src="https://i.imgur.com/lOHn1bD.png" />
-    <img height="250" width="450" src="https://i.imgur.com/obJlITb.png" />
+    <img height="250" width="650" src="https://i.imgur.com/lOHn1bD.png" />
+    <img height="250" width="650" src="https://i.imgur.com/obJlITb.png" />
   </div>
 </div>
 <br/>
