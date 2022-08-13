@@ -58,6 +58,3 @@ npm start
 
 ...
 ## [Back-end](https://github.com/diegovds/blockly-backend)
-
-...
----
