@@ -1,6 +1,6 @@
 ## Sobre o projeto 💻
 <div align="center">
-<img src="home/home.png?width=888&height=612"></img>
+<img src="https://github.com/diegovds/maze-game-generator/blob/master/public/background.png?width=888&height=612"></img>
 </div>
 <br/>
 
