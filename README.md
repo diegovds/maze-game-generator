@@ -1,6 +1,9 @@
 ## Sobre o projeto 💻
 <div align="center">
-<img src="https://i.imgur.com/lOHn1bD.png?width=888&height=612"></img>
+  <div style="display: flex;">
+    <img height="250" src="https://i.imgur.com/lOHn1bD.png" />
+    <img height="250" src="https://i.imgur.com/obJlITb.png" />
+  </div>
 </div>
 <br/>
 
