@@ -10,8 +10,8 @@ Os jogos utilizam programação baseada em blocos para concluir os desafios.
 
 A plataforma é dividida em outras duas aplicações:
 
-- Maze Builder
-- Maze Game
+* [Maze Builder](https://github.com/diegovds/maze-game-builder) - ferramenta de criação dos jogos, nela é possível elaborar um jogo de labirinto com imagem de fundo e níveis de desafio personalizados.
+* [Maze Game](https://github.com/diegovds/blockly) - versão modificada do Maze Blockly Games desenvolvido pelo Google. Tem como função executar os jogos personalizados.
 
 ...
 ## Linguagens, dependências e bibliotecas usadas 📚
