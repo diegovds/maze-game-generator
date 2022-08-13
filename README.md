@@ -4,7 +4,9 @@
 </div>
 <br/>
 
-Este projeto foi criado ...
+Este projeto foi implementado durante o meu trabalho de conclusão de curso. Nele foi desenvolvida uma plataforma de criação e compartilhamento de jogos de labirinto. Também é possível jogar suas criações e as da comunidade.
+<br/>
+Os jogos utilizam programação baseada em blocos para concluir os desafios.
 
 ...
 ## Linguagens, dependências e bibliotecas usadas 📚
