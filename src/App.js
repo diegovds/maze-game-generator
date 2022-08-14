@@ -1,7 +1,5 @@
 import './App.css'
 
-import ReactGA from 'react-ga';
-
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import ScrollToTop from "react-scroll-to-top";
@@ -28,7 +26,6 @@ import Maze from './pages/Maze/Maze'
 import NotFound from './pages/404/NotFound';
 
 function App() {
-  ReactGA.initialize(process.env.REACT_APP_API_TRACKING_ID);
   const [user, setUser] = useState(undefined)
   const { auth } = useAuthentication()
 
@@ -39,10 +36,6 @@ function App() {
       setUser(user)
     })
   }, [auth])
-
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
 
   if (loadingUser) {
     return (
