@@ -9,7 +9,6 @@ export default function Analytics() {
     const { pathname } = useLocation()
 
     useEffect(() => {
-        console.log(pathname)
         ReactGA.pageview(pathname);
       }, [pathname]);
 
