@@ -1,14 +1,23 @@
+@media screen and (max-width: 600px){
+  .maze {
+    width: 97%;
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .maze {
+    width: 60%;
+    margin-top: 3rem;
+  }
+}
+
 .maze_container {
   height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.maze {
-  width: 60%;
-  margin-top: 3rem;
 }
 
 .maze_container img {
