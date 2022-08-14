@@ -10,6 +10,11 @@
     align-items: center;
     text-align: center;
   }
+
+  .maze_container img {
+    width: 50%;
+    margin-bottom: 1em;
+  }
 }
 
 @media screen and (min-width: 600px){
@@ -25,11 +30,11 @@
     align-items: center;
     text-align: center;
   }
-}
 
-.maze_container img {
-  width: 30%;
-  margin-bottom: 1em;
+  .maze_container img {
+    width: 30%;
+    margin-bottom: 1em;
+  }
 }
 
 .maze_container button {
