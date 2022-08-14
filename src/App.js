@@ -1,7 +1,5 @@
 import './App.css'
 
-import ReactGA from 'react-ga';
-
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import ScrollToTop from "react-scroll-to-top";
@@ -26,9 +24,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Search from './pages/Search/Search'
 import Maze from './pages/Maze/Maze'
 import NotFound from './pages/404/NotFound';
-
-const TRACKING_ID = process.env.REACT_APP_API_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+import Analytics from './components/Analytics';
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -42,10 +38,6 @@ function App() {
     })
   }, [auth])
 
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
-
   if (loadingUser) {
     return (
       <Loading/>
@@ -57,6 +49,7 @@ function App() {
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <ScrollToTopPage/>
+          <Analytics/>
           <ScrollToTop smooth style={{ backgroundColor: "#ADD8E6", height: 50,  width: 50 }}/>
           <Navbar />
           <div className="container">
