@@ -1,14 +1,30 @@
 .maze_container {
-  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.create_maze {
-  width: 60%;
+@media screen and (max-width: 600px){
+  .create_maze {
+    width: 92%;
+  }
 
+  .maze_container {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .create_maze {
+    width: 60%;
+  }
+
+  .maze_container {
+    height: 80vh;
+  }
+}
+.create_maze {
   border: 1px solid #fff;
   padding-top: .7rem;
   padding-bottom: 2rem;

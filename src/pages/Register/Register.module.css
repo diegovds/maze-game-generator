@@ -1,15 +1,36 @@
 .container {
-  height: 87vh;
+  /*height: 87vh;*/
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.register {
-  width: 50%;
+@media screen and (max-width: 600px){
+  .register {
+    width: 92%;
+  }
 
-  margin-top: 1rem;
+  .container {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .register {
+    width: 50%;
+    margin-top: 1rem;
+  }
+
+  .container {
+    height: 87vh;
+  }
+}
+
+.register {
+  /*width: 50%;*/
+
+  /*margin-top: 1rem;*/
   border: 1px solid #fff;
   padding-top: .7rem;
   padding-bottom: 2rem;

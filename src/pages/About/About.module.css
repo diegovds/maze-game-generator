@@ -34,10 +34,21 @@
   margin-bottom: 3rem;
 }
 
+@media screen and (max-width: 600px){
+  .container section{
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .container section{
+    width: 20rem;
+  }
+}
+
 .container section {
   display: flex;
   flex-direction: column;
-  width: 20rem;
   text-align: center;
   justify-content: center;
   
