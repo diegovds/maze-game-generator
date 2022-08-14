@@ -1,7 +1,14 @@
 @media screen and (max-width: 600px){
   .maze {
     width: 97%;
-    margin-top: 3rem;
+    margin-top: 2rem;
+  }
+
+  .maze_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -10,14 +17,14 @@
     width: 60%;
     margin-top: 3rem;
   }
-}
 
-.maze_container {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  .maze_container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .maze_container img {
