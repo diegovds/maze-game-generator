@@ -7,6 +7,25 @@
   background: #ADD8E6;
 }
 
+@media screen and (max-width: 1024px) {
+  .search_form input,
+  .search_form button,
+  .links_list li {
+    display: none;
+  }
+
+  .abre {
+    display: block;
+    float: right;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .abre {
+    display: none;
+  }
+}
+
 .brand {
   font-size: 1.5em;
 }

@@ -25,6 +25,15 @@ const Navbar = () => {
     }
   }
 
+  function mostrarMenu() {
+    var barra = document.getElementById("barraNavegacao");
+    if (barra.className === "barranavegacao") {
+       barra.className += " responsivo";
+    } else {
+       barra.className = "barranavegacao";
+    }
+ }
+
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
@@ -101,6 +110,7 @@ const Navbar = () => {
           </li>
         )}
       </ul>
+      <button onClick={mostrarMenu} className={styles.abre}>abre</button>
     </nav>
   )
 }
