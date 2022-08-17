@@ -36,7 +36,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
         .then((data) => {
             childToParent()
 
-            window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image, '_blank');
+            window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
         })
         .catch((error) => {
             //setError(error)
