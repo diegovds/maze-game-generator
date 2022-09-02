@@ -1,11 +1,14 @@
 import styles from "./IframePage.module.css";
 
-import Iframe from "react-iframe";
-
 const IframePage = ({ link }) => {
   return (
     <div className={styles.container}>
-      <Iframe url={link} className={styles.iframe} />
+      <iframe
+        src={link}
+        className={styles.iframe}
+        title="iframePage"
+        frameBorder="0"
+      ></iframe>
     </div>
   );
 };
