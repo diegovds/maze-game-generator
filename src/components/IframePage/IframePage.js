@@ -6,6 +6,7 @@ import { backend } from "../../backend/config";
 
 const IframePage = ({ link, returnDataChildToParent }) => {
   const isFirstRender = useRef(true);
+  const iframe = useRef();
   const { user } = useAuthValue();
   const uid = user.uid;
 
@@ -17,7 +18,9 @@ const IframePage = ({ link, returnDataChildToParent }) => {
     returnDataChildToParent(data.mazes[0].id);
   }, [uid, returnDataChildToParent]);
 
-  useEffect(() => {}, [searchUserData]);
+  useEffect(() => {
+    iframe.current.scrollIntoView();
+  }, []);
 
   const reload = () => {
     if (isFirstRender.current) {
@@ -33,9 +36,10 @@ const IframePage = ({ link, returnDataChildToParent }) => {
       <iframe
         src={link}
         className={styles.iframe}
-        title="iframePage"
+        title="iframeLink"
         frameBorder="0"
         onLoad={reload}
+        ref={iframe}
       ></iframe>
     </div>
   );
