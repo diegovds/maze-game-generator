@@ -20,6 +20,8 @@ const IframePage = ({ link, redirect }) => {
         let mazeId = String(e.data).slice(17);
         //console.log(mazeId); /** id do novo maze criado */
         redirect(mazeId);
+      } else {
+        redirect()
       }
     }
   });
