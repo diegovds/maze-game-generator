@@ -3,7 +3,7 @@ import { backend } from "../../backend/config";
 
 // hooks
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +15,7 @@ import IframePage from "../../components/IframePage/IframePage";
 
 const Maze = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [maze, setMaze] = useState(undefined);
   const [error, setError] = useState(undefined);
@@ -55,8 +56,9 @@ const Maze = () => {
   };
 
   const endGame = () => {
-    window.scrollTo(0, 0);
-    setRunGame(undefined);
+    /*window.scrollTo(0, 0);
+    setRunGame(undefined);*/
+    return navigate("/");
   };
 
   const errorReturn = () => {
