@@ -57,8 +57,6 @@ const Maze = () => {
   const endGame = () => {
     window.scrollTo(0, 0);
     setRunGame(undefined);
-    setMaze(undefined);
-    getAMaze();
   };
 
   const errorReturn = () => {
