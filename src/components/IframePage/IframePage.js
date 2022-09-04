@@ -1,35 +1,28 @@
 import styles from "./IframePage.module.css";
 
-import { useAuthValue } from "../../context/AuthContext";
-import { useEffect, useCallback, useRef } from "react";
-import { backend } from "../../backend/config";
+import { useEffect, useRef } from "react";
 
-const IframePage = ({ link, returnDataChildToParent }) => {
-  const isFirstRender = useRef(true);
+const IframePage = ({ link, redirect }) => {
   const iframe = useRef();
-  const { user } = useAuthValue();
-  const uid = user.uid;
-
-  const searchUserData = useCallback(async () => {
-    var response = await fetch(backend + "/users/" + uid + "/" + uid);
-    var data = await response.json();
-    data = data.data;
-
-    returnDataChildToParent(data.mazes[0].id);
-  }, [uid, returnDataChildToParent]);
 
   useEffect(() => {
     iframe.current.scrollIntoView();
   }, []);
 
-  const reload = () => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
+  // window escutando o evento `message` que o postMessage envia
+  window.addEventListener("message", function (e) {
+    // para ter acesso ao dado temos que acessar a propriedade data
+    //if (e.data === "mensagem vinda do iframe") {
+    if (String(e.data).includes("mensagem")) {
+      //console.log(e.data);
+      if (String(e.data).includes("mazeId=")) {
+        //console.log("tem mazeId");
+        let mazeId = String(e.data).slice(17);
+        //console.log(mazeId); /** id do novo maze criado */
+        redirect(mazeId);
+      }
     }
-
-    searchUserData();
-  };
+  });
 
   return (
     <div className={styles.container}>
@@ -38,7 +31,6 @@ const IframePage = ({ link, returnDataChildToParent }) => {
         className={styles.iframe}
         title="iframeLink"
         frameBorder="0"
-        onLoad={reload}
         ref={iframe}
       ></iframe>
     </div>
