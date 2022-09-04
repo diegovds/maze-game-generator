@@ -5,21 +5,24 @@ import { backend } from "../../backend/config";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 import MazePage from "../../components/MazePage/MazePage";
+import IframePage from "../../components/IframePage/IframePage";
 
 const Maze = () => {
   const { id } = useParams();
 
   const [maze, setMaze] = useState(undefined);
   const [error, setError] = useState(undefined);
+  const [runGame, setRunGame] = useState(undefined);
 
   const loadingMaze = maze === undefined;
   const loadingError = error === undefined;
+  const loadingRunGame = runGame === undefined;
 
   const getAMaze = useCallback(async () => {
     fetch(backend + "/mazes/" + id)
@@ -48,41 +51,72 @@ const Maze = () => {
   const reload = () => {
     setMaze(undefined);
     getAMaze();
+    setRunGame(true);
+  };
+
+  const endGame = () => {
+    window.scrollTo(0, 0);
+    setRunGame(undefined);
+    setMaze(undefined);
+    getAMaze();
   };
 
   const errorReturn = () => {
     const e = new Error("Ocorreu um erro, por favor tente mais tarde.");
     // e.message is 'Ocorreu um erro, por favor tente mais tarde.'
     throw setError(e);
-  }
+  };
 
   const notify = () => {
     toast.success("Link copiado com sucesso!", {
-        position: "top-left",
-        autoClose: 2000,
-        closeButton: false,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "colored",
+      position: "top-left",
+      autoClose: 2000,
+      closeButton: false,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      theme: "colored",
     });
-  }
+  };
 
-  if (loadingMaze && loadingError) {
+  if (loadingMaze && loadingError && loadingRunGame) {
     return <Loading />;
   }
 
-  if (!loadingError) {
+  if (!loadingError && loadingRunGame) {
+    return <LoadingError message={error.message} />;
+  }
+
+  if (!loadingRunGame && loadingError && !loadingMaze) {
     return (
-      <LoadingError message={error.message} />
+      <>
+        <IframePage
+          link={
+            "https://myblocklymaze-game.vercel.app/maze.html?levels=" +
+            JSON.stringify(maze.levels) +
+            "&url_image=" +
+            maze.url_image +
+            "&reset=1"
+          }
+          redirect={endGame}
+        />
+      </>
     );
   }
 
   return (
     <div className={styles.maze_container}>
       <div className={styles.maze}>
-        {maze && <MazePage key={maze.id} maze={maze} childToParent={reload} childToParent2={errorReturn} childToParent3={notify} />}
+        {maze && (
+          <MazePage
+            key={maze.id}
+            maze={maze}
+            childToParent={reload}
+            childToParent2={errorReturn}
+            childToParent3={notify}
+          />
+        )}
         <ToastContainer />
       </div>
     </div>
