@@ -1,13 +1,16 @@
-import styles from "./CreateMaze.module.css";
+//import styles from "./CreateMaze.module.css";
 
 import { backend } from "../../backend/config";
 import { useAuthValue } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
+import IframePage from "../../components/IframePage/IframePage";
 
 const CreateMaze = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
+  const navigate = useNavigate();
 
   const [userId, setUserId] = useState(undefined);
 
@@ -24,33 +27,21 @@ const CreateMaze = () => {
     searchUserId();
   }, [uid]);
 
+  const redirect = (data) => {
+    return navigate("/mazes/" + data);
+  };
+
   if (loadingUser) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   return (
-    <div className={styles.maze_container}>
-      <div className={styles.create_maze}>
-        <h2>Criar jogo</h2>
-        <p>
-          Ao clicar no botão abaixo você será redirecionado para a página de
-          criação do jogo.
-        </p>
-        <a
-          className="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={
-            "https://mazegamebuilder.vercel.app/index.html?userId=" + userId
-          }
-        >
-          Ir para o Maze Builder
-        </a>
-        {/*<a className="btn" href="https://mazegamebuilder.vercel.app/index.html?esteDeenvio">Ir</a>*/}
-      </div>
-    </div>
+    <>
+      <IframePage
+        link={"https://mazegamebuilder.vercel.app/index.html?userId=" + userId}
+        redirect={redirect}
+      />
+    </>
   );
 };
 
