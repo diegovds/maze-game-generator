@@ -21,7 +21,7 @@ const IframePage = ({ link, redirect }) => {
         //console.log(mazeId); /** id do novo maze criado */
         redirect(mazeId);
       } else {
-        redirect()
+        redirect();
       }
     }
   });
@@ -34,6 +34,7 @@ const IframePage = ({ link, redirect }) => {
         title="iframeLink"
         frameBorder="0"
         ref={iframe}
+        allowFullScreen="true"
       ></iframe>
     </div>
   );
