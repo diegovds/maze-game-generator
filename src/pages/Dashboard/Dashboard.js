@@ -68,7 +68,7 @@ const Dashboard = () => {
     setTimeout(() => {
       setUserData(undefined);
       searchUserData();
-    }, 2000) // aguarda 2 segundos para chamar childToParent()
+    }, 2000) // aguarda 2 segundos para chamar searchUserData()
 
   };
 
