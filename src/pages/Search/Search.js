@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import { backend } from "../../backend/config";
 
 // hook
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "../../hooks/useQuery";
 
 // components
@@ -14,54 +14,47 @@ const Search = () => {
   const query = useQuery();
   const search = query.get("q");
 
-  const [key, setKey] = useState(undefined);
   const [mazes, setMazes] = useState(undefined);
   const loadingMazes = mazes === undefined;
 
-  if (key !== search && key !== undefined) {
-    setMazes(undefined);
-    setKey(search);
-  }
+  useEffect(() => {
+    const getFilterMazes = async () => {
+      setMazes(undefined);
+      const response = await fetch(backend + "/mazes");
+      var data = await response.json();
+      var filter = [];
 
-  const getFilterMazes = useCallback(async () => {
-    const response = await fetch(backend + "/mazes");
-    var data = await response.json();
-    var filter = [];
+      data = data.data;
 
-    data = data.data;
-
-    data.forEach((item) => {
-      if (item.name.toLowerCase().includes(search.toLowerCase())) {
-        filter.push(item);
-      }
-      
-      if (item.code !== null) {
-        if (item.code.toLowerCase().includes(search.toLowerCase()) && (filter.find((filtered) => filtered.id === item.id)) === undefined) {
+      data.forEach((item) => {
+        if (item.name.toLowerCase().includes(search.toLowerCase())) {
           filter.push(item);
         }
-      }
 
-      if (item.name.length > 8) {
-        item.name = item.name.substr(0, 8);
-        item.name = item.name.concat("...");
-      }
-  
-      item.created_at = new Date(item.created_at).toLocaleDateString("pt-BR");
+        if (item.code !== null) {
+          if (
+            item.code.toLowerCase().includes(search.toLowerCase()) &&
+            filter.find((filtered) => filtered.id === item.id) === undefined
+          ) {
+            filter.push(item);
+          }
+        }
 
-    });
-    setKey(search);
-    setMazes(filter);
+        if (item.name.length > 8) {
+          item.name = item.name.substr(0, 8);
+          item.name = item.name.concat("...");
+        }
+
+        item.created_at = new Date(item.created_at).toLocaleDateString("pt-BR");
+      });
+      setMazes(filter);
+    };
+    getFilterMazes();
     /*console.log(filter)*/
   }, [search]);
 
-  useEffect(() => {
-    getFilterMazes();
-  }, [getFilterMazes]);
-
   if (loadingMazes) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   return (

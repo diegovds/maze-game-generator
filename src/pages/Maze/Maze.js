@@ -2,7 +2,7 @@ import styles from "./Maze.module.css";
 import { backend } from "../../backend/config";
 
 // hooks
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -18,6 +18,7 @@ const Maze = () => {
   const navigate = useNavigate();
 
   const [maze, setMaze] = useState(undefined);
+  const [refetch, setRefetch] = useState(false);
   const [error, setError] = useState(undefined);
   const [runGame, setRunGame] = useState(undefined);
 
@@ -25,33 +26,34 @@ const Maze = () => {
   const loadingError = error === undefined;
   const loadingRunGame = runGame === undefined;
 
-  const getAMaze = useCallback(async () => {
-    fetch(backend + "/mazes/" + id)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Jogo não encontrado.");
-      })
-      .then((maze) => {
-        maze = maze.data;
-
-        maze.created_at = new Date(maze.created_at).toLocaleDateString("pt-BR");
-
-        setMaze(maze);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [id]);
-
   useEffect(() => {
+    const getAMaze = async () => {
+      fetch(backend + "/mazes/" + id)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Jogo não encontrado.");
+        })
+        .then((maze) => {
+          maze = maze.data;
+
+          maze.created_at = new Date(maze.created_at).toLocaleDateString(
+            "pt-BR"
+          );
+
+          setMaze(maze);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    };
     getAMaze();
-  }, [getAMaze]);
+  }, [id, refetch]);
 
   const reload = () => {
     setMaze(undefined);
-    getAMaze();
+    setRefetch(!refetch);
     setRunGame(true);
   };
 
