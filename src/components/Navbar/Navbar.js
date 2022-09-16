@@ -1,34 +1,38 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
-import { useAuthentication } from '../../hooks/useAuthentication'
+import { useAuthentication } from "../../hooks/useAuthentication";
 
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useAuthValue } from '../../context/AuthContext'
+import { FaPuzzlePiece } from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 
-import styles from './Navbar.module.css'
+import { useAuthValue } from "../../context/AuthContext";
+
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
-  const { user } = useAuthValue()
-  const { logout } = useAuthentication()
+  const { user } = useAuthValue();
+  const { logout } = useAuthentication();
 
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     e.target.reset();
-    if( query ){
-      return navigate(`/search?q=${query}`)
+    if (query) {
+      return navigate(`/search?q=${query}`);
     }
-  }
+  };
 
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
-      My <span>Blockly</span> Maze
+        <FaPuzzlePiece />
+        My <span>Blockly</span> Maze
       </NavLink>
       <form onSubmit={handleSubmit} className={styles.search_form}>
         <input
@@ -36,13 +40,15 @@ const Navbar = () => {
           placeholder="Nome ou código do jogo..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button>Pesquisar</button>
+        <button>
+          <BsSearch />
+        </button>
       </form>
       <ul className={styles.links_list}>
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? styles.active : '')}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Home
           </NavLink>
@@ -52,7 +58,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/login"
-                className={({ isActive }) => (isActive ? styles.active : '')}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Entrar
               </NavLink>
@@ -60,7 +66,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/register"
-                className={({ isActive }) => (isActive ? styles.active : '')}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Cadastrar
               </NavLink>
@@ -72,7 +78,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/mazes/create"
-                className={({ isActive }) => (isActive ? styles.active : '')}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Criar novo jogo
               </NavLink>
@@ -80,7 +86,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/dashboard"
-                className={({ isActive }) => (isActive ? styles.active : '')}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Dashboard
               </NavLink>
@@ -90,7 +96,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/about"
-            className={({ isActive }) => (isActive ? styles.active : '')}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Sobre
           </NavLink>
@@ -102,7 +108,7 @@ const Navbar = () => {
         )}
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
