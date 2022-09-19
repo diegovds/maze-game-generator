@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FaPuzzlePiece } from "react-icons/fa";
-import { BsSearch } from "react-icons/bs";
+import { HiSearch } from "react-icons/hi";
 
 import { useAuthValue } from "../../context/AuthContext";
 
@@ -41,7 +41,7 @@ const Navbar = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
         <button>
-          <BsSearch />
+          <HiSearch />
         </button>
       </form>
       <ul className={styles.links_list}>
