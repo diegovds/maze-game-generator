@@ -27,6 +27,7 @@ const Login = () => {
   }
 
   useEffect(() => {
+    document.title = "My BLOCKLY Maze | Login";
     if (authError) {
       setError(authError)
     }

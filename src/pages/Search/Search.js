@@ -49,6 +49,7 @@ const Search = () => {
       });
       setMazes(filter);
     };
+    document.title = "My BLOCKLY Maze | Busca";
     getFilterMazes();
     /*console.log(filter)*/
   }, [search]);

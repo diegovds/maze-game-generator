@@ -40,6 +40,7 @@ const Dashboard = () => {
 
       setUserData(data);
     };
+    document.title = "My BLOCKLY Maze | Dashboard";
     searchUserData();
   }, [uid, reload]);
 

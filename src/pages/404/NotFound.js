@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import styles from "./NotFound.module.css";
 
 const NotFound = () => {
+  useEffect(() => {
+    document.title = "My BLOCKLY Maze | Erro 404";
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>

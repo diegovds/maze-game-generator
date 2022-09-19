@@ -24,6 +24,7 @@ const CreateMaze = () => {
 
       setUserId(data.id);
     };
+    document.title = "My BLOCKLY Maze | Criação";
     searchUserId();
   }, [uid]);
 

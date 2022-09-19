@@ -1,8 +1,13 @@
 import styles from "./About.module.css";
 
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    document.title = "My BLOCKLY Maze | Sobre";
+  }, []);
+
   return (
     <div className={styles.about}>
       <h2>Sobre:</h2>

@@ -44,6 +44,7 @@ const Home = () => {
           setError(error);
         });
     };
+    document.title = "My BLOCKLY Maze | Home";
     getAllMazes();
   }, []);
 

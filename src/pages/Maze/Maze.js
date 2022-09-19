@@ -48,6 +48,7 @@ const Maze = () => {
           setError(error);
         });
     };
+    document.title = "My BLOCKLY Maze | " + id;
     getAMaze();
   }, [id, refetch]);
 

@@ -35,6 +35,7 @@ const Register = () => {
   }
 
   useEffect(() => {
+    document.title = "My BLOCKLY Maze | Cadastro";
     if (authError) {
       setError(authError)
     }
