@@ -18,6 +18,11 @@ const Home = () => {
 
   useEffect(() => {
     const getAllMazes = async () => {
+
+      fetch("https://api-blockly-next-prisma-postgres.vercel.app/api/users/readall")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+
       fetch(backend + "/mazes")
         .then((response) => {
           if (response.ok) {
