@@ -8,22 +8,20 @@ import { Link } from "react-router-dom";
 import MazeDetail from "../../components/MazeDetail/MazeDetail";
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
+//import { useApi } from "../../hooks/useApi";
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined);
   const [error, setError] = useState(undefined);
+  //const api = useApi();
 
   const loadingMazes = mazes === undefined;
   const loadingError = error === undefined;
 
   useEffect(() => {
     const getAllMazes = async () => {
-
-      fetch("https://api-blockly-next-prisma-postgres.vercel.app/api/users/readall", {
-        mode: "no-cors"
-      })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+      /*const mazes = await api.showMazes();
+      setMazes(mazes);*/
 
       fetch(backend + "/mazes")
         .then((response) => {
