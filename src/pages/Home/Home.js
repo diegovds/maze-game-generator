@@ -19,7 +19,9 @@ const Home = () => {
   useEffect(() => {
     const getAllMazes = async () => {
 
-      fetch("https://api-blockly-next-prisma-postgres.vercel.app/api/users/readall")
+      fetch("https://api-blockly-next-prisma-postgres.vercel.app/api/users/readall", {
+        mode: "no-cors"
+      })
       .then((response) => response.json())
       .then((data) => console.log(data));
 
