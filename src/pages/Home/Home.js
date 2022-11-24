@@ -8,21 +8,16 @@ import { Link } from "react-router-dom";
 import MazeDetail from "../../components/MazeDetail/MazeDetail";
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
-//import { useApi } from "../../hooks/useApi";
 
 const Home = () => {
   const [mazes, setMazes] = useState(undefined);
   const [error, setError] = useState(undefined);
-  //const api = useApi();
 
   const loadingMazes = mazes === undefined;
   const loadingError = error === undefined;
 
   useEffect(() => {
     const getAllMazes = async () => {
-      /*const mazes = await api.showMazes();
-      setMazes(mazes);*/
-
       fetch(backend + "/mazes")
         .then((response) => {
           if (response.ok) {
@@ -58,9 +53,7 @@ const Home = () => {
   }
 
   if (!loadingError) {
-    return (
-      <LoadingError message={error.message} />
-    );
+    return <LoadingError message={error.message} />;
   }
 
   return (
