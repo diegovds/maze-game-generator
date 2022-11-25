@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const searchUserData = async () => {
-      var response = await fetch(backend + "/users/" + uid + "/" + uid);
+      var response = await fetch(backend + "/users/" + uid);
       var data = await response.json();
       data = data.data;
 

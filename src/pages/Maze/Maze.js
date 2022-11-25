@@ -97,7 +97,7 @@ const Maze = () => {
         <IframePage
           link={
             "https://myblocklymaze-game.vercel.app/maze.html?levels=" +
-            JSON.stringify(maze.levels) +
+            maze.levels +
             "&url_image=" +
             maze.url_image +
             "&reset=1"

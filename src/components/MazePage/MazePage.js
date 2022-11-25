@@ -54,8 +54,8 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
                 <div className={styles.maze}>
                     <h2>{maze.name} (Cód. {maze.code})</h2>
                     <img src={maze.url_image} alt={maze.image} />
-                    <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {maze.username}</p>
-                    <p className={styles.p_data}>Quantidade de níveis: {maze.levels.length}</p>
+                    <p className={styles.p_data}>Criado em {maze.created_at} pelo usuário {maze.user.username}</p>
+                    <p className={styles.p_data}>Quantidade de níveis: {JSON.parse(maze.levels).length}</p>
                     <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
                     {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
                     <p className={styles.p_a}>Ao clicar no botão abaixo você será redirecionado para a página do Maze Game.</p>

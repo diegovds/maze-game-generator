@@ -18,7 +18,7 @@ const CreateMaze = () => {
 
   useEffect(() => {
     const searchUserId = async () => {
-      const response = await fetch(backend + "/users/" + uid + "/" + uid);
+      const response = await fetch(backend + "/users/" + uid);
       var data = await response.json();
       data = data.data;
 
