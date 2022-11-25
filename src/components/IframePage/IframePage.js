@@ -34,7 +34,7 @@ const IframePage = ({ link, redirect }) => {
         title="iframeLink"
         frameBorder="0"
         ref={iframe}
-        allowFullScreen="true"
+        allowFullScreen={true}
       ></iframe>
     </div>
   );
