@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 
-import { backend } from "../../backend/config";
+import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,23 +10,16 @@ import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 
 const Home = () => {
-  const [mazes, setMazes] = useState(undefined);
-  const [error, setError] = useState(undefined);
-
-  const loadingMazes = mazes === undefined;
-  const loadingError = error === undefined;
+  const [mazes, setMazes] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getAllMazes = async () => {
-      fetch(backend + "/mazes")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Ocorreu um erro, por favor tente mais tarde.");
-        })
+      await api
+        .get("/mazes")
         .then((data) => {
-          data = data.data;
+          data = data.data.data;
 
           data.forEach((item) => {
             if (item.name.length > 8) {
@@ -40,19 +33,22 @@ const Home = () => {
 
           setMazes(data);
         })
-        .catch((error) => {
-          setError(error);
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          setIsFetching(false);
         });
     };
     document.title = "My BLOCKLY Maze | Home";
     getAllMazes();
   }, []);
 
-  if (loadingMazes && loadingError) {
+  if (isFetching) {
     return <Loading />;
   }
 
-  if (!loadingError) {
+  if (error) {
     return <LoadingError message={error.message} />;
   }
 
@@ -60,16 +56,6 @@ const Home = () => {
     <>
       <div className={styles.home}>
         <h2>Jogos criados recentemente:</h2>
-        {/*
-          <form onSubmit={handleSubmit} className={styles.search_form}>
-            <input
-              type="text"
-              placeholder="Nome do jogo..."
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <button className="btn btn-dark">Pesquisar</button>
-          </form>
-          */}
       </div>
 
       <div className={styles.mazes_container}>
