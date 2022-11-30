@@ -1,7 +1,8 @@
 import styles from "./Home.module.css";
 
-import { backend } from "../../backend/config";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import axio from "../../services/api";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // components
@@ -10,49 +11,39 @@ import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 
 const Home = () => {
-  const [mazes, setMazes] = useState(undefined);
-  const [error, setError] = useState(undefined);
-
-  const loadingMazes = mazes === undefined;
-  const loadingError = error === undefined;
-
   useEffect(() => {
-    const getAllMazes = async () => {
-      fetch(backend + "/mazes")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Ocorreu um erro, por favor tente mais tarde.");
-        })
-        .then((data) => {
-          data = data.data;
-
-          data.forEach((item) => {
-            if (item.name.length > 8) {
-              item.name = item.name.substr(0, 8);
-              item.name = item.name.concat("...");
-            }
-            item.created_at = new Date(item.created_at).toLocaleDateString(
-              "pt-BR"
-            );
-          });
-
-          setMazes(data);
-        })
-        .catch((error) => {
-          setError(error);
-        });
-    };
     document.title = "My BLOCKLY Maze | Home";
-    getAllMazes();
   }, []);
 
-  if (loadingMazes && loadingError) {
+  const {
+    isLoading,
+    error,
+    data: mazes,
+  } = useQuery(
+    ["mazes"],
+    async () =>
+      await axio.get("/mazes").then((data) => {
+        data = data.data.data;
+
+        data.forEach((item) => {
+          if (item.name.length > 8) {
+            item.name = item.name.substr(0, 8);
+            item.name = item.name.concat("...");
+          }
+          item.created_at = new Date(item.created_at).toLocaleDateString(
+            "pt-BR"
+          );
+        });
+
+        return data;
+      })
+  );
+
+  if (isLoading) {
     return <Loading />;
   }
 
-  if (!loadingError) {
+  if (error) {
     return <LoadingError message={error.message} />;
   }
 
