@@ -1,7 +1,7 @@
 import styles from "./Dashboard.module.css";
 
 import { Link } from "react-router-dom";
-import { backend } from "../../backend/config";
+import api from "../../services/api";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 // components
 import MazeDelete from "../../components/MazeDelete/MazeDelete";
 import Loading from "../../components/Loading/Loading";
+import LoadingError from "../../components/LoadingError/LoadingError";
 
 // hooks
 import { useAuthValue } from "../../context/AuthContext";
@@ -18,27 +19,41 @@ const Dashboard = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const [userData, setUserData] = useState(undefined);
+  const [userData, setUserData] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
   const [reload, setReload] = useState(false);
-
-  const loadingUser = userData === undefined;
 
   useEffect(() => {
     const searchUserData = async () => {
-      var response = await fetch(backend + "/users/" + uid);
-      var data = await response.json();
-      data = data.data;
+      await api
+        .get("/users/" + uid)
+        .then((data) => {
+          if (data.data.error) {
+            setError("Usuário não encontrado 😢");
+          } else {
+            data = data.data.data;
 
-      data.mazes.forEach((item) => {
-        if (item.name.length > 8) {
-          item.name = item.name.substr(0, 8);
-          item.name = item.name.concat("...");
-        }
+            data.mazes.forEach((item) => {
+              if (item.name.length > 8) {
+                item.name = item.name.substr(0, 8);
+                item.name = item.name.concat("...");
+              }
 
-        item.created_at = new Date(item.created_at).toLocaleDateString("pt-BR");
-      });
+              item.created_at = new Date(item.created_at).toLocaleDateString(
+                "pt-BR"
+              );
+            });
 
-      setUserData(data);
+            setUserData(data);
+          }
+        })
+        .catch(() => {
+          setError("Ocorreu um erro, por favor tente mais tarde 👎");
+        })
+        .finally(() => {
+          setIsFetching(false);
+        });
     };
     document.title = "My BLOCKLY Maze | Dashboard";
     searchUserData();
@@ -46,9 +61,7 @@ const Dashboard = () => {
 
   const deleteMaze = async (id) => {
     await toast.promise(
-      fetch(backend + "/mazes/" + id, {
-        method: "DELETE",
-      }),
+      api.delete("/mazes/" + id),
       {
         pending: "Processando solicitação",
         success: "Jogo excluído com sucesso 👌",
@@ -77,8 +90,12 @@ const Dashboard = () => {
     deleteMaze(data);
   };
 
-  if (loadingUser) {
+  if (isFetching) {
     return <Loading />;
+  }
+
+  if (error) {
+    return <LoadingError message={error} />;
   }
 
   return (
