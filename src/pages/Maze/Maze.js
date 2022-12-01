@@ -1,5 +1,5 @@
 import styles from "./Maze.module.css";
-import { backend } from "../../backend/config";
+import api from "../../services/api";
 
 // hooks
 import { useEffect, useState } from "react";
@@ -28,24 +28,19 @@ const Maze = () => {
 
   useEffect(() => {
     const getAMaze = async () => {
-      fetch(backend + "/mazes/" + id)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Jogo não encontrado.");
-        })
-        .then((maze) => {
-          maze = maze.data;
+      await api
+        .get("/mazes/" + id)
+        .then((data) => {
+          data = data.data.data;
 
-          maze.created_at = new Date(maze.created_at).toLocaleDateString(
+          data.created_at = new Date(data.created_at).toLocaleDateString(
             "pt-BR"
           );
 
-          setMaze(maze);
+          setMaze(data);
         })
-        .catch((error) => {
-          setError(error);
+        .catch(() => {
+          setError("Jogo não encontrado 😢");
         });
     };
     document.title = "My BLOCKLY Maze | " + id;
@@ -65,9 +60,7 @@ const Maze = () => {
   };
 
   const errorReturn = () => {
-    const e = new Error("Ocorreu um erro, por favor tente mais tarde.");
-    // e.message is 'Ocorreu um erro, por favor tente mais tarde.'
-    throw setError(e);
+    setError("Ocorreu um erro, por favor tente mais tarde 👎");
   };
 
   const notify = () => {
@@ -88,7 +81,7 @@ const Maze = () => {
   }
 
   if (!loadingError && loadingRunGame) {
-    return <LoadingError message={error.message} />;
+    return <LoadingError message={error} />;
   }
 
   if (!loadingRunGame && loadingError && !loadingMaze) {
