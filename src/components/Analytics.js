@@ -1,16 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import ReactGA from 'react-ga';
-
-const TRACKING_ID = process.env.REACT_APP_API_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+import trackPathForAnalytics from "../firebase/TrackPageForAnalytics";
 
 export default function Analytics() {
-    const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
-    useEffect(() => {
-        ReactGA.pageview(pathname);
-      }, [pathname]);
+  const analytics = useCallback(() => {
+    trackPathForAnalytics({ path: pathname });
+  }, [pathname]);
 
-    return null
+  useEffect(() => {
+    analytics();
+  }, [analytics]);
+
+  return null;
 }
