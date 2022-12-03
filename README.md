@@ -38,7 +38,8 @@ A plataforma é dividida em outras duas aplicações:
 * [react-toastify](https://www.npmjs.com/package/react-toastify)
 * [scrollreveal](https://www.npmjs.com/package/scrollreveal)
 * [copy-to-clipboard](https://www.npmjs.com/package/copy-to-clipboard)
-* [react-ga](https://www.npmjs.com/package/react-ga)
+* [Axios](https://www.npmjs.com/package/axios)
+* [GA4React](https://www.npmjs.com/package/ga-4-react)
 
 ...
 ## Iniciando ▶️
