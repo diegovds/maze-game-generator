@@ -64,7 +64,8 @@
   background-color: #fff;
   padding: 0.6em 0.6em;
   border-radius: 20px;
-  width: 50%;
+  width: 35vw;
+  height: 20vh;
 }
 
 .modal_content h3 {
