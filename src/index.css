@@ -140,3 +140,7 @@ button[disabled]:hover {
   padding: 5px;
   border-radius: 5px;
 }
+
+img {
+  border-radius: 10px;
+}
