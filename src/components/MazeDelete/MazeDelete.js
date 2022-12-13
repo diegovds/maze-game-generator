@@ -65,7 +65,7 @@ const MazeDelete = ({ maze, returnDataChildToParent }) => {
         <div ref={elementRef}>
           <div className={styles.maze}>
             {/*<img src={maze.url_image} alt={maze.image} />*/}
-            <LazyLoadImage src={maze.url_image} placeholderSrc="./placeholder.png" effect="blur" alt={maze.image} />
+            <LazyLoadImage src={maze.url_image} effect="blur" alt={maze.image} />
             <h3>{maze.name}</h3>
             <p id="date">Criado em:<br />{maze.created_at}</p>
             <Link to={`/mazes/${maze.id}`} className="btn">
