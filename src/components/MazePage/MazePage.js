@@ -57,7 +57,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
             {maze.name} (Cód. {maze.code})
           </h2>
           {/*<img src={maze.url_image} alt={maze.image} />*/}
-          <LazyLoadImage src={maze.url_image} effect="blur" alt={maze.image} />
+          <LazyLoadImage src={maze.url_image} placeholderSrc="./placeholder.png" effect="blur" alt={maze.image} />
           <p className={styles.p_data}>
             Criado em {maze.created_at} pelo usuário {maze.user.username}
           </p>
