@@ -46,7 +46,6 @@ const Login = () => {
               name="email"
               required
               placeholder="E-mail do usuário"
-              autoComplete='off'
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
@@ -58,7 +57,6 @@ const Login = () => {
               name="password"
               required
               placeholder="Insira sua senha"
-              autoComplete='off'
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
