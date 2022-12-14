@@ -65,7 +65,7 @@ const Register = () => {
               name="email"
               required
               placeholder="E-mail do usuário"
-              autoComplete='username'
+              autoComplete='off'
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
@@ -77,7 +77,7 @@ const Register = () => {
               name="password"
               required
               placeholder="Insira sua senha"
-              autoComplete='new-password'
+              autoComplete='off'
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
@@ -89,7 +89,7 @@ const Register = () => {
               name="confirmPassword"
               required
               placeholder="Confirme a sua senha"
-              autoComplete='new-password'
+              autoComplete='off'
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
             />
