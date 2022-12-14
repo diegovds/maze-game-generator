@@ -9,9 +9,6 @@ import copy from "copy-to-clipboard";
 import ScrollReveal from "scrollreveal";
 import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions";
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
 const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   const [loading, setLoading] = useState(undefined);
   const elementRef = useRef();
@@ -56,8 +53,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
           <h2>
             {maze.name} (Cód. {maze.code})
           </h2>
-          {/*<img src={maze.url_image} alt={maze.image} />*/}
-          <LazyLoadImage src={maze.url_image} effect="blur" alt={maze.image} />
+          <img src={maze.url_image} alt={maze.image} />
           <p className={styles.p_data}>
             Criado em {maze.created_at} pelo usuário {maze.user.username}
           </p>
