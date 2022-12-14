@@ -1,5 +1,5 @@
 .container {
-  /* min-height: 100vh; */
+  min-height: 100vh;
 
-  min-height: calc(100% - 70.94px); /* 70.94px é a altura da navbar */
+  /* min-height: calc(100% - 70.94px); 70.94px é a altura da navbar */
 }
