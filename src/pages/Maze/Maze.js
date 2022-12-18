@@ -33,10 +33,6 @@ const Maze = () => {
         .then((data) => {
           data = data.data.data;
 
-          data.created_at = new Date(data.created_at).toLocaleDateString(
-            "pt-BR"
-          );
-
           setMaze(data);
         })
         .catch(() => {
