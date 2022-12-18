@@ -21,16 +21,6 @@ const Home = () => {
         .then((data) => {
           data = data.data.data;
 
-          data.forEach((item) => {
-            if (item.name.length > 8) {
-              item.name = item.name.substr(0, 8);
-              item.name = item.name.concat("...");
-            }
-            item.created_at = new Date(item.created_at).toLocaleDateString(
-              "pt-BR"
-            );
-          });
-
           setMazes(data);
         })
         .catch((err) => {
