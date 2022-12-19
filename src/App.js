@@ -3,8 +3,6 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import ScrollToTop from "react-scroll-to-top";
-import { QueryClientProvider } from "react-query";
-import { queryClient } from "./services/queryClient";
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
 import Loading from "./components/Loading/Loading";
 import Navbar from "./components/Navbar/Navbar";
@@ -56,31 +54,29 @@ function App() {
           />
           <Navbar />
           <div className="container">
-            <QueryClientProvider client={queryClient}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/mazes/:id" element={<Maze />} />
-                <Route path="*" element={<NotFound />} />
-                <Route
-                  path="/login"
-                  element={!user ? <Login /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/register"
-                  element={!user ? <Register /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/mazes/create"
-                  element={user ? <CreateMaze /> : <Navigate to="/login" />}
-                />
-                <Route
-                  path="/dashboard"
-                  element={user ? <Dashboard /> : <Navigate to="/login" />}
-                />
-              </Routes>
-            </QueryClientProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/mazes/:id" element={<Maze />} />
+              <Route path="*" element={<NotFound />} />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/register"
+                element={!user ? <Register /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/mazes/create"
+                element={user ? <CreateMaze /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dashboard"
+                element={user ? <Dashboard /> : <Navigate to="/login" />}
+              />
+            </Routes>
           </div>
         </BrowserRouter>
       </AuthProvider>
