@@ -24,7 +24,7 @@ export default function SEO({ title, description, type, url, image }) {
       .setAttribute("content", image);*/
     var link = document.createElement("meta");
     link.setAttribute("property", "og:url");
-    link.content = window.location.href;
+    link.content = url;
     document.getElementsByTagName("head")[0].appendChild(link);
 
     var desc = document.createElement("meta");
