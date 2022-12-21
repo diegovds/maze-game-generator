@@ -24,8 +24,13 @@ export default function SEO({ title, description, type, url, image }) {
       .setAttribute("content", image);*/
     var link = document.createElement("meta");
     link.setAttribute("property", "og:url");
-    link.content = url;
+    link.content = window.location.href;
     document.getElementsByTagName("head")[0].appendChild(link);
+
+    var desc = document.createElement("meta");
+    desc.setAttribute("property", "og:description");
+    desc.content = description;
+    document.getElementsByTagName("head")[0].appendChild(desc);
   }, [title, description, url, type, image]);
 
   return null;
