@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // components
 import MazeDetail from "../../components/MazeDetail/MazeDetail";
@@ -30,7 +31,6 @@ const Home = () => {
           setIsFetching(false);
         });
     };
-    document.title = "My BLOCKLY Maze | Home";
     getAllMazes();
   }, []);
 
@@ -44,14 +44,20 @@ const Home = () => {
 
   return (
     <>
-      <meta property="og:url" content="https://myblocklymaze.vercel.app/" />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Home da plataforma My BLOCKLY Maze" />
-      <meta
-        property="og:description"
-        content="Plataforma de criação e compartilhamento de jogos de labirinto,"
-      />
-      <meta property="og:image" content="https://i.imgur.com/lOHn1bD.png" />
+      <Helmet>
+        <meta property="og:url" content="https://myblocklymaze.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Home da plataforma My BLOCKLY Maze"
+        />
+        <meta
+          property="og:description"
+          content="Plataforma de criação e compartilhamento de jogos de labirinto,"
+        />
+        <meta property="og:image" content="https://i.imgur.com/lOHn1bD.png" />
+        <title>My BLOCKLY Maze | Home</title>
+      </Helmet>
       <div className={styles.home}>
         <h2>Jogos criados recentemente:</h2>
       </div>
