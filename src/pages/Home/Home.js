@@ -47,9 +47,8 @@ const Home = () => {
       <SEO
         title="My BLOCKLY Maze | Home"
         description="Plataforma de criação e compartilhamento de jogos de labirinto."
-        name="My BLOCKLY Maze"
         type="website"
-        url="https://myblocklymaze.vercel.app/"
+        url={window.location.href}
         image="https://i.imgur.com/lOHn1bD.png"
       />
       <div className={styles.home}>

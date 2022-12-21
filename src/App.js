@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import ScrollToTop from "react-scroll-to-top";
-import { HelmetProvider } from "react-helmet-async";
 
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
 import Loading from "./components/Loading/Loading";
@@ -29,7 +28,6 @@ import NotFound from "./pages/404/NotFound";
 import Analytics from "./components/Analytics";
 
 function App() {
-  const helmetContext = {};
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
 
@@ -48,42 +46,40 @@ function App() {
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
-        <HelmetProvider context={helmetContext}>
-          <BrowserRouter>
-            <ScrollToTopPage />
-            <Analytics />
-            <ScrollToTop
-              smooth
-              style={{ backgroundColor: "#ADD8E6", height: 50, width: 50 }}
-            />
-            <Navbar />
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/mazes/:id" element={<Maze />} />
-                <Route path="*" element={<NotFound />} />
-                <Route
-                  path="/login"
-                  element={!user ? <Login /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/register"
-                  element={!user ? <Register /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/mazes/create"
-                  element={user ? <CreateMaze /> : <Navigate to="/login" />}
-                />
-                <Route
-                  path="/dashboard"
-                  element={user ? <Dashboard /> : <Navigate to="/login" />}
-                />
-              </Routes>
-            </div>
-          </BrowserRouter>
-        </HelmetProvider>
+        <BrowserRouter>
+          <ScrollToTopPage />
+          <Analytics />
+          <ScrollToTop
+            smooth
+            style={{ backgroundColor: "#ADD8E6", height: 50, width: 50 }}
+          />
+          <Navbar />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/mazes/:id" element={<Maze />} />
+              <Route path="*" element={<NotFound />} />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/register"
+                element={!user ? <Register /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/mazes/create"
+                element={user ? <CreateMaze /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dashboard"
+                element={user ? <Dashboard /> : <Navigate to="/login" />}
+              />
+            </Routes>
+          </div>
+        </BrowserRouter>
       </AuthProvider>
     </div>
   );

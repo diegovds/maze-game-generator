@@ -1,25 +1,32 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
-export default function SEO({ title, description, name, type, url, image }) {
-  return (
-    <Helmet>
-      {/* Standard metadata tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {/* End standard metadata tags */}
-      {/* Facebook tags */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image} />
-      {/* End Facebook tags */}
-      {/* Twitter tags */}
-      <meta name="twitter:creator" content={name} />
-      <meta name="twitter:card" content={type} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      {/* End Twitter tags */}
-    </Helmet>
-  );
+import { useEffect } from "react";
+
+export default function SEO({ title, description, type, url, image }) {
+  useEffect(() => {
+    /** Standard metadata tags */
+    document.title = title;
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute("content", description);
+
+    /** Facebook tags */
+    /*document.querySelector("meta[name='og:url']").setAttribute("content", url);
+    document
+      .querySelector("meta[name='og:type']")
+      .setAttribute("content", type);
+    document
+      .querySelector("meta[name='og:title']")
+      .setAttribute("content", title);
+    document
+      .querySelector("meta[name='og:description']")
+      .setAttribute("content", description);
+    document
+      .querySelector("meta[name='og:image']")
+      .setAttribute("content", image);*/
+    var link = document.createElement("meta");
+    link.setAttribute("property", "og:url");
+    link.content = url;
+    document.getElementsByTagName("head")[0].appendChild(link);
+  }, [title, description, url, type, image]);
+
+  return null;
 }
