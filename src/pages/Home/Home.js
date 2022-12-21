@@ -44,6 +44,14 @@ const Home = () => {
 
   return (
     <>
+      <meta property="og:url" content="https://myblocklymaze.vercel.app/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Home da plataforma My BLOCKLY Maze" />
+      <meta
+        property="og:description"
+        content="Plataforma de criação e compartilhamento de jogos de labirinto,"
+      />
+      <meta property="og:image" content="https://i.imgur.com/lOHn1bD.png" />
       <div className={styles.home}>
         <h2>Jogos criados recentemente:</h2>
       </div>
