@@ -2,7 +2,6 @@ import styles from "./Home.module.css";
 
 import api from "../../services/api";
 import { useEffect, useState } from "react";
-import SEO from "../../components/SEO";
 import { Link } from "react-router-dom";
 
 // components
@@ -31,6 +30,7 @@ const Home = () => {
           setIsFetching(false);
         });
     };
+    document.title = "My BLOCKLY Maze | Home";
     getAllMazes();
   }, []);
 
@@ -44,13 +44,6 @@ const Home = () => {
 
   return (
     <>
-      <SEO
-        title="My BLOCKLY Maze | Home"
-        description="Plataforma de criação e compartilhamento de jogos de labirinto."
-        type="website"
-        url={window.location.href}
-        image="https://i.imgur.com/lOHn1bD.png"
-      />
       <div className={styles.home}>
         <h2>Jogos criados recentemente:</h2>
       </div>
