@@ -29,16 +29,14 @@ const Dashboard = () => {
       await api
         .get("/users/" + uid)
         .then((data) => {
-          if (data.data.error) {
-            setError("Usuário não encontrado 😢");
-          } else {
-            data = data.data.data;
+          data = data.data.data;
 
-            setUserData(data);
-          }
+          setUserData(data);
         })
-        .catch(() => {
-          setError("Ocorreu um erro, por favor tente mais tarde 👎");
+        .catch((e) => {
+          String(e.response.data.message).includes("Usuário não encontrado")
+            ? setError("Usuário não encontrado 😢")
+            : setError("Ocorreu um erro, por favor tente mais tarde 👎");
         })
         .finally(() => {
           setIsFetching(false);

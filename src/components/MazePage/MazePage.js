@@ -28,17 +28,14 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
       .put("/mazes/" + maze.id, dataMaze)
 
       .then((data) => {
-        if (data.data.error) {
-          childToParent2();
-        } else {
-          childToParent();
-        }
+        childToParent();
 
         //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
       })
-      .catch(() => {
-        //setError(error)
-        childToParent2();
+      .catch((e) => {
+        String(e.response.data.message).includes("Maze não encontrado")
+          ? childToParent2("Jogo não encontrado 😢")
+          : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
       });
   };
 

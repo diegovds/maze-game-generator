@@ -55,8 +55,8 @@ const Maze = () => {
     return navigate("/");
   };
 
-  const errorReturn = () => {
-    setError("Ocorreu um erro, por favor tente mais tarde 👎");
+  const errorReturn = (message) => {
+    setError(message);
   };
 
   const notify = () => {
