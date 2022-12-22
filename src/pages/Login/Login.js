@@ -48,6 +48,7 @@ const Login = () => {
               placeholder="E-mail do usuário"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              autoFocus
             />
           </label>
           <label>

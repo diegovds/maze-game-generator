@@ -56,6 +56,7 @@ const Register = () => {
               placeholder="Nome do usuário"
               value={displayName}
               onChange={e => setDisplayName(e.target.value)}
+              autoFocus
             />
           </label>
           <label>
