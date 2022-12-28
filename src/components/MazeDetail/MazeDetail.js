@@ -28,7 +28,7 @@ const MazeDetail = ({ maze }) => {
     <div className='load-hidden'>
       <div  ref={elementRef}>
         <div className={styles.maze}>
-          <img className={styleImgLoading} src="./null.png" alt="Imagem de carregamento" />
+          <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
           <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
           <h3>{maze.name}</h3>
           <p id='date'>Criado em:<br />{maze.created_at}</p>
