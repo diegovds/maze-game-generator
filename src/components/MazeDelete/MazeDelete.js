@@ -14,7 +14,9 @@ Modal.setAppElement('#root')
 
 const MazeDelete = ({ maze, returnDataChildToParent }) => {
   const [mazeId, setMazeId] = useState(undefined);
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [styleImg, setStyleImg] = useState("img_loading");
+  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded');
   const elementRef = useRef();
 
   function handleOpenModal(){
@@ -29,6 +31,11 @@ const MazeDelete = ({ maze, returnDataChildToParent }) => {
     const divElement = elementRef.current;
     ScrollReveal().reveal(divElement, ScrollRevealOptions);
   }, []);
+
+  const imgChange = () => {
+    setStyleImg('img_loaded')
+    setStyleImgLoading('img_loading')
+  };
 
   const deleteMaze = (id) => {
     setMazeId(id)
@@ -61,7 +68,8 @@ const MazeDelete = ({ maze, returnDataChildToParent }) => {
       <div className="load-hidden">
         <div ref={elementRef}>
           <div className={styles.maze}>
-            <img src={maze.url_image} alt={maze.image} />
+            <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
+            <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
             <h3>{maze.name}</h3>
             <p id="date">Criado em:<br />{maze.created_at}</p>
             <Link to={`/mazes/${maze.id}`} className="btn">
