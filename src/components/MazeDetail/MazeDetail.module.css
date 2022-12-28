@@ -17,14 +17,7 @@ h3, p {
   word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
 }
 
-.maze .img_loading {
-  display: none;
-  width: 90%;
-  margin-bottom: .4em;
-}
-
-.maze .img_loaded {
-  display: inline-block;
+.maze img {
   width: 90%;
   margin-bottom: .4em;
 }
