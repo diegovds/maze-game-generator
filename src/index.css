@@ -144,3 +144,11 @@ button[disabled]:hover {
 img {
   border-radius: 10px;
 }
+
+.img_loading {
+  display: none;
+}
+
+.img_loaded {
+  display: inline-block;
+}
