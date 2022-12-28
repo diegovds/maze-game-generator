@@ -11,6 +11,8 @@ import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions";
 
 const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   const [loading, setLoading] = useState(undefined);
+  const [styleImg, setStyleImg] = useState("img_loading");
+  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded');
   const elementRef = useRef();
 
   useEffect(() => {
@@ -43,6 +45,11 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
     copy(window.location.href);
   };
 
+  const imgChange = () => {
+    setStyleImg('img_loaded')
+    setStyleImgLoading('img_loading')
+  };
+
   return (
     <div className="load-hidden">
       <div ref={elementRef}>
@@ -50,7 +57,8 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
           <h2>
             {maze.name} (Cód. {maze.code})
           </h2>
-          <img src={maze.url_image} alt={maze.image} />
+          <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
+          <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
           <p className={styles.p_data}>
             Criado em {maze.created_at} pelo usuário {maze.username}
           </p>
