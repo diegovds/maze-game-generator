@@ -12,7 +12,7 @@ const MazeDetail = ({ maze }) => {
   const elementRef = useRef();
 
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded');
+  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded_white');
 
   useEffect(() => {
     const divElement = elementRef.current;

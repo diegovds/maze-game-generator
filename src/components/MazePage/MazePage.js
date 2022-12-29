@@ -12,7 +12,7 @@ import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions";
 const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   const [loading, setLoading] = useState(undefined);
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded');
+  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded_white');
   const elementRef = useRef();
 
   useEffect(() => {

@@ -16,7 +16,7 @@ const MazeDelete = ({ maze, returnDataChildToParent }) => {
   const [mazeId, setMazeId] = useState(undefined);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded');
+  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded_white');
   const elementRef = useRef();
 
   function handleOpenModal(){
