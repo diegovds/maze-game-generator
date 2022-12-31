@@ -58,7 +58,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
             {maze.name} (Cód. {maze.code})
           </h2>
           <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
-          <img className={styleImg} src={maze.thumbnail_url} alt={"Imagem do Maze Game"} onLoad={imgChange}/>
+          <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
           <p className={styles.p_data}>
             Criado em {maze.created_at} pelo usuário {maze.username}
           </p>

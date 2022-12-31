@@ -69,7 +69,7 @@ const MazeDelete = ({ maze, returnDataChildToParent }) => {
         <div ref={elementRef}>
           <div className={styles.maze}>
             <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
-            <img className={styleImg} src={maze.thumbnail_url} alt={"Imagem do Maze Game"} onLoad={imgChange}/>
+            <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
             <h3>{maze.name}</h3>
             <p id="date">Criado em:<br />{maze.created_at}</p>
             <Link to={`/mazes/${maze.id}`} className="btn">
