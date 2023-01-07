@@ -1,0 +1,111 @@
+.main {
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: #021e39;
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+
+.navbar .leftSide {
+  flex: 50%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.navbar .leftSide .links {
+  max-height: 80px;
+}
+
+.navbar .leftSide .links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 25px;
+  margin-left: 15px;
+}
+
+.navbar .leftSide button {
+  display: none;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.navbar .leftSide #hidden {
+  display: flex;
+}
+
+.navbar .rightSide {
+  flex: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 25px;
+}
+
+.rightSide input {
+  width: 220px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  padding-left: 15px;
+  color: #000;
+  background-color: #fff;
+}
+
+.rightSide button {
+  height: 32px;
+  width: 70px;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 880px) {
+  .navbar .leftSide .links a {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .navbar .leftSide .links a {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .navbar .leftSide button {
+    display: flex;
+  }
+
+  .navbar .leftSide .links {
+    display: none;
+  }
+
+  .navbar .leftSide #hidden {
+    position: absolute;
+    left: 0px;
+    top: 80px;
+    height: 230px;
+    max-height: 230px;
+    width: 100%;
+    background-color: #021e39;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .leftSide #hidden a {
+    margin: 10px;
+    font-size: 25px;
+  }
+}
