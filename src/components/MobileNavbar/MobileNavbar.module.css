@@ -14,7 +14,7 @@
 }
 
 .brand {
-  font-size: 1.5em;
+  font-size: 1.3em;
   /* centralizar icone com o texto */
   display: flex;
   align-items: center;
@@ -45,8 +45,7 @@
     position: absolute;
     left: 0px;
     top: 80px;
-    height: 250px;
-    max-height: 250px;
+    height: auto;
     width: 100%;
     background: #add8e6;
     display: flex;
@@ -61,7 +60,7 @@
     font-size: 20px;
   }
 
-  .navbar #hidden button {
+  .navbar #hidden .btn_logout {
     width: 100%;
     margin: 10px;
     font-size: 20px;
