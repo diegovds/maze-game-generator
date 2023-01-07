@@ -7,9 +7,11 @@ import ScrollToTop from "react-scroll-to-top";
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
 import Loading from "./components/Loading/Loading";
 import Navbar from "./components/Navbar/Navbar";
+import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
 
 // Hooks
 import { useState, useEffect } from "react";
+import useMedia from "use-media";
 import { useAuthentication } from "./hooks/useAuthentication";
 
 // Context
@@ -30,6 +32,8 @@ import Analytics from "./components/Analytics";
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
+
+  const isMobile = useMedia({ maxWidth: 650 });
 
   const loadingUser = user === undefined;
 
@@ -53,7 +57,7 @@ function App() {
             smooth
             style={{ backgroundColor: "#ADD8E6", height: 50, width: 50 }}
           />
-          <Navbar />
+          {isMobile ? <MobileNavbar /> : <Navbar />}
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
