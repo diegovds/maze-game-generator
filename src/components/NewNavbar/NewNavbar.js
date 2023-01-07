@@ -1,26 +1,121 @@
 import styles from "./NewNavbar.module.css";
-import { HiSearch } from "react-icons/hi";
-
-import { IoMdReorder } from "react-icons/io";
 
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
+import { HiSearch } from "react-icons/hi";
+import { Divide as Hamburger } from "hamburger-react";
+
+import { useAuthentication } from "../../hooks/useAuthentication";
+import { useAuthValue } from "../../context/AuthContext";
 
 const NewNavbar = () => {
+  const { user } = useAuthValue();
+  const { logout } = useAuthentication();
+
   const [showLinks, setShowLiks] = useState(false);
+  const [isOpen, setOpen] = useState(false);
+
+  const changeHamburger = () => {
+    if (isOpen) {
+      setOpen(!isOpen);
+      setShowLiks(false);
+    } else {
+      setShowLiks(true);
+    }
+  };
 
   return (
     <div className={styles.main}>
       <div className={styles.navbar}>
         <div className={styles.leftSide}>
           <div className={styles.links} id={showLinks ? styles.hidden : ""}>
-            <a href="/">Home</a>
-            <a href="/">Feedback</a>
-            <a href="/">About Us</a>
-            <a href="/">Contact</a>
+            <NavLink
+              to="/"
+              onClick={() => {
+                changeHamburger();
+              }}
+            >
+              Home
+            </NavLink>
+            {!user && (
+              <>
+                <NavLink
+                  to="/login"
+                  onClick={() => {
+                    changeHamburger();
+                  }}
+                >
+                  Entrar
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  onClick={() => {
+                    changeHamburger();
+                  }}
+                >
+                  Cadastrar
+                </NavLink>
+              </>
+            )}
+            {user && (
+              <>
+                <NavLink
+                  to="/mazes/create"
+                  onClick={() => {
+                    changeHamburger();
+                  }}
+                >
+                  Criar novo jogo
+                </NavLink>
+                <NavLink
+                  to="/dashboard"
+                  onClick={() => {
+                    changeHamburger();
+                  }}
+                >
+                  Dashboard
+                </NavLink>
+              </>
+            )}
+
+            <NavLink
+              to="/about"
+              onClick={() => {
+                changeHamburger();
+              }}
+            >
+              Sobre
+            </NavLink>
+            {user && (
+              <>
+                <button className={styles.btn_logout}
+                  onClick={() => {
+                    logout();
+                    changeHamburger();
+                  }}
+                >
+                  Sair
+                </button>
+              </>
+            )}
           </div>
-          <button onClick={() => setShowLiks(!showLinks)}>
+          {/*<button onClick={() => setShowLiks(!showLinks)}>
             <IoMdReorder />
-          </button>
+          </button>*/}
+          <div
+            className={styles.hamburger}
+            onClick={() => {
+              changeHamburger();
+            }}
+          >
+            <Hamburger
+              rounded="true"
+              color="#fff"
+              toggled={isOpen}
+              toggle={setOpen}
+            />
+          </div>
         </div>
         <div className={styles.rightSide}>
           <input type="search" placeholder="Search" />

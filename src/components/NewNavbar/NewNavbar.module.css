@@ -32,6 +32,15 @@ button:hover {
   margin-left: 15px;
 }
 
+.navbar .leftSide .links .btn_logout {
+  display: inline-block;
+  font-size: 25px;
+  margin-left: 15px;
+  background-color: #021e39;
+  color: #fff;
+  border: none;
+}
+
 .navbar .leftSide button {
   display: none;
   height: 30px;
@@ -39,6 +48,10 @@ button:hover {
   justify-content: center;
   align-items: center;
   margin-left: 20px;
+}
+
+.navbar .leftSide .hamburger {
+  display: none;
 }
 
 .navbar .leftSide #hidden {
@@ -87,6 +100,12 @@ button:hover {
     display: flex;
   }
 
+  .navbar .leftSide .hamburger {
+    display: flex;
+    color: #fff;
+    background-color: #000;
+  }
+
   .navbar .leftSide .links {
     display: none;
   }
@@ -95,17 +114,27 @@ button:hover {
     position: absolute;
     left: 0px;
     top: 80px;
-    height: 230px;
-    max-height: 230px;
+    height: 250px;
+    max-height: 250px;
     width: 100%;
     background-color: #021e39;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 999;
   }
 
   .navbar .leftSide #hidden a {
     margin: 10px;
     font-size: 25px;
+  }
+
+  .navbar .leftSide #hidden button {
+    width: 100%;
+    margin: 10px;
+    font-size: 25px;
+    background-color: #021e39;
+    color: #fff;
+    border: none;
   }
 }
