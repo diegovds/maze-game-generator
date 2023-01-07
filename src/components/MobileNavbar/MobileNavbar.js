@@ -1,10 +1,10 @@
-import styles from "./NewNavbar.module.css";
+import styles from "./MobileNavbar.module.css";
 
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { HiSearch } from "react-icons/hi";
-import { Divide as Hamburger } from "hamburger-react";
+import { Squash as Hamburger } from 'hamburger-react'
 
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
@@ -89,7 +89,8 @@ const NewNavbar = () => {
             </NavLink>
             {user && (
               <>
-                <button className={styles.btn_logout}
+                <button
+                  className={styles.btn_logout}
                   onClick={() => {
                     logout();
                     changeHamburger();
@@ -110,7 +111,8 @@ const NewNavbar = () => {
             }}
           >
             <Hamburger
-              rounded="true"
+              hideOutline={false}
+              rounded={true}
               color="#fff"
               toggled={isOpen}
               toggle={setOpen}
