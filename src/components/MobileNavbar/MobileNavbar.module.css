@@ -70,4 +70,26 @@
     justify-content: center;
     align-items: center;
   }
+
+  .search_form {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .search_form input {
+    width: 18rem;
+    background-color: #fff;
+    margin-right: 1rem;
+    border-radius: 5px;
+    padding: 0.4em 0.6em;
+  }
+
+  .search_form button {
+    border-radius: 7px;
+    padding: 0.4em 0.6em;
+    background-color: #000;
+    color: #fff;
+    border: none;
+  }
 }

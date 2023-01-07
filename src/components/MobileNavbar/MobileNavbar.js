@@ -33,6 +33,7 @@ const MobileNavbar = () => {
     e.preventDefault();
     e.target.reset();
     if (query) {
+      changeHamburger();
       return navigate(`/search?q=${query}`);
     }
   };
@@ -45,7 +46,17 @@ const MobileNavbar = () => {
           My <span>Blockly</span> Maze
         </NavLink>
         <div className={styles.menu} id={showMenu ? styles.hidden : ""}>
-          
+          <form onSubmit={handleSubmit} className={styles.search_form}>
+            <input
+              className={styles.input}
+              type="search"
+              placeholder="Buscar por jogo..."
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button>
+              <HiSearch />
+            </button>
+          </form>
           <NavLink
             to="/"
             onClick={() => {
