@@ -6,7 +6,7 @@ import ScrollToTop from "react-scroll-to-top";
 
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
 import Loading from "./components/Loading/Loading";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/NewNavbar/NewNavbar";
 
 // Hooks
 import { useState, useEffect } from "react";
