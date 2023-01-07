@@ -33,7 +33,7 @@ function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
 
-  const isMobile = useMedia({ maxWidth: 650 });
+  const isMobile = useMedia({ maxWidth: 1115 });
 
   const loadingUser = user === undefined;
 

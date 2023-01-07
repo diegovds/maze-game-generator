@@ -7,6 +7,20 @@ button:hover {
   cursor: pointer;
 }
 
+.brand {
+  font-size: 1.5em;
+  /* centralizar icone com o texto */
+  display: flex;
+  align-items: center;
+  /* fim */
+  gap: 0.5rem;
+}
+
+.brand span {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .navbar {
   background: #add8e6;
   width: 100%;
@@ -78,23 +92,9 @@ button:hover {
   font-size: 16px;
 }
 
-@media only screen and (max-width: 880px) {
-  .navbar .leftSide .links a {
-    font-size: 20px;
-  }
-}
-
-@media only screen and (max-width: 750px) {
-  .navbar .leftSide .links a {
-    font-size: 15px;
-  }
-}
-
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1115px) {
   .navbar .leftSide .hamburger {
     display: flex;
-    color: #fff;
-    background-color: #000;
   }
 
   .navbar .leftSide .links {

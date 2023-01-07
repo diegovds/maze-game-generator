@@ -4,7 +4,8 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { HiSearch } from "react-icons/hi";
-import { Squash as Hamburger } from 'hamburger-react'
+import { FaPuzzlePiece } from "react-icons/fa";
+import { Squash as Hamburger } from "hamburger-react";
 
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
@@ -111,19 +112,20 @@ const NewNavbar = () => {
             }}
           >
             <Hamburger
+              size={22}
               hideOutline={false}
               rounded={true}
-              color="#fff"
+              color="#000"
               toggled={isOpen}
               toggle={setOpen}
             />
           </div>
         </div>
         <div className={styles.rightSide}>
-          <input type="search" placeholder="Search" />
-          <button>
-            <HiSearch />
-          </button>
+          <NavLink to="/" className={styles.brand}>
+            <FaPuzzlePiece />
+            My <span>Blockly</span> Maze
+          </NavLink>
         </div>
       </div>
     </div>
