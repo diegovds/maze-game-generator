@@ -38,13 +38,9 @@
 
 @media only screen and (max-width: 1115px) {
   .navbar .menu {
-    display: none;
-  }
-
-  .navbar #hidden {
     position: absolute;
     left: 0px;
-    top: 80px;
+    top: 83px;
     height: auto;
     width: 100%;
     background: #add8e6;
@@ -53,14 +49,23 @@
     justify-content: center;
     align-items: center;
     z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.2s;
+    box-shadow: 0 8px 6px -8px rgba(0, 0, 0, 0.6);
   }
 
-  .navbar #hidden a {
+  .navbar #hidden {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar .menu a {
     margin: 10px;
     font-size: 20px;
   }
 
-  .navbar #hidden .btn_logout {
+  .navbar .menu .btn_logout {
     width: 100%;
     margin: 10px;
     font-size: 20px;
