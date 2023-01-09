@@ -42,6 +42,10 @@
   height: 56px;
 }
 
+.login .form p {
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     margin-top: 2rem;
