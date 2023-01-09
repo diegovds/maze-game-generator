@@ -4,6 +4,7 @@
 
 .maze_container {
   min-height: calc(100vh - 70.94px); /*  70.94px é a altura da navbar */
+  margin: 2rem 0rem 2rem 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +12,7 @@
 }
 
 .maze_container img {
-  width: 30%;
+  width: 40%;
   margin-bottom: 1em;
 }
 
@@ -22,6 +23,10 @@
 @media only screen and (max-width: 800px) {
   .maze {
     width: 95%;
+  }
+
+  .maze_container {
+    align-items: flex-start;
   }
 
   .maze_container img {
