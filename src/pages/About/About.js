@@ -19,8 +19,7 @@ const About = () => {
             É uma plataforma de criação e compartilhamento de jogos de
             labirinto, nela os usuários também podem jogar suas criações e as da
             comunidade.
-          </p>
-          <p>
+            <br />
             Os jogos utilizam programação baseada em blocos para concluir os
             desafios.
           </p>
@@ -28,7 +27,7 @@ const About = () => {
 
         <section>
           <h3>Maze Builder</h3>
-          <p>
+          <p className={styles.p_int}>
             É a ferramenta de criação dos jogos, nela é possível elaborar um
             jogo de labirinto com imagem de fundo e níveis de desafio
             personalizados.
@@ -36,7 +35,7 @@ const About = () => {
         </section>
         <section>
           <h3>Maze Game</h3>
-          <p>
+          <p className={styles.p_int}>
             Uma versão modificada do Maze Blockly Games desenvolvido pelo
             Google. Tem como função executar os jogos personalizados.
           </p>
