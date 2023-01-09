@@ -59,17 +59,31 @@ const Maze = () => {
     setError(message);
   };
 
-  const notify = () => {
-    toast.success("Link copiado com sucesso!", {
-      position: "top-left",
-      autoClose: 2000,
-      closeButton: false,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: false,
-      theme: "colored",
-    });
+  const notify = (status) => {
+    status === "copy"
+      ? toast.success("Link copiado com sucesso!", {
+          position: "top-left",
+          autoClose: 2000,
+          closeButton: false,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+        })
+      : toast.error(
+          "A criação de jogos não está disponível para essa largura de tela.",
+          {
+            position: "top-left",
+            autoClose: 3000,
+            closeButton: false,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+          }
+        );
   };
 
   if (loadingMaze && loadingError && loadingRunGame) {

@@ -3,6 +3,7 @@ import styles from "./MazePage.module.css";
 import api from "../../services/api";
 
 import { useEffect, useRef, useState } from "react";
+import useMedia from "use-media";
 
 import copy from "copy-to-clipboard";
 
@@ -10,35 +11,41 @@ import ScrollReveal from "scrollreveal";
 import { ScrollRevealOptions } from "../Scroll/ScrollRevealOptions";
 
 const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
-  const [loading, setLoading] = useState(undefined);
+  const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState('img_loaded_white');
+  const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
   const elementRef = useRef();
+  const isMobile = useMedia({ maxWidth: 1115 });
 
   useEffect(() => {
     const divElement = elementRef.current;
     ScrollReveal().reveal(divElement, ScrollRevealOptions);
   }, []);
 
-  const goToMaze = async () => {
-    const dataMaze = new FormData();
-    const execs = maze.executions + 1;
+  const goToMaze = async (width) => {
+    if (width) {
+      childToParent3("no-execute");
+    } else {
+      setLoading(true);
+      const dataMaze = new FormData();
+      const execs = maze.executions + 1;
 
-    dataMaze.append("executions", execs);
+      dataMaze.append("executions", execs);
 
-    api
-      .put("/mazes/" + maze.id, dataMaze)
+      api
+        .put("/mazes/" + maze.id, dataMaze)
 
-      .then((data) => {
-        childToParent();
+        .then((data) => {
+          childToParent();
 
-        //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
-      })
-      .catch((e) => {
-        String(e.response.data.message).includes("Maze não encontrado")
-          ? childToParent2("Jogo não encontrado 😢")
-          : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
-      });
+          //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
+        })
+        .catch((e) => {
+          String(e.response.data.message).includes("Maze não encontrado")
+            ? childToParent2("Jogo não encontrado 😢")
+            : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
+        });
+    }
   };
 
   const clipboard = () => {
@@ -46,8 +53,8 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   };
 
   const imgChange = () => {
-    setStyleImg('img_loaded')
-    setStyleImgLoading('img_loading')
+    setStyleImg("img_loaded");
+    setStyleImgLoading("img_loading");
   };
 
   return (
@@ -57,8 +64,17 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
           <h2>
             {maze.name} (Cód. {maze.code})
           </h2>
-          <img className={styleImgLoading} src="/null.png" alt="Imagem de carregamento" />
-          <img className={styleImg} src={maze.url_image} alt={maze.image} onLoad={imgChange}/>
+          <img
+            className={styleImgLoading}
+            src="/null.png"
+            alt="Imagem de carregamento"
+          />
+          <img
+            className={styleImg}
+            src={maze.url_image}
+            alt={maze.image}
+            onLoad={imgChange}
+          />
           <p className={styles.p_data}>
             Criado em {maze.created_at} pelo usuário {maze.username}
           </p>
@@ -74,8 +90,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
           {!loading && (
             <button
               onClick={() => {
-                goToMaze();
-                setLoading(true);
+                goToMaze(isMobile);
               }}
               className="btn"
             >
@@ -90,7 +105,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
           <button
             onClick={() => {
               clipboard();
-              childToParent3();
+              childToParent3("copy");
             }}
             className="btn"
             style={{ marginLeft: 8 }}
