@@ -1,43 +1,42 @@
-@media screen and (max-width: 600px){
-  .maze {
-    width: 95%;
-    margin-top: 2rem;
-  }
-
-  .maze_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .maze_container img {
-    width: 50%;
-    margin-bottom: 1em;
-  }
+.maze {
+  width: 60%;
 }
 
-@media screen and (min-width: 600px){
-  .maze {
-    width: 60%;
-    margin-top: 3rem;
-  }
+.maze_container {
+  min-height: calc(100vh - 70.94px); /*  70.94px é a altura da navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-  .maze_container {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .maze_container img {
-    width: 30%;
-    margin-bottom: 1em;
-  }
+.maze_container img {
+  width: 30%;
+  margin-bottom: 1em;
 }
 
 .maze_container button {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
+@media only screen and (max-width: 800px) {
+  .maze {
+    width: 95%;
+  }
+
+  .maze_container img {
+    width: 40%;
+  }
+}
+
+.container section .p_int {
+  text-align: justify;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+.container section h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
