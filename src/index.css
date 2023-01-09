@@ -22,7 +22,6 @@ body {
 input::placeholder,
 textarea::placeholder {
   font-family: var(--font-name);
-  color: #AAA;
 }
 
 input:focus,
@@ -47,7 +46,7 @@ nav button:hover {
   color: #bbb;
 }
 
-/* forms styles */
+/* forms styles
 form {
   max-width: 40%;
   margin: 0 auto;
@@ -63,7 +62,7 @@ label span {
   margin-bottom: .3em;
   font-weight: bold;
   text-align: left;
-}
+}*/
 
 input,
 textarea {
