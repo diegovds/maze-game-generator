@@ -1,10 +1,17 @@
+h3, p {
+  margin: 0;
+}
+
 .maze {
   width: 8.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   border: 1px solid #fff;
   margin-bottom: 2rem;
   padding-top: .7rem;
-  padding-bottom: .7rem;
+  padding-bottom: 1rem;
   padding-left: .3rem;
   padding-right: .3rem;
   border-radius: 15px;
@@ -30,18 +37,19 @@
 }
 
 .maze a {
-  margin: 1em 5px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 90%;
   font-size: .9em;
-  padding: 0.4em 0.6em;
 }
 
 .maze button {
-  margin-top: 1em;
+  margin-top: .5em;
   margin-bottom: 0;
-  margin-left: 5px;
-  margin-right: 5px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 90%;
   font-size: .9em;
-  padding: 0.4em 0.6em;
 }
 
 .modal_overlay {
