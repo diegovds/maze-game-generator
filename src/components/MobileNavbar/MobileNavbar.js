@@ -50,7 +50,7 @@ const MobileNavbar = () => {
             <input
               className={styles.input}
               type="search"
-              placeholder="Buscar por jogo..."
+              placeholder="Nome ou código do jogo..."
               onChange={(e) => setQuery(e.target.value)}
             />
             <button>
