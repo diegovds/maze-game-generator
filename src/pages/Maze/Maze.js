@@ -72,7 +72,7 @@ const Maze = () => {
           theme: "colored",
         })
       : toast.error(
-          "A criação de jogos não está disponível para essa largura de tela.",
+          "A execução do jogo não está disponível para essa largura de tela.",
           {
             position: "top-left",
             autoClose: 3000,
