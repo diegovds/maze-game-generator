@@ -3,6 +3,10 @@
   font-size: 102%;
 }
 
+*{
+  font-family: var(--font-name);
+}
+
 html {
   /* chrome://flags/#smooth-scrolling */
   scroll-behavior: smooth;
@@ -16,12 +20,6 @@ body {
   background-color: #eceeed;;
   padding: 0;
   margin: 0;
-  font-family: var(--font-name);
-}
-
-input::placeholder,
-textarea::placeholder {
-  font-family: var(--font-name);
 }
 
 input:focus,
@@ -38,7 +36,6 @@ nav button {
   transition: .4s;
   font-size: 1em;
   cursor: pointer;
-  font-family: var(--font-name);
 }
 
 a:hover,
@@ -71,7 +68,6 @@ textarea {
   border-bottom: 1px solid #ccc;
   padding: .8em 0;
   background-color: transparent;
-  font-family: var(--font-name);
 }
 
 .btn {
@@ -83,7 +79,6 @@ textarea {
   border: none;
   padding: 0.4em 0.6em;
   font-size: 1em;
-  font-family: var(--font-name);
   transition: .4s;
 }
 
