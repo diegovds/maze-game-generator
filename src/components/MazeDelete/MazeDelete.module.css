@@ -70,10 +70,17 @@ h3, p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: #fff;
   padding: 0.6em 0.6em;
   border-radius: 20px;
-  width: 50%;
+  width: 90%;
+}
+
+@media screen and (min-width: 600px) {
+  .modal_content {
+    width: 50%;
+  }
 }
 
 .modal_content h3 {
