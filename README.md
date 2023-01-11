@@ -31,6 +31,7 @@ A plataforma é dividida em outras duas aplicações:
 
 * [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 * [ReactJS](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
+* [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 * [Firebase](https://www.npmjs.com/package/firebase)
 * [react-icons](https://www.npmjs.com/package/react-icons)
 * [react-modal](https://www.npmjs.com/package/react-modal)
@@ -40,6 +41,10 @@ A plataforma é dividida em outras duas aplicações:
 * [copy-to-clipboard](https://www.npmjs.com/package/copy-to-clipboard)
 * [Axios](https://www.npmjs.com/package/axios)
 * [GA4React](https://www.npmjs.com/package/ga-4-react)
+* [hamburger-react](https://www.npmjs.com/package/hamburger-react)
+* [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+* [use-media](https://www.npmjs.com/package/use-media)
+* [validator](https://www.npmjs.com/package/validator)
 
 ...
 ## Iniciando ▶️
@@ -60,4 +65,4 @@ npm start
 - Após a compilação, a página será aberta em seu navegador, caso contrário, basta acessar o localhost:3000
 
 ...
-## [Back-end](https://github.com/diegovds/blockly-backend)
+## [Back-end](https://github.com/diegovds/new-api-blockly-next-prisma-postgresql)
