@@ -1,17 +1,24 @@
 import styles from "./Login.module.css";
 
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
+import validator from "validator";
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { login, error: authError, loading } = useAuthentication();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const submit = async (data) => {
+    const { email, password } = data;
 
     setError("");
 
@@ -21,9 +28,6 @@ const Login = () => {
     };
 
     await login(user);
-
-    //const res = await login(user)
-    /*console.log(res)*/
   };
 
   useEffect(() => {
@@ -38,24 +42,37 @@ const Login = () => {
       <div className={styles.login}>
         <h2>Entrar</h2>
         <p>Insira suas credenciais</p>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(submit)} className={styles.form}>
           <input
-            type="email"
-            name="email"
-            required
+            type="text"
             placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             autoFocus
+            {...register("email", {
+              required: true,
+              validate: (value) => validator.isEmail(value),
+            })}
           />
+          {errors?.email?.type === "required" && (
+            <p className={styles.inputError}>O e-mail precisa ser informado.</p>
+          )}
+          {errors?.email?.type === "validate" && (
+            <p className={styles.inputError}>
+              O e-mail informado não é válido.
+            </p>
+          )}
           <input
             type="password"
-            name="password"
-            required
             placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", { required: true, minLength: 6 })}
           />
+          {errors?.password?.type === "minLength" && (
+            <p className={styles.inputError}>
+              A senha precisa conter pelo menos 6 caracteres.
+            </p>
+          )}
+          {errors?.password?.type === "required" && (
+            <p className={styles.inputError}>A senha precisa ser informada.</p>
+          )}
           {!loading && <button className="btn">Entrar</button>}
           {loading && (
             <button className="btn" disabled>
