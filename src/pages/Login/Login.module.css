@@ -12,6 +12,7 @@
   padding-bottom: 2rem;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
+  margin: 2rem 0rem 2rem 0rem;
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 0 0 20px #3d3d3d;
@@ -53,12 +54,6 @@
   text-align: left;
   font-size: smaller;
   color: #f00;
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    margin-top: 2rem;
-  }
 }
 
 @media screen and (min-width: 600px) {

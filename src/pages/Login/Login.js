@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
-import validator from "validator";
+import { isEmail } from "validator";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -49,7 +49,7 @@ const Login = () => {
             autoFocus
             {...register("email", {
               required: true,
-              validate: (value) => validator.isEmail(value),
+              validate: (value) => isEmail(value),
             })}
           />
           {errors?.email?.type === "required" && (
