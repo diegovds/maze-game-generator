@@ -13,6 +13,7 @@ import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
 import { useState, useEffect } from "react";
 import useMedia from "use-media";
 import { useAuthentication } from "./hooks/useAuthentication";
+import { useWindowSize } from "./hooks/useWindowSize ";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
@@ -33,6 +34,7 @@ function App() {
   const [user, setUser] = useState(undefined);
   const [showMenu, setShowMenu] = useState(false);
   const { auth } = useAuthentication();
+  const [width] = useWindowSize();
 
   const isMobile = useMedia({ maxWidth: 1115 });
 
@@ -43,6 +45,10 @@ function App() {
       setUser(user);
     });
   }, [auth]);
+
+  useEffect(() => {
+    setShowMenu(false); /** remove o blurBackground ao redimensionar a janela */
+  }, [width]);
 
   const openMenu = (open) => {
     setShowMenu(open);
