@@ -12,10 +12,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html.sr .load-hidden {
-  visibility: hidden;
-}
-
 body {
   background-color: #eceeed;;
   padding: 0;
