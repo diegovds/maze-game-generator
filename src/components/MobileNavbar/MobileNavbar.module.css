@@ -73,7 +73,6 @@
   }
 
   .navbar .menu .btn_logout {
-    width: 100%;
     margin: 10px;
     font-size: 20px;
     background: transparent;
@@ -81,6 +80,7 @@
     border: none;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   .search_form {
