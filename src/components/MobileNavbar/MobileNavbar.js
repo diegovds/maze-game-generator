@@ -130,6 +130,7 @@ const MobileNavbar = () => {
         </div>
         <div
           className={styles.hamburger}
+          id={showMenu ? styles.hiddenHamburger : ""}
           onClick={() => {
             changeHamburger();
           }}
