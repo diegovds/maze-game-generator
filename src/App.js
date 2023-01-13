@@ -31,6 +31,7 @@ import Analytics from "./components/Analytics";
 
 function App() {
   const [user, setUser] = useState(undefined);
+  const [showMenu, setShowMenu] = useState(false);
   const { auth } = useAuthentication();
 
   const isMobile = useMedia({ maxWidth: 1115 });
@@ -42,6 +43,10 @@ function App() {
       setUser(user);
     });
   }, [auth]);
+
+  const openMenu = (open) => {
+    setShowMenu(open);
+  };
 
   if (loadingUser) {
     return <Loading />;
@@ -57,8 +62,8 @@ function App() {
             smooth
             style={{ backgroundColor: "#ADD8E6", height: 50, width: 50 }}
           />
-          {isMobile ? <MobileNavbar /> : <Navbar />}
-          <div className="container">
+          {isMobile ? <MobileNavbar openMenu={openMenu} /> : <Navbar />}
+          <div className="container" id={showMenu ? "blurBackground" : ""}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

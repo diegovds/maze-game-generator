@@ -11,7 +11,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ openMenu }) => {
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
   const navigate = useNavigate();
@@ -24,8 +24,10 @@ const MobileNavbar = () => {
     if (isOpen) {
       setOpen(!isOpen);
       setShowMenu(false);
+      openMenu(false);
     } else {
       setShowMenu(true);
+      openMenu(true);
     }
   };
 
@@ -139,7 +141,7 @@ const MobileNavbar = () => {
             size={26}
             hideOutline={false}
             rounded={true}
-            color= {showMenu ? "#fff" : "#000"}
+            color={showMenu ? "#fff" : "#000"}
             toggled={isOpen}
             toggle={setOpen}
           />
