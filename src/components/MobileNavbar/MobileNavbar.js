@@ -138,7 +138,7 @@ const MobileNavbar = () => {
             size={26}
             hideOutline={false}
             rounded={true}
-            color="#000"
+            color= {showMenu ? "#fff" : "#000"}
             toggled={isOpen}
             toggle={setOpen}
           />
