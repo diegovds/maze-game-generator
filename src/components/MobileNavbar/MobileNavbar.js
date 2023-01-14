@@ -64,6 +64,7 @@ const MobileNavbar = ({ openMenu }) => {
             onClick={() => {
               changeHamburger();
             }}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Home
           </NavLink>
@@ -74,6 +75,7 @@ const MobileNavbar = ({ openMenu }) => {
                 onClick={() => {
                   changeHamburger();
                 }}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Entrar
               </NavLink>
@@ -82,6 +84,7 @@ const MobileNavbar = ({ openMenu }) => {
                 onClick={() => {
                   changeHamburger();
                 }}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Cadastrar
               </NavLink>
@@ -94,6 +97,7 @@ const MobileNavbar = ({ openMenu }) => {
                 onClick={() => {
                   changeHamburger();
                 }}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Criar novo jogo
               </NavLink>
@@ -102,6 +106,7 @@ const MobileNavbar = ({ openMenu }) => {
                 onClick={() => {
                   changeHamburger();
                 }}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Dashboard
               </NavLink>
@@ -113,6 +118,7 @@ const MobileNavbar = ({ openMenu }) => {
             onClick={() => {
               changeHamburger();
             }}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Sobre
           </NavLink>

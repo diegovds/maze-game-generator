@@ -72,6 +72,12 @@
     color: #fff;
   }
 
+  .active {
+    background-color: #000;
+    padding: 0.4em 0.6em;
+    border-radius: 10px;
+  }
+
   .navbar .menu .btn_logout {
     margin: 10px;
     font-size: 20px;
