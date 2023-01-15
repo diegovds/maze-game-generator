@@ -54,10 +54,6 @@
   text-align: center;
 }
 
-.informations h2 {
-  margin-top: 0;
-}
-
 .p_data {
   margin-bottom: 0.5rem;
 }
@@ -92,6 +88,7 @@
 
   .img {
     min-height: fit-content;
+    padding: 2.5rem 0rem 0.5rem 0rem;
   }
 
   .informations {

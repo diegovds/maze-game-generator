@@ -78,9 +78,8 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
               {maze.name} (Cód. {maze.code})
             </h2>
             <p className={styles.p_data}>
-              Criado pelo(a) usuário(a) {maze.username}
+              Criado por {maze.username} em {maze.created_at}
             </p>
-            <p className={styles.p_data}>Publicado em {maze.created_at}</p>
             <p className={styles.p_data}>
               Quantidade de níveis: {JSON.parse(maze.levels).length}
             </p>
