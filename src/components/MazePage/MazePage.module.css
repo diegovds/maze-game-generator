@@ -1,20 +1,100 @@
+.main {
+  min-height: calc(100vh - 70.94px); /*  70.94px é a altura da navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 2.5rem 0rem 2.5rem 0rem;
+  width: 90%;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: row;
+
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #3d3d3d;
+}
+
+.img,
+.informations {
+  flex: 1;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 0rem 2.5rem 0rem;
+}
+
+.img img {
+  width: 87%;
+}
+
+.informations {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
+}
+
+.informations button {
+  margin-top: 1rem;
+  box-sizing: border-box;
+  min-width: 10.774rem;
+}
+
+.informations h2,
+.informations p {
+  max-width: 80%;
+  text-align: center;
+}
+
+.informations h2 {
+  margin-top: 0;
+}
+
 .p_data {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 
 .p_a {
   color: #aaa;
-  margin-bottom: 1em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.maze {
-  border: 1px solid #fff;
-  padding-top: .7rem;
-  padding-bottom: 1rem;
-  padding-left: .3rem;
-  padding-right: .3rem;
-  border-radius: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 20px #3d3d3d;
-  word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
+#copy {
+  display: flex;
+  justify-content: center;
+}
+
+#copy svg {
+  width: 1.248rem;
+  height: 1.248rem;
+  margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .img,
+  .informations {
+    width: 100%;
+  }
+
+  .img {
+    min-height: fit-content;
+  }
+
+  .informations {
+    min-height: fit-content;
+    margin-bottom: 2.5rem;
+  }
 }

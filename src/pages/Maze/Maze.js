@@ -112,19 +112,17 @@ const Maze = () => {
   }
 
   return (
-    <div className={styles.maze_container}>
-      <div className={styles.maze}>
-        {maze && (
-          <MazePage
-            key={maze.id}
-            maze={maze}
-            childToParent={reload}
-            childToParent2={errorReturn}
-            childToParent3={notify}
-          />
-        )}
-        <ToastContainer />
-      </div>
+    <div className={styles}>
+      {maze && (
+        <MazePage
+          key={maze.id}
+          maze={maze}
+          childToParent={reload}
+          childToParent2={errorReturn}
+          childToParent3={notify}
+        />
+      )}
+      <ToastContainer />
     </div>
   );
 };
