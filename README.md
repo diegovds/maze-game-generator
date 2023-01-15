@@ -43,7 +43,7 @@ A plataforma é dividida em outras duas aplicações:
 * [GA4React](https://www.npmjs.com/package/ga-4-react)
 * [hamburger-react](https://www.npmjs.com/package/hamburger-react)
 * [react-hook-form](https://www.npmjs.com/package/react-hook-form)
-* [use-media](https://www.npmjs.com/package/use-media)
+* [usehooks-ts](https://www.npmjs.com/package/usehooks-ts)
 * [validator](https://www.npmjs.com/package/validator)
 
 ...

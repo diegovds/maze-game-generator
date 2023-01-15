@@ -3,7 +3,7 @@ import styles from "./MazePage.module.css";
 import api from "../../services/api";
 
 import { useState } from "react";
-import useMedia from "use-media";
+import { useMediaQuery } from "usehooks-ts";
 
 import copy from "copy-to-clipboard";
 import { FaRegCopy } from "react-icons/fa";
@@ -15,7 +15,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
   const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
-  const isMobile = useMedia({ maxWidth: 1115 });
+  const isMobile = useMediaQuery("(max-width: 1115px)");
 
   const goToMaze = async (width) => {
     if (width) {
