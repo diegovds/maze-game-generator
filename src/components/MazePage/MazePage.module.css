@@ -66,6 +66,7 @@
   color: #aaa;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-size: 0.96rem;
 }
 
 #copy {
@@ -96,5 +97,9 @@
   .informations {
     min-height: fit-content;
     margin-bottom: 2.5rem;
+  }
+
+  .p_a {
+    font-size: 0.93rem;
   }
 }

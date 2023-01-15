@@ -89,7 +89,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
             </p>
             {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
             <p className={styles.p_a}>
-            Ao clicar no botão abaixo a reprodução<br />do Maze Game será iniciada.
+              Ao clicar no botão abaixo a reprodução do Maze Game será iniciada.
             </p>
             {!loading && (
               <button
