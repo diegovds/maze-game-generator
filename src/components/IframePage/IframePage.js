@@ -2,10 +2,12 @@ import styles from "./IframePage.module.css";
 
 import { useState, useEffect, useRef } from "react";
 import { useWindowSize } from "usehooks-ts";
+import LoadingError from "../LoadingError/LoadingError";
 
 const IframePage = ({ link, redirect }) => {
   const { width, height } = useWindowSize();
   const [deviceType, setDeviceType] = useState("");
+  const [orientationError, setOrientationError] = useState(false);
   const iframe = useRef();
 
   const getDeviceType = () => {
@@ -23,6 +25,12 @@ const IframePage = ({ link, redirect }) => {
   }, []);
 
   useEffect(() => {
+    if (width < height) {
+      setOrientationError(true);
+    } else {
+      setOrientationError(false);
+    }
+
     getDeviceType();
   }, [width, height]);
 
@@ -43,21 +51,31 @@ const IframePage = ({ link, redirect }) => {
     }
   });
 
+  if (orientationError) {
+    return (
+      <LoadingError message="Gire o dispositivo para a posição horizontal!" />
+    );
+  }
+
   return (
-    <div className={styles.container}>
-      <iframe
-        src={link}
-        className={styles.iframe}
-        id={
-          deviceType === "Mobile" || deviceType === "Tablet"
-            ? styles.mobile
-            : ""
-        }
-        title="iframeLink"
-        ref={iframe}
-        allowFullScreen={true}
-      ></iframe>
-    </div>
+    <>
+      {(deviceType === "Mobile" || deviceType === "Tablet") &&
+        alert("Funcionamento limitado em dispositivos móveis")}
+      <div className={styles.container}>
+        <iframe
+          src={link}
+          className={styles.iframe}
+          id={
+            deviceType === "Mobile" || deviceType === "Tablet"
+              ? styles.mobile
+              : ""
+          }
+          title="iframeLink"
+          ref={iframe}
+          allowFullScreen={true}
+        ></iframe>
+      </div>
+    </>
   );
 };
 
