@@ -1,14 +1,13 @@
 .container {
   margin-top: 2rem;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
   /* padding-bottom: 45%; */
 }
 
 .iframe {
-  border: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -16,9 +15,4 @@
   right: 0;
   width: 100%;
   height: 92%;
-}
-
-#mobile {
-  width: 150%;
-  height: 100%;
 }

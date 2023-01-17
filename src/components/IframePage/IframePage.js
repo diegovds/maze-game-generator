@@ -1,30 +1,13 @@
 import styles from "./IframePage.module.css";
 
-import { useState, useEffect, useRef } from "react";
-import { useWindowSize } from "usehooks-ts";
+import { useEffect, useRef } from "react";
 
 const IframePage = ({ link, redirect }) => {
-  const { width, height } = useWindowSize();
-  const [deviceType, setDeviceType] = useState("");
   const iframe = useRef();
-
-  const getDeviceType = () => {
-    if (navigator.userAgent.match(/mobile/i)) {
-      setDeviceType("Mobile");
-    } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
-      setDeviceType("Tablet");
-    } else {
-      setDeviceType("Desktop");
-    }
-  };
 
   useEffect(() => {
     iframe.current.scrollIntoView();
   }, []);
-
-  useEffect(() => {
-    getDeviceType();
-  }, [width, height]);
 
   // window escutando o evento `message` que o postMessage envia
   window.addEventListener("message", function (e) {
@@ -48,12 +31,8 @@ const IframePage = ({ link, redirect }) => {
       <iframe
         src={link}
         className={styles.iframe}
-        id={
-          deviceType === "Mobile" || deviceType === "Tablet"
-            ? styles.mobile
-            : ""
-        }
         title="iframeLink"
+        frameBorder="0"
         ref={iframe}
         allowFullScreen={true}
       ></iframe>
