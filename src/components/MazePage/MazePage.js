@@ -3,7 +3,6 @@ import styles from "./MazePage.module.css";
 import api from "../../services/api";
 
 import { useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
 
 import copy from "copy-to-clipboard";
 import { FaRegCopy } from "react-icons/fa";
@@ -15,32 +14,27 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
   const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
   const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
-  const isMobile = useMediaQuery("(max-width: 1115px)");
 
-  const goToMaze = async (width) => {
-    if (width) {
-      childToParent3("no-execute");
-    } else {
-      setLoading(true);
-      const dataMaze = new FormData();
-      const execs = maze.executions + 1;
+  const goToMaze = async () => {
+    setLoading(true);
+    const dataMaze = new FormData();
+    const execs = maze.executions + 1;
 
-      dataMaze.append("executions", execs);
+    dataMaze.append("executions", execs);
 
-      api
-        .put("/mazes/" + maze.id, dataMaze)
+    api
+      .put("/mazes/" + maze.id, dataMaze)
 
-        .then((data) => {
-          childToParent();
+      .then((data) => {
+        childToParent();
 
-          //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
-        })
-        .catch((e) => {
-          String(e.response.data.message).includes("Maze não encontrado")
-            ? childToParent2("Jogo não encontrado 😢")
-            : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
-        });
-    }
+        //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
+      })
+      .catch((e) => {
+        String(e.response.data.message).includes("Maze não encontrado")
+          ? childToParent2("Jogo não encontrado 😢")
+          : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
+      });
   };
 
   const clipboard = () => {
@@ -93,7 +87,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
             {!loading && (
               <button
                 onClick={() => {
-                  goToMaze(isMobile);
+                  goToMaze();
                 }}
                 className="btn"
               >

@@ -7,13 +7,11 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 import IframePage from "../../components/IframePage/IframePage";
-import { useMediaQuery } from "usehooks-ts";
 
 const CreateMaze = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
   const navigate = useNavigate();
-  const isMobile = useMediaQuery("(max-width: 1115px)");
 
   const [userId, setUserId] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -53,16 +51,10 @@ const CreateMaze = () => {
 
   return (
     <>
-      {isMobile ? (
-        <LoadingError message="A criação de jogos não está disponível para essa largura de tela." />
-      ) : (
-        <IframePage
-          link={
-            "https://mazegamebuilder.vercel.app/index.html?userId=" + userId
-          }
-          redirect={redirect}
-        />
-      )}
+      <IframePage
+        link={"https://mazegamebuilder.vercel.app/index.html?userId=" + userId}
+        redirect={redirect}
+      />
     </>
   );
 };
