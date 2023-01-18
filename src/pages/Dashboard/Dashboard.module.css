@@ -48,3 +48,56 @@
 .mazes_container p {
   color: #000;
 }
+
+.modal_overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  padding: 1em 0em;
+  border-radius: 20px;
+  width: 90%;
+  min-height: 25%;
+  word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
+}
+
+.modal_content button {
+  min-width: 5.625rem;
+}
+
+@media screen and (min-width: 600px) {
+  .modal_content {
+    width: 40%;
+  }
+
+  .modal_content button {
+    min-width: 7.625rem;
+  }
+}
+
+.modal_content h3 {
+  max-width: 80%;
+}
+
+.div_btn {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-bottom: 0.2em;
+}

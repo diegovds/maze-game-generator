@@ -3,6 +3,7 @@ import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 
+import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,6 +16,8 @@ import LoadingError from "../../components/LoadingError/LoadingError";
 import { useAuthValue } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 
+Modal.setAppElement("#root");
+
 const Dashboard = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
@@ -23,6 +26,8 @@ const Dashboard = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [mazeDelete, setMazeDelete] = useState(undefined);
 
   useEffect(() => {
     const searchUserData = async () => {
@@ -46,35 +51,50 @@ const Dashboard = () => {
     searchUserData();
   }, [uid, reload]);
 
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+
+  function handleCloseModal(loading) {
+    if (loading !== "true") {
+      setMazeDelete(undefined);
+    }
+    setIsOpen(false);
+  }
+
   const deleteMaze = async (id) => {
-    await toast.promise(
-      api.delete("/mazes/" + id),
-      {
-        pending: "Processando solicitação",
-        success: "Jogo excluído com sucesso 👌",
-        error: "Ocorreu um erro ao tentar excluir o jogo 🤯",
-      },
-      {
-        position: "top-left",
-        autoClose: 2000,
-        closeButton: false,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "colored",
-      }
-    );
+    await toast
+      .promise(
+        api.delete("/mazes/" + id),
+        {
+          pending: "Processando solicitação",
+          success: "Jogo excluído com sucesso 👌",
+          error: "Ocorreu um erro ao tentar excluir o jogo 🤯",
+        },
+        {
+          position: "top-left",
+          autoClose: 2000,
+          closeButton: false,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+        }
+      )
+      .catch(() => {
+        setMazeDelete(undefined);
+      });
 
     setTimeout(() => {
-      setUserData(undefined);
-      //searchUserData();
+      //setUserData(undefined); /** efeito de recarregamento */
       setReload(!reload);
     }, 2000); // aguarda 2 segundos
   };
 
-  const returnDataChildToParent = (data) => {
-    deleteMaze(data);
+  const getMazeDelete = (maze) => {
+    handleOpenModal();
+    setMazeDelete(maze);
   };
 
   if (isFetching) {
@@ -87,6 +107,39 @@ const Dashboard = () => {
 
   return (
     <>
+      {mazeDelete && (
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={handleCloseModal}
+          contentLabel="Delete Modal"
+          overlayClassName={styles.modal_overlay}
+          className={styles.modal_content}
+        >
+          <h3>
+            Deseja excluir o jogo {mazeDelete.name} (Cód. {mazeDelete.code})?
+          </h3>
+          <p>Essa ação não pode ser desfeita!</p>
+          <div className={styles.div_btn}>
+            <button
+              onClick={() => {
+                deleteMaze(mazeDelete.id);
+                handleCloseModal("true");
+              }}
+              className="btn btn-outline btn-danger"
+            >
+              Excluir
+            </button>
+            <button
+              onClick={() => {
+                handleCloseModal();
+              }}
+              className="btn"
+            >
+              Cancelar
+            </button>
+          </div>
+        </Modal>
+      )}
       <div className={styles.dashboard}>
         <h2>Dashboard</h2>
         <p>Gerencie os seus jogos</p>
@@ -107,13 +160,22 @@ const Dashboard = () => {
       </div>
       <div className={styles.mazes_container}>
         {userData &&
-          userData.mazes.map((userData) => (
-            <MazeDelete
-              key={userData.id}
-              maze={userData}
-              returnDataChildToParent={returnDataChildToParent}
-            />
-          ))}
+          userData.mazes.map((userData) =>
+            userData.id !== mazeDelete?.id ? (
+              <MazeDelete
+                key={userData.id}
+                maze={userData}
+                getMazeDelete={getMazeDelete}
+              />
+            ) : (
+              <MazeDelete
+                key={userData.id}
+                maze={userData}
+                getMazeDelete={getMazeDelete}
+                loadingDelete={true}
+              />
+            )
+          )}
       </div>
       <ToastContainer />
     </>
