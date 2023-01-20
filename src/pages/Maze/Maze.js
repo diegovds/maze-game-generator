@@ -3,7 +3,7 @@ import api from "../../services/api";
 
 // hooks
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,16 +15,11 @@ import IframePage from "../../components/IframePage/IframePage";
 
 const Maze = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [maze, setMaze] = useState(undefined);
-  const [refetch, setRefetch] = useState(false);
-  const [error, setError] = useState(undefined);
-  const [runGame, setRunGame] = useState(undefined);
-
-  const loadingMaze = maze === undefined;
-  const loadingError = error === undefined;
-  const loadingRunGame = runGame === undefined;
+  const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
+  const [runGame, setRunGame] = useState(false);
 
   useEffect(() => {
     const getAMaze = async () => {
@@ -37,22 +32,23 @@ const Maze = () => {
         })
         .catch(() => {
           setError("Jogo não encontrado 😢");
+        })
+        .finally(() => {
+          setIsFetching(false);
         });
     };
     document.title = "My BLOCKLY Maze | " + id;
     getAMaze();
-  }, [id, refetch]);
+  }, [id]);
 
-  const reload = () => {
-    setMaze(undefined);
-    setRefetch(!refetch);
+  const loadGame = () => {
+    maze.executions += 1;
     setRunGame(true);
   };
 
   const endGame = () => {
-    /*window.scrollTo(0, 0);
-    setRunGame(undefined);*/
-    return navigate("/");
+    window.scrollTo(0, 0);
+    setRunGame(false);
   };
 
   const errorReturn = (message) => {
@@ -86,15 +82,15 @@ const Maze = () => {
         );
   };
 
-  if (loadingMaze && loadingError && loadingRunGame) {
+  if (isFetching) {
     return <Loading />;
   }
 
-  if (!loadingError && loadingRunGame) {
+  if (error) {
     return <LoadingError message={error} />;
   }
 
-  if (!loadingRunGame && loadingError && !loadingMaze) {
+  if (runGame) {
     return (
       <>
         <IframePage
@@ -117,9 +113,9 @@ const Maze = () => {
         <MazePage
           key={maze.id}
           maze={maze}
-          childToParent={reload}
-          childToParent2={errorReturn}
-          childToParent3={notify}
+          loadGame={loadGame}
+          errorReturn={errorReturn}
+          notify={notify}
         />
       )}
       <ToastContainer />

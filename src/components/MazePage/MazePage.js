@@ -11,7 +11,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { initial, whileInView, transition } from "../FramerMotionOptions";
 
-const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
+const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
   const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
@@ -19,7 +19,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
 
   const goToMaze = async (width) => {
     if (width) {
-      childToParent3("no-execute");
+      notify("no-execute");
     } else {
       setLoading(true);
       const dataMaze = new FormData();
@@ -31,14 +31,14 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
         .put("/mazes/" + maze.id, dataMaze)
 
         .then((data) => {
-          childToParent();
+          loadGame();
 
           //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
         })
         .catch((e) => {
           String(e.response.data.message).includes("Maze não encontrado")
-            ? childToParent2("Jogo não encontrado 😢")
-            : childToParent2("Ocorreu um erro, por favor tente mais tarde 👎");
+            ? errorReturn("Jogo não encontrado 😢")
+            : errorReturn("Ocorreu um erro, por favor tente mais tarde 👎");
         });
     }
   };
@@ -108,7 +108,7 @@ const MazePage = ({ maze, childToParent, childToParent2, childToParent3 }) => {
             <button
               onClick={() => {
                 clipboard();
-                childToParent3("copy");
+                notify("copy");
               }}
               className="btn"
               id={styles.copy}
