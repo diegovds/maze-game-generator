@@ -34,15 +34,14 @@ const MobileNavbar = ({ openMenu }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (query) {
-      const q = query;
-
-      changeHamburger();
-      e.target.reset();
-      setQuery("");
-
-      return navigate(`/search?q=${q}`);
+    if (!query) {
+      return;
     }
+
+    navigate(`/search?q=${query}`);
+    changeHamburger();
+    e.target.reset();
+    setQuery("");
   };
 
   return (

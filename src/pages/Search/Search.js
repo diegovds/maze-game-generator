@@ -4,7 +4,7 @@ import api from "../../services/api";
 
 // hook
 import { useState, useEffect } from "react";
-import { useQuery } from "../../hooks/useQuery";
+import { useSearchParams } from "react-router-dom";
 
 // components
 import MazeDetail from "../../components/MazeDetail/MazeDetail";
@@ -12,7 +12,7 @@ import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 
 const Search = () => {
-  const query = useQuery();
+  const [query] = useSearchParams();
   const search = query.get("q");
 
   const [mazes, setMazes] = useState(null);

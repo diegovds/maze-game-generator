@@ -23,14 +23,13 @@ const Navbar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (query) {
-      const q = query;
-
-      e.target.reset();
-      setQuery("");
-
-      return navigate(`/search?q=${q}`);
+    if (!query) {
+      return;
     }
+
+    navigate(`/search?q=${query}`);
+    e.target.reset();
+    setQuery("");
   };
 
   return (
