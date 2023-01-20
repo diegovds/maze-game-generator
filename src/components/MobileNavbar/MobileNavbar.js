@@ -33,10 +33,15 @@ const MobileNavbar = ({ openMenu }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    e.target.reset();
+
     if (query) {
+      const q = query;
+
       changeHamburger();
-      return navigate(`/search?q=${query}`);
+      e.target.reset();
+      setQuery("");
+
+      return navigate(`/search?q=${q}`);
     }
   };
 
