@@ -38,13 +38,14 @@
   padding-bottom: 0.8rem;
 }
 
+.welcomeBanner :nth-child(2),
+.welcomeBanner :nth-child(3) {
+  font-size: .95em;
+}
+
 .welcomeBanner p {
   max-width: 90%;
   color: #000;
-}
-
-.welcomeBanner a {
-  font-size: .99em;
 }
 
 .welcomeBanner a:hover {
