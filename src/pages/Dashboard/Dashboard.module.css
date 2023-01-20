@@ -14,8 +14,51 @@
   color: #aaa;
 }
 
+.dashboard span {
+  font-weight: bold;
+}
+
+.welcomeBanner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  min-height: 5rem;
+  background-color: #add8e6;
+  margin-bottom: 1.5em;
+  border-radius: 15px;
+  word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
+  padding: 0.8rem;
+}
+
+.welcomeBanner :nth-child(1),
+.welcomeBanner :nth-child(2) {
+  padding-bottom: 0.8rem;
+}
+
+.welcomeBanner p {
+  max-width: 90%;
+  color: #000;
+}
+
+.welcomeBanner a {
+  font-size: .99em;
+}
+
+.welcomeBanner a:hover {
+  color: #000;
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 .nomazes {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(50vh - 70.94px); /*  70.94px é a altura da navbar */
 }
 
 .nomazes p {

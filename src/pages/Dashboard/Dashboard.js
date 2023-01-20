@@ -143,18 +143,28 @@ const Dashboard = () => {
       <div className={styles.dashboard}>
         <h2>Dashboard</h2>
         <p>Gerencie os seus jogos</p>
-        {userData && userData.mazes.length === 0 ? (
-          <div className={styles.nomazes}>
-            <br />
-            <p>Não foram encontrados jogos</p>
-            <Link to="/mazes/create" className="btn">
-              Criar primeiro jogo
+
+        <div className={styles.maze_header}></div>
+
+        <div className={styles.welcomeBanner}>
+          <p>
+            Olá, <span>{userData.username}</span>
+          </p>
+          <p>
+            Quantidade de jogos criados: <span>{userData.mazes.length}</span>
+          </p>
+          <p>
+            Gostaria de criar um novo jogo?
+            <Link to="/mazes/create">
+              {" "}
+              <span>Clique aqui</span>
             </Link>
-          </div>
-        ) : (
-          <div className={styles.maze_header}>
-            {/*<span>Nome(s)</span>
-            <span>Ações</span>*/}
+          </p>
+        </div>
+
+        {userData && userData.mazes.length === 0 && (
+          <div className={styles.nomazes}>
+            <p>Não foram encontrados jogos criados por você</p>
           </div>
         )}
       </div>
