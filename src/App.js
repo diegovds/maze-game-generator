@@ -76,11 +76,11 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route
                 path="/login"
-                element={!user ? <Login /> : <Navigate to="/dashboard" />}
+                element={!user ? <Login /> : <Navigate to="/" />}
               />
               <Route
                 path="/register"
-                element={!user ? <Register /> : <Navigate to="/dashboard" />}
+                element={!user ? <Register /> : <Navigate to="/" />}
               />
               <Route
                 path="/mazes/create"
