@@ -164,7 +164,7 @@ const Dashboard = () => {
 
         {userData && userData.mazes.length === 0 && (
           <div className={styles.nomazes}>
-            <p>Não foram encontrados jogos criados por você</p>
+            <p>Não foram encontrados jogos criados por você 😢</p>
           </div>
         )}
       </div>
