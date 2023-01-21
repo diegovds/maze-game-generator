@@ -22,7 +22,7 @@ A plataforma é dividida em outras duas aplicações:
 
 * [Maze Game](https://github.com/diegovds/blockly) - versão modificada do Maze Blockly Games desenvolvido pelo Google. Tem como função executar os jogos personalizados.
 <div align="center">
-<img height="250" width="500" src="https://i.imgur.com/Gx88R0M.png"></img>
+<img height="250" width="500" src="https://i.imgur.com/evhARPp.png"></img>
 </div>
 <br/>
 
