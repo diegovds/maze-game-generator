@@ -2,7 +2,7 @@
 <div align="center">
   <div style="display: flex;">
     <img height="250" width="500" src="https://i.imgur.com/C2xpI35.png" />
-    <img height="250" width="500" src="https://i.imgur.com/J1veDqa.png" />
+    <img height="250" width="500" src="https://i.imgur.com/Wo8U1Q4.png" />
   </div>
 </div>
 <br/>
