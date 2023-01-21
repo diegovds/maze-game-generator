@@ -157,9 +157,8 @@ const Dashboard = () => {
             Quantidade de jogos criados: <span>{userData.mazes.length}</span>
           </p>
           <p>
-            Gostaria de criar um novo jogo?
+            Gostaria de criar um novo jogo?{" "}
             <Link to="/mazes/create">
-              {" "}
               <span>Clique aqui</span>
             </Link>
           </p>
