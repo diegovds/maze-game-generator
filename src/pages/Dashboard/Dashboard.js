@@ -25,31 +25,34 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
-  const [reload, setReload] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [mazeDelete, setMazeDelete] = useState(undefined);
 
   useEffect(() => {
-    const searchUserData = async () => {
-      await api
-        .get("/users/" + uid)
-        .then((data) => {
-          data = data.data.data;
-
-          setUserData(data);
-        })
-        .catch((e) => {
-          String(e.response.data.message).includes("Usuário não encontrado")
-            ? setError("Usuário não encontrado 😢")
-            : setError("Ocorreu um erro, por favor tente mais tarde 👎");
-        })
-        .finally(() => {
-          setIsFetching(false);
-        });
-    };
     document.title = "My BLOCKLY Maze | Dashboard";
-    searchUserData();
-  }, [uid, reload]);
+
+    setTimeout(() => {
+      searchUserData(uid);
+    }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
+  }, [uid]);
+
+  const searchUserData = async (uid) => {
+    await api
+      .get("/users/" + uid)
+      .then((data) => {
+        data = data.data.data;
+
+        setUserData(data);
+      })
+      .catch((e) => {
+        String(e.response.data.message).includes("Usuário não encontrado")
+          ? setError("Usuário não encontrado 😢")
+          : setError("Ocorreu um erro, por favor tente mais tarde 👎");
+      })
+      .finally(() => {
+        setIsFetching(false);
+      });
+  };
 
   function handleOpenModal() {
     setIsOpen(true);
@@ -88,7 +91,7 @@ const Dashboard = () => {
 
     setTimeout(() => {
       //setUserData(undefined); /** efeito de recarregamento */
-      setReload(!reload);
+      searchUserData(uid);
     }, 2000); // aguarda 2 segundos
   };
 
