@@ -21,13 +21,13 @@
 .img,
 .informations {
   flex: 1;
+  padding: 2.5rem 0rem 2.5rem 0rem;
 }
 
 .img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.5rem 0rem 2.5rem 0rem;
 }
 
 .img img {
@@ -52,6 +52,10 @@
 .informations p {
   max-width: 80%;
   text-align: center;
+}
+
+.informations h2 {
+  margin-top: 0;
 }
 
 .p_data {
@@ -93,7 +97,11 @@
 
   .informations {
     min-height: fit-content;
-    margin-bottom: 2.5rem;
+    padding: 0rem 0rem 2.5rem 0rem;
+  }
+
+  .informations h2 {
+    margin-top: 1.25rem;
   }
 
   .p_a {
