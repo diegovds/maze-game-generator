@@ -128,7 +128,14 @@ button[disabled]:hover {
   color: #721c24;
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
-  margin-top: 2rem;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.container .success {
+  color: #090;
+  background-color: #bdecb6;
+  border: 1px solid #bdecb6;
   padding: 5px;
   border-radius: 5px;
 }
