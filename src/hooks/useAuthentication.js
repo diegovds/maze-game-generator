@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import { useState, useEffect } from "react";
@@ -14,6 +15,7 @@ import { useState, useEffect } from "react";
 export const useAuthentication = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   // cleanup
   // deal with memory leak
@@ -77,6 +79,32 @@ export const useAuthentication = () => {
     signOut(auth);
   };
 
+  const forgotPassword = async (email) => {
+    checkIfIsCancelled();
+
+    setLoading(true);
+    setError(false);
+    setSuccess(false);
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+
+      setSuccess("E-mail de redefinição enviado.");
+      setLoading(false);
+    } catch (error) {
+      let systemErrorMessage;
+
+      if (error.message.includes("user-not-found")) {
+        systemErrorMessage = "Usuário não encontrado.";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
+      }
+
+      setError(systemErrorMessage);
+      setLoading(false);
+    }
+  };
+
   // Login - sing in
   const login = async (data) => {
     checkIfIsCancelled();
@@ -114,8 +142,10 @@ export const useAuthentication = () => {
     auth,
     createUser,
     error,
+    success,
     loading,
     logout,
+    forgotPassword,
     login,
   };
 };
