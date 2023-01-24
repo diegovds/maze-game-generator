@@ -5,10 +5,10 @@ const whileInView = { opacity: 1, scale: 1 };
 const transition = { duration: 0.8, delay: 0.25, ease: [0, 0.71, 0.2, 1.01] };
 
 const container = {
-  hidden: { opacity: 1, scale: 0 },
+  hidden: { y: 150, opacity: 1 },
   visible: {
+    y: 0,
     opacity: 1,
-    scale: 1,
     transition: {
       delayChildren: 0.3,
       staggerChildren: 0.2,
@@ -17,7 +17,7 @@ const container = {
 };
 
 const item = {
-  hidden: { y: 0, opacity: 0 }, /** ou y:20 */
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
