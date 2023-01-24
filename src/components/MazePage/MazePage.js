@@ -11,7 +11,6 @@ import { FaRegCopy } from "react-icons/fa";
 import { motion } from "framer-motion";
 import {
   container,
-  item,
   leftItem,
   rightItem,
 } from "../../components/FramerMotionOptions";
@@ -58,13 +57,13 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   };
 
   return (
-    <motion.main
-      className={styles.main}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.div className={styles.container} variants={item}>
+    <main className={styles.main}>
+      <motion.div
+        className={styles.container}
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
         <motion.div className={styles.img} variants={leftItem}>
           <img
             className={styleImgLoading}
@@ -123,7 +122,7 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
                     <Link to="/" className="btn btn-dark">Voltar</Link>*/}
         </motion.div>
       </motion.div>
-    </motion.main>
+    </main>
   );
 };
 
