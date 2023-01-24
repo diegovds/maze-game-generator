@@ -9,7 +9,12 @@ import copy from "copy-to-clipboard";
 import { FaRegCopy } from "react-icons/fa";
 
 import { motion } from "framer-motion";
-import { initial, whileInView, transition } from "../FramerMotionOptions";
+import {
+  container,
+  item,
+  leftItem,
+  rightItem,
+} from "../../components/FramerMotionOptions";
 
 const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   const [loading, setLoading] = useState(false);
@@ -53,75 +58,72 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   };
 
   return (
-    <motion.div
-      initial={initial}
-      whileInView={whileInView}
-      transition={transition}
+    <motion.main
+      className={styles.main}
+      variants={container}
+      initial="hidden"
+      animate="visible"
     >
-      <main className={styles.main}>
-        <div className={styles.container}>
-          <div className={styles.img}>
-            <img
-              className={styleImgLoading}
-              src="/null.png"
-              alt="Imagem de carregamento"
-            />
-            <img
-              className={styleImg}
-              src={maze.url_image}
-              alt={maze.image}
-              onLoad={imgChange}
-            />
-          </div>
-          <div className={styles.informations}>
-            <h2>
-              {maze.name} (Cód. {maze.code})
-            </h2>
-            <p className={styles.p_data}>
-              Criado por {maze.username} em {maze.created_at}
-            </p>
-            <p className={styles.p_data}>
-              Quantidade de níveis: {JSON.parse(maze.levels).length}
-            </p>
-            <p className={styles.p_data}>
-              Total de execuções: {maze.executions}
-            </p>
-            {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
-            <p className={styles.p_a}>
-              Ao clicar no botão abaixo a reprodução do Maze Game será iniciada.
-            </p>
-            {!loading && (
-              <button
-                onClick={() => {
-                  goToMaze(isMobile);
-                }}
-                className="btn"
-              >
-                Iniciar Maze Game
-              </button>
-            )}
-            {loading && (
-              <button className="btn" disabled>
-                Aguarde...
-              </button>
-            )}
+      <motion.div className={styles.container} variants={item}>
+        <motion.div className={styles.img} variants={leftItem}>
+          <img
+            className={styleImgLoading}
+            src="/null.png"
+            alt="Imagem de carregamento"
+          />
+          <img
+            className={styleImg}
+            src={maze.url_image}
+            alt={maze.image}
+            onLoad={imgChange}
+          />
+        </motion.div>
+        <motion.div className={styles.informations} variants={rightItem}>
+          <h2>
+            {maze.name} (Cód. {maze.code})
+          </h2>
+          <p className={styles.p_data}>
+            Criado por {maze.username} em {maze.created_at}
+          </p>
+          <p className={styles.p_data}>
+            Quantidade de níveis: {JSON.parse(maze.levels).length}
+          </p>
+          <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
+          {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
+          <p className={styles.p_a}>
+            Ao clicar no botão abaixo a reprodução do Maze Game será iniciada.
+          </p>
+          {!loading && (
             <button
               onClick={() => {
-                clipboard();
-                notify("copy");
+                goToMaze(isMobile);
               }}
               className="btn"
-              id={styles.copy}
             >
-              Copiar link
-              <FaRegCopy />
+              Iniciar Maze Game
             </button>
-            {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
+          )}
+          {loading && (
+            <button className="btn" disabled>
+              Aguarde...
+            </button>
+          )}
+          <button
+            onClick={() => {
+              clipboard();
+              notify("copy");
+            }}
+            className="btn"
+            id={styles.copy}
+          >
+            Copiar link
+            <FaRegCopy />
+          </button>
+          {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
                     <Link to="/" className="btn btn-dark">Voltar</Link>*/}
-          </div>
-        </div>
-      </main>
-    </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.main>
   );
 };
 
