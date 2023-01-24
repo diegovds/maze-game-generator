@@ -36,7 +36,7 @@ const item = {
 };
 
 const leftItem = {
-  hidden: { x: -20, opacity: 0 },
+  hidden: { x: -200, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -44,7 +44,7 @@ const leftItem = {
 };
 
 const rightItem = {
-  hidden: { x: 20, opacity: 0 },
+  hidden: { x: 200, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
