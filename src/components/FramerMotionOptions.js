@@ -8,8 +8,8 @@ const transition = {
     ease: [0, 0.71, 0.2, 1.01],
   },
   scale: {
-    type: "tween",
-    damping: 5,
+    type: "spring",
+    damping: 14,
     stiffness: 100,
     restDelta: 0.001,
   },
