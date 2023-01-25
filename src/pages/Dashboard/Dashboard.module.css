@@ -111,7 +111,7 @@
   padding: 1em 0em;
   border-radius: 20px;
   width: 90%;
-  min-height: 25%;
+  min-height: 9.5rem;
   word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
 }
 
