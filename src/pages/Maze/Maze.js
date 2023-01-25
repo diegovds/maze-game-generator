@@ -3,7 +3,7 @@ import api from "../../services/api";
 
 // hooks
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +15,7 @@ import IframePage from "../../components/IframePage/IframePage";
 
 const Maze = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [maze, setMaze] = useState(undefined);
   const [isFetching, setIsFetching] = useState(true);
@@ -49,6 +50,7 @@ const Maze = () => {
   const endGame = () => {
     window.scrollTo(0, 0);
     setRunGame(false);
+    navigate(`/mazes/${id}`);
   };
 
   const errorReturn = (message) => {
