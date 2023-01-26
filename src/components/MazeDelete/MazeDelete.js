@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { motion } from "framer-motion";
-import { offscreen, onscreen, viewport } from "../FramerMotionOptions";
+import { initial, whileInView, transition } from "../FramerMotionOptions";
 
 const MazeDelete = ({ maze, getMazeDelete, loadingDelete = false }) => {
   const [styleImg, setStyleImg] = useState("img_loading");
@@ -20,7 +20,11 @@ const MazeDelete = ({ maze, getMazeDelete, loadingDelete = false }) => {
   };
 
   return (
-    <motion.div initial={offscreen} whileInView={onscreen} viewport={viewport}>
+    <motion.div
+      initial={initial}
+      whileInView={whileInView}
+      transition={transition}
+    >
       <div className={styles.maze}>
         <img
           className={styleImgLoading}
