@@ -15,19 +15,36 @@ const transition = {
   },
 };
 
-const offscreen = {
-  x: -100,
-  opacity: 0,
+const cardAnimate = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.5,
+    },
+  },
 };
 
-const onscreen = {
-  x: 0,
-  opacity: 1,
-  rotate: [0, 10, 0],
-  transition: { type: "spring", bounce: 0.4, duration: 1 },
+const imageAnimate = {
+  hidden: { x: -100, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    /*rotate: [0, 10, 0],*/
+    transition: { type: "spring", bounce: 0.4, duration: 1 },
+  },
 };
 
-const viewport = { once: false };
+const textAnimate = {
+  hidden: { x: 100, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    rotate: [0, -10, 0],
+    transition: { type: "spring", bounce: 0.4, duration: 1 },
+  },
+};
 
 const container = {
   hidden: { y: 150, opacity: 1 },
@@ -73,7 +90,7 @@ export {
   item,
   leftItem,
   rightItem,
-  offscreen,
-  onscreen,
-  viewport,
+  cardAnimate,
+  imageAnimate,
+  textAnimate,
 };
