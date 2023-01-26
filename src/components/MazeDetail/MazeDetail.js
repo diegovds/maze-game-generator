@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { motion } from "framer-motion";
-import { initial, whileInView, transition } from "../FramerMotionOptions";
+import { offscreen, onscreen, viewport } from "../FramerMotionOptions";
 
 const MazeDetail = ({ maze }) => {
   const [styleImg, setStyleImg] = useState("img_loading");
@@ -16,11 +16,7 @@ const MazeDetail = ({ maze }) => {
   };
 
   return (
-    <motion.div
-      initial={initial}
-      whileInView={whileInView}
-      transition={transition}
-    >
+    <motion.div initial={offscreen} whileInView={onscreen} viewport={viewport}>
       <div className={styles.maze}>
         <img
           className={styleImgLoading}
