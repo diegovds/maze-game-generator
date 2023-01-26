@@ -15,6 +15,20 @@ const transition = {
   },
 };
 
+const offscreen = {
+  x: -100,
+  opacity: 0,
+};
+
+const onscreen = {
+  x: 0,
+  opacity: 1,
+  rotate: [0, 10, 0],
+  transition: { type: "spring", bounce: 0.4, duration: 1 },
+};
+
+const viewport = { once: false };
+
 const container = {
   hidden: { y: 150, opacity: 1 },
   visible: {
@@ -59,4 +73,7 @@ export {
   item,
   leftItem,
   rightItem,
+  offscreen,
+  onscreen,
+  viewport,
 };
