@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { motion } from "framer-motion";
-import { cardAnimate, imageAnimate, textAnimate } from "../FramerMotionOptions";
+import { initial, whileInView, transition } from "../FramerMotionOptions";
 
 const MazeDetail = ({ maze }) => {
   const [styleImg, setStyleImg] = useState("img_loading");
@@ -17,27 +17,22 @@ const MazeDetail = ({ maze }) => {
 
   return (
     <motion.div
-      className={styles.maze}
-      variants={cardAnimate}
-      initial="hidden"
-      whileInView="visible"
+      initial={initial}
+      whileInView={whileInView}
+      transition={transition}
     >
-      <div className={styles.image}>
+      <div className={styles.maze}>
         <img
           className={styleImgLoading}
           src="/null.png"
           alt="Imagem de carregamento"
         />
-      </div>
-      <motion.div className={styles.image} variants={imageAnimate}>
         <img
           className={styleImg}
           src={maze.url_image}
           alt={maze.image}
           onLoad={imgChange}
         />
-      </motion.div>
-      <motion.div className={styles.data} variants={textAnimate}>
         <h3>{maze.name}</h3>
         <p id="date">
           Criado em:
@@ -47,7 +42,7 @@ const MazeDetail = ({ maze }) => {
         <Link to={`/mazes/${maze.id}`} className="btn">
           Detalhes
         </Link>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };

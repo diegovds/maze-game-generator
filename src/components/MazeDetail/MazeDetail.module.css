@@ -1,5 +1,4 @@
-h3,
-p {
+h3, p {
   margin: 0;
 }
 
@@ -21,28 +20,22 @@ p {
   word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
 }
 
-.image,
-.data {
-  width: 100%;
-}
-
-.image img {
+.maze img {
   width: 90%;
   margin-bottom: .4em;
 }
 
-.data h3 {
+.maze h3 {
   margin-bottom: .4em;
 }
 
-.data p {
+.maze p {
   font-style: italic;
   font-size: small;
   margin-bottom: 1.5em;
 }
 
-.data a {
-  display: inline-block;
+.maze a {
   padding-left: 0;
   padding-right: 0;
   width: 90%;
