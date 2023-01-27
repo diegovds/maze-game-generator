@@ -9,11 +9,15 @@ const transition = {
 };
 
 const cardAnimate = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 100 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
-      delayChildren: 0.2,
+      type: "spring",
+      bounce: 0.4,
+      duration: 1,
+      delayChildren: 0.3,
       staggerChildren: 0.5,
     },
   },
