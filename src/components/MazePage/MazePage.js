@@ -10,9 +10,9 @@ import { FaRegCopy } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 import {
-  container,
-  leftItem,
-  rightItem,
+  cardAnimate,
+  imageAnimate,
+  textAnimate,
 } from "../../components/FramerMotionOptions";
 
 const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
@@ -60,11 +60,11 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
     <main className={styles.main}>
       <motion.div
         className={styles.container}
-        variants={container}
+        variants={cardAnimate}
         initial="hidden"
         animate="visible"
       >
-        <motion.div className={styles.img} variants={leftItem}>
+        <motion.div className={styles.img} variants={imageAnimate}>
           <img
             className={styleImgLoading}
             src="/null.png"
@@ -77,7 +77,7 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
             onLoad={imgChange}
           />
         </motion.div>
-        <motion.div className={styles.informations} variants={rightItem}>
+        <motion.div className={styles.informations} variants={textAnimate}>
           <h2>
             {maze.name} (Cód. {maze.code})
           </h2>

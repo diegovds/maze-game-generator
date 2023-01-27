@@ -14,23 +14,21 @@
   flex-direction: row;
 
   border-radius: 20px;
-  background-color: #eceeed;
+  background-color: #fff;
   box-shadow: 0 0 20px #3d3d3d;
+  overflow: hidden;
 }
 
 .img,
 .informations {
   flex: 1;
   padding: 2.5rem 0rem 2.5rem 0rem;
-  background-color: #fff;
 }
 
 .img {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
 }
 
 .img img {
@@ -43,8 +41,6 @@
   justify-content: center;
   align-items: center;
   word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 .informations button {
@@ -98,15 +94,11 @@
   .img {
     min-height: fit-content;
     padding: 2.5rem 0rem 0.5rem 0rem;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 0px;
   }
 
   .informations {
     min-height: fit-content;
     padding: 0rem 0rem 2.5rem 0rem;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 0px;
   }
 
   .informations h2 {
