@@ -3,16 +3,9 @@ const initial = { opacity: 0, scale: 0.5 };
 const whileInView = { opacity: 1, scale: 1 };
 
 const transition = {
-  default: {
-    duration: 0.3,
-    ease: [0, 0.71, 0.2, 1.01],
-  },
-  scale: {
-    type: "spring",
-    damping: 14,
-    stiffness: 100,
-    restDelta: 0.001,
-  },
+  duration: 0.2,
+  ease: "easeOut",
+  delay: 0.25,
 };
 
 const cardAnimate = {
