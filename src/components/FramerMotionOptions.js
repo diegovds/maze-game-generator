@@ -1,10 +1,10 @@
-const initial = { opacity: 0, scale: 0.5 };
+const initial = { opacity: 0 };
 
-const whileInView = { opacity: 1, scale: 1 };
+const whileInView = { opacity: 1 };
 
 const transition = {
-  duration: 0.2,
-  ease: "easeOut",
+  duration: 1,
+  ease: [0.5, 0, 0, 1],
   delay: 0.25,
 };
 
@@ -63,30 +63,12 @@ const item = {
   },
 };
 
-const leftItem = {
-  hidden: { x: -200, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-  },
-};
-
-const rightItem = {
-  hidden: { x: 200, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-  },
-};
-
 export {
   initial,
   whileInView,
   transition,
   container,
   item,
-  leftItem,
-  rightItem,
   cardAnimate,
   imageAnimate,
   textAnimate,
