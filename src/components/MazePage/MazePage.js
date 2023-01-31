@@ -15,10 +15,13 @@ import {
   textAnimate,
 } from "../../components/FramerMotionOptions";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
+  const [skeleton, setSkeleton] = useState(true);
   const isMobile = useMediaQuery("(max-width: 1115px)");
 
   const goToMaze = async (width) => {
@@ -51,11 +54,6 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
     copy(window.location.href);
   };
 
-  const imgChange = () => {
-    setStyleImg("img_loaded");
-    setStyleImgLoading("img_loading");
-  };
-
   return (
     <main className={styles.main}>
       <motion.div
@@ -65,16 +63,15 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
         animate="visible"
       >
         <motion.div className={styles.img} variants={imageAnimate}>
-          <img
-            className={styleImgLoading}
-            src="/null.png"
-            alt="Imagem de carregamento"
-          />
+          {skeleton && <Skeleton />}
           <img
             className={styleImg}
             src={maze.url_image}
             alt={maze.image}
-            onLoad={imgChange}
+            onLoad={() => {
+              setSkeleton(false);
+              setStyleImg("img_loaded");
+            }}
           />
         </motion.div>
         <motion.div className={styles.informations} variants={textAnimate}>

@@ -23,7 +23,14 @@ p {
 }
 
 .maze img {
-  width: 90%;
+  width: 7.526rem;
+  margin-bottom: 0.4em;
+}
+
+.maze span {
+  width: 7.526rem;
+  height: 6.451rem;
+  border-radius: 10px;
   margin-bottom: 0.4em;
 }
 

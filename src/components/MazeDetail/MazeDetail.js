@@ -6,14 +6,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { initial, whileInView, transition } from "../FramerMotionOptions";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const MazeDetail = ({ maze }) => {
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [styleImgLoading, setStyleImgLoading] = useState("img_loaded_white");
-
-  const imgChange = () => {
-    setStyleImg("img_loaded");
-    setStyleImgLoading("img_loading");
-  };
+  const [skeleton, setSkeleton] = useState(true);
 
   return (
     <motion.div
@@ -22,16 +20,15 @@ const MazeDetail = ({ maze }) => {
       transition={transition}
     >
       <div className={styles.maze}>
-        <img
-          className={styleImgLoading}
-          src="/null.png"
-          alt="Imagem de carregamento"
-        />
+        {skeleton && <Skeleton />}
         <img
           className={styleImg}
           src={maze.url_image}
           alt={maze.image}
-          onLoad={imgChange}
+          onLoad={() => {
+            setSkeleton(false);
+            setStyleImg("img_loaded");
+          }}
         />
         <h3>{maze.name}</h3>
         <p id="date">

@@ -38,6 +38,7 @@ A plataforma é dividida em outras duas aplicações:
 * [react-scroll-to-top](https://www.npmjs.com/package/react-scroll-to-top)
 * [react-toastify](https://www.npmjs.com/package/react-toastify)
 * [framer-motion](https://www.npmjs.com/package/framer-motion)
+* [react-loading-skeleton](https://www.npmjs.com/package/react-loading-skeleton)
 * [copy-to-clipboard](https://www.npmjs.com/package/copy-to-clipboard)
 * [Axios](https://www.npmjs.com/package/axios)
 * [GA4React](https://www.npmjs.com/package/ga-4-react)

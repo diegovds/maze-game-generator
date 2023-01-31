@@ -32,7 +32,13 @@
 }
 
 .img img {
-  width: 87%;
+  width: 33.008rem;
+}
+
+.img span {
+  width: 33.008rem;
+  height: 28.292rem;
+  border-radius: 10px;
 }
 
 .informations {
