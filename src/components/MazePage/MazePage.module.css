@@ -32,12 +32,13 @@
 }
 
 .img img {
-  width: 33.008rem;
+  width: 87%;
+  aspect-ratio: 7/6;
 }
 
 .img span {
-  width: 33.008rem;
-  height: 28.292rem;
+  width: 87%;
+  aspect-ratio: 7/6;
   border-radius: 10px;
 }
 

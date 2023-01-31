@@ -63,7 +63,7 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
         animate="visible"
       >
         <motion.div className={styles.img} variants={imageAnimate}>
-          {skeleton && <Skeleton />}
+          {skeleton && <Skeleton width={`100%`} height={`100%`}/>}
           <img
             className={styleImg}
             src={maze.url_image}
