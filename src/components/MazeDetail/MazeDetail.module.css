@@ -21,14 +21,16 @@ h3, p {
 }
 
 .maze img {
-  width: 7.526rem;
+  width: 90%;
+  aspect-ratio: 7/6;
   margin-bottom: .4em;
 }
 
 .maze span {
-  width: 7.526rem;
-  height: 6.451rem;
+  width: 90%;
+  aspect-ratio: 7/6;
   border-radius: 10px;
+  overflow: hidden;
   margin-bottom: .4em;
 }
 

@@ -20,7 +20,7 @@ const MazeDetail = ({ maze }) => {
       transition={transition}
     >
       <div className={styles.maze}>
-        {skeleton && <Skeleton />}
+        {skeleton && <Skeleton width={`100%`} />}
         <img
           className={styleImg}
           src={maze.url_image}
