@@ -24,6 +24,7 @@
 .search_form {
   display: flex;
   justify-content: center;
+  min-height: 30px;
 }
 
 .search_form input {
@@ -36,10 +37,17 @@
 }
 
 .search_form button {
-  border-radius: 10px;
-  padding: 0.4em 0.6em 0.3em 0.6em;
+  border-radius: 8px;
+  padding: 0 0.6em 0 0.6em;
   background-color: #000;
   color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.search_form button svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .search_form button:hover {
