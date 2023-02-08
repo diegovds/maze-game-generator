@@ -81,11 +81,12 @@
 #copy {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #copy svg {
-  width: 1.248rem;
-  height: 1.248rem;
+  width: 1.1rem;
+  height: 1.1rem;
   margin-left: 0.5rem;
 }
 
