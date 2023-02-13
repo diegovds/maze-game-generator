@@ -19,11 +19,15 @@
 }
 
 .search_container h2 {
-  margin-bottom: 1em;
+  margin-bottom: .3em;
+}
+
+.search_container p {
   padding-bottom: 1rem;
   border-bottom: 2px solid #ccc;
   width: 97%;
   word-wrap: break-word; /* com isso o conteúdo não vai vazar */
+  margin-bottom: 1.5em;
 }
 
 .p_a{
