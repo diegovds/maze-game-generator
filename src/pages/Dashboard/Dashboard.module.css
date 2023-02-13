@@ -76,8 +76,11 @@
 }
 
 .mazes_container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    9rem
+  ); /* o auto-fit ajusta a quantidade de itens de acordo a largura do container */
   max-width: 97%;
   margin: 0 auto;
   justify-content: space-evenly;
