@@ -46,6 +46,7 @@ A plataforma é dividida em outras duas aplicações:
 * [react-hook-form](https://www.npmjs.com/package/react-hook-form)
 * [usehooks-ts](https://www.npmjs.com/package/usehooks-ts)
 * [validator](https://www.npmjs.com/package/validator)
+* [react-device-detect](https://www.npmjs.com/package/react-device-detect)
 
 ...
 ## Iniciando ▶️
