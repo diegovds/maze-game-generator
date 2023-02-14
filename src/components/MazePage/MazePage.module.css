@@ -90,7 +90,7 @@
   margin-left: 0.5rem;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) and (orientation: portrait) {
   .container {
     flex-direction: column;
   }
