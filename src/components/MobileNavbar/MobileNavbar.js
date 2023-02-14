@@ -18,11 +18,11 @@ const MobileNavbar = ({ openMenu }) => {
 
   const [query, setQuery] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const changeHamburger = () => {
     if (isOpen) {
-      setOpen(!isOpen);
+      setIsOpen(!isOpen);
       setShowMenu(false);
       openMenu(false);
     } else {
@@ -153,7 +153,7 @@ const MobileNavbar = ({ openMenu }) => {
             rounded={true}
             color={showMenu ? "#fff" : "#000"}
             toggled={isOpen}
-            toggle={setOpen}
+            toggle={setIsOpen}
           />
         </div>
       </div>
