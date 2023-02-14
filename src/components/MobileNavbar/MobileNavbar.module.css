@@ -32,9 +32,62 @@
   color: #000;
 }
 
-.navbar .hamburger {
+.menuMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   margin-right: 20px;
   z-index: 3;
+}
+
+#checkbox_menu {
+  position: absolute;
+  opacity: 0;
+}
+
+.menuMobile label {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  height: 22px;
+  width: 30px;
+}
+
+.menuMobile label span {
+  position: absolute;
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 30px;
+  transition: 0.25s ease-in-out;
+}
+
+.menuMobile label span:nth-child(1) {
+  top: 0;
+}
+
+.menuMobile label span:nth-child(2) {
+  top: 8px;
+}
+
+.menuMobile label span:nth-child(3) {
+  top: 16px;
+}
+
+#checkbox_menu:checked + label span:nth-child(1) {
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+#checkbox_menu:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+
+#checkbox_menu:checked + label span:nth-child(3) {
+  transform: rotate(45deg);
+  top: 8px;
 }
 
 .navbar #hiddenHamburger {

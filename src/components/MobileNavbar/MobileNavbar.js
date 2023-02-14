@@ -2,33 +2,31 @@ import styles from "./MobileNavbar.module.css";
 
 import { HiSearch } from "react-icons/hi";
 import { FaPuzzlePiece } from "react-icons/fa";
-import { Squash as Hamburger } from "hamburger-react";
 import { isMobileOnly } from "react-device-detect";
 
 import { NavLink } from "react-router-dom";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
 const MobileNavbar = ({ openMenu }) => {
+  const checkbox = useRef();
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
   const navigate = useNavigate();
 
   const [query, setQuery] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const changeHamburger = () => {
-    if (isOpen) {
-      setIsOpen(!isOpen);
-      setShowMenu(false);
-      openMenu(false);
-    } else {
+  const handleChange = (event) => {
+    if (event.target.checked) {
       setShowMenu(true);
       openMenu(true);
+    } else {
+      setShowMenu(false);
+      openMenu(false);
     }
   };
 
@@ -40,7 +38,7 @@ const MobileNavbar = ({ openMenu }) => {
     }
 
     navigate(`/search?q=${query}`);
-    changeHamburger();
+    checkbox.current.click();
     e.target.reset();
     setQuery("");
   };
@@ -70,7 +68,7 @@ const MobileNavbar = ({ openMenu }) => {
           <NavLink
             to="/"
             onClick={() => {
-              changeHamburger();
+              checkbox.current.click();
             }}
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
@@ -81,7 +79,7 @@ const MobileNavbar = ({ openMenu }) => {
               <NavLink
                 to="/login"
                 onClick={() => {
-                  changeHamburger();
+                  checkbox.current.click();
                 }}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
@@ -90,7 +88,7 @@ const MobileNavbar = ({ openMenu }) => {
               <NavLink
                 to="/register"
                 onClick={() => {
-                  changeHamburger();
+                  checkbox.current.click();
                 }}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
@@ -103,7 +101,7 @@ const MobileNavbar = ({ openMenu }) => {
               <NavLink
                 to="/mazes/create"
                 onClick={() => {
-                  changeHamburger();
+                  checkbox.current.click();
                 }}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
@@ -112,7 +110,7 @@ const MobileNavbar = ({ openMenu }) => {
               <NavLink
                 to="/dashboard"
                 onClick={() => {
-                  changeHamburger();
+                  checkbox.current.click();
                 }}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
@@ -124,7 +122,7 @@ const MobileNavbar = ({ openMenu }) => {
           <NavLink
             to="/about"
             onClick={() => {
-              changeHamburger();
+              checkbox.current.click();
             }}
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
@@ -136,7 +134,7 @@ const MobileNavbar = ({ openMenu }) => {
                 className={styles.btn_logout}
                 onClick={() => {
                   logout();
-                  changeHamburger();
+                  checkbox.current.click();
                 }}
               >
                 Sair
@@ -145,20 +143,40 @@ const MobileNavbar = ({ openMenu }) => {
           )}
         </div>
         <div
-          className={styles.hamburger}
+          className={styles.menuMobile}
           id={showMenu ? styles.hiddenHamburger : ""}
-          onClick={() => {
-            changeHamburger();
-          }}
         >
-          <Hamburger
-            size={26}
-            hideOutline={false}
-            rounded={true}
-            color={showMenu ? "#fff" : "#000"}
-            toggled={isOpen}
-            toggle={setIsOpen}
+          <input
+            type="checkbox"
+            id={styles.checkbox_menu}
+            name="grid"
+            onChange={handleChange}
+            ref={checkbox}
           />
+
+          <label htmlFor={styles.checkbox_menu}>
+            <span
+              style={
+                showMenu
+                  ? { backgroundColor: "#fff" }
+                  : { backgroundColor: "#000" }
+              }
+            ></span>
+            <span
+              style={
+                showMenu
+                  ? { backgroundColor: "#fff" }
+                  : { backgroundColor: "#000" }
+              }
+            ></span>
+            <span
+              style={
+                showMenu
+                  ? { backgroundColor: "#fff" }
+                  : { backgroundColor: "#000" }
+              }
+            ></span>
+          </label>
         </div>
       </div>
     </div>
