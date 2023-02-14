@@ -3,6 +3,7 @@ import styles from "./MobileNavbar.module.css";
 import { HiSearch } from "react-icons/hi";
 import { FaPuzzlePiece } from "react-icons/fa";
 import { Squash as Hamburger } from "hamburger-react";
+import { isMobileOnly } from "react-device-detect";
 
 import { NavLink } from "react-router-dom";
 
@@ -51,7 +52,10 @@ const MobileNavbar = ({ openMenu }) => {
           <FaPuzzlePiece />
           My <span>Blockly</span> Maze
         </NavLink>
-        <div className={styles.menu} id={showMenu ? styles.hidden : ""}>
+        <div
+          className={`${styles.menu} ${isMobileOnly ? styles.mobile : ""}`}
+          id={showMenu ? styles.hidden : ""}
+        >
           <form onSubmit={handleSubmit} className={styles.search_form}>
             <input
               className={styles.input}
