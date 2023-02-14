@@ -85,8 +85,8 @@
 }
 
 #copy svg {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1em;
+  height: 1em;
   margin-left: 0.5rem;
 }
 
@@ -116,5 +116,12 @@
 
   .p_a {
     font-size: 0.93rem;
+  }
+}
+
+@media only screen and (max-width: 800px) and (orientation: landscape) {
+  .informations,
+  .informations p {
+    font-size: 10px;
   }
 }
