@@ -42,7 +42,6 @@
   position: fixed;
 }
 
-@media only screen and (max-width: 1115px) {
   .navbar .menu {
     position: fixed;
     z-index: 2;
@@ -109,5 +108,10 @@
     background-color: #fff;
     color: #000;
     border: none;
+  }
+
+@media (min-width: 426px) and (orientation: landscape) and (pointer: coarse) {
+  .navbar .menu {
+    gap: 12px;
   }
 }
