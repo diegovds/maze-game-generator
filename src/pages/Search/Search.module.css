@@ -1,4 +1,4 @@
-.mazes_container{
+.mazes_container {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
@@ -19,7 +19,7 @@
 }
 
 .search_container h2 {
-  margin-bottom: .3em;
+  margin-bottom: 0.3em;
 }
 
 .search_container p {
@@ -30,7 +30,8 @@
   margin-bottom: 1.5em;
 }
 
-.p_a{
-  color: #aaa;
-  margin-bottom: 2em;
+.search_container .p_a {
+  color: #999;
+  width: auto;
+  border-bottom: none;
 }
