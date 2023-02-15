@@ -2,6 +2,7 @@
   min-height: calc(100vh - 70.94px); /*  70.94px é a altura da navbar */
   max-width: 1440px;
   margin: 0 auto;
+  transition: 0.5s ease-in-out;
 }
 
 #blurBackground {
