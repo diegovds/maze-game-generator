@@ -79,7 +79,7 @@
 }
 
 #checkbox_menu:checked + label span:nth-child(2) {
-  opacity: 0;
+  transform: scaleX(0);
 }
 
 #checkbox_menu:checked + label span:nth-child(3) {
