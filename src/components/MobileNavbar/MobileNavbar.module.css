@@ -24,6 +24,10 @@
   z-index: 3;
 }
 
+.brand:hover {
+  color: inherit;
+}
+
 .brand span {
   font-weight: 900;
   text-transform: uppercase;
