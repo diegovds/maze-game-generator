@@ -11,7 +11,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ openMenu }) => {
   const checkbox = useRef();
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
@@ -21,7 +21,13 @@ const MobileNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleChange = (event) => {
-    event.target.checked ? setShowMenu(true) : setShowMenu(false);
+    if (event.target.checked) {
+      setShowMenu(true);
+      openMenu(true);
+    } else {
+      setShowMenu(false);
+      openMenu(false);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -40,23 +46,7 @@ const MobileNavbar = () => {
   return (
     <div className={styles.main}>
       <div className={styles.navbar}>
-        <NavLink
-          to="/"
-          onClick={() => {
-            if (showMenu) checkbox.current.click();
-          }}
-          className={styles.brand}
-          style={
-            showMenu
-              ? {
-                  left: 0,
-                  position: "fixed",
-                  color: "#fff",
-                  transitionDelay: "0.3s",
-                }
-              : { transitionDelay: "0.1s" }
-          }
-        >
+        <NavLink to="/" className={styles.brand}>
           <FaPuzzlePiece />
           My <span>Blockly</span> Maze
         </NavLink>
@@ -169,21 +159,21 @@ const MobileNavbar = () => {
               style={
                 showMenu
                   ? { backgroundColor: "#fff" }
-                  : { backgroundColor: "#000", transitionDelay: "0.3s" }
+                  : { backgroundColor: "#000" }
               }
             ></span>
             <span
               style={
                 showMenu
                   ? { backgroundColor: "#fff" }
-                  : { backgroundColor: "#000", transitionDelay: "0.3s" }
+                  : { backgroundColor: "#000" }
               }
             ></span>
             <span
               style={
                 showMenu
                   ? { backgroundColor: "#fff" }
-                  : { backgroundColor: "#000", transitionDelay: "0.3s" }
+                  : { backgroundColor: "#000" }
               }
             ></span>
           </label>
