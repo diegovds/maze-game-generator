@@ -23,6 +23,10 @@
   margin-left: 20px;
 }
 
+.brand:hover {
+  color: #000;
+}
+
 .brand span {
   font-weight: 900;
   text-transform: uppercase;
