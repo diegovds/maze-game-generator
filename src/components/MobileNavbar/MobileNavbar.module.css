@@ -29,11 +29,6 @@
   color: #000;
 }
 
-.brand span {
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
 .navbar .menu a:hover {
   color: #eee;
 }
@@ -125,6 +120,11 @@
   transition: 0.5s ease-in-out;
 }
 
+.navbar .menu span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .navbar #hidden {
   opacity: 1;
   visibility: visible;
@@ -151,7 +151,6 @@
 }
 
 .navbar .menu .btn_logout {
-  margin: 10px;
   font-size: 20px;
   background: transparent;
   color: #fff;
@@ -170,6 +169,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  max-width: 300px;
 }
 
 .search_form input {
@@ -204,6 +204,6 @@
 
 @media (orientation: landscape) {
   .navbar .mobile {
-    gap: 15px;
+    gap: 20px;
   }
 }
