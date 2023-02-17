@@ -14,13 +14,15 @@
 }
 
 .brand {
-  font-size: 1.3em;
-  /* centralizar icone com o texto */
   display: flex;
   align-items: center;
-  /* fim */
-  gap: 0.5rem;
   margin-left: 20px;
+  margin-right: 20px;
+}
+
+.brand svg {
+  width: 30px;
+  height: 30px;
 }
 
 .brand:hover {
@@ -39,6 +41,7 @@
 .menuMobile {
   height: 19px;
   width: 26px;
+  margin-left: 20px;
   margin-right: 20px;
   z-index: 3;
 }
@@ -111,10 +114,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 32px;
+  gap: 80px;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
   opacity: 0;
   visibility: hidden;
   margin-left: 100%;
@@ -128,7 +132,6 @@
 }
 
 .navbar .menu a {
-  margin: 10px;
   font-size: 20px;
   color: #fff;
 }
@@ -164,13 +167,15 @@
 
 .search_form {
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .search_form input {
-  width: 15rem;
+  width: 100%;
   background-color: #fff;
-  margin-right: 1rem;
+  margin-right: 20px;
   border-radius: 5px;
   padding: 0.4em 0.6em;
 }
@@ -178,13 +183,14 @@
 .search_form button {
   border-radius: 7px;
   padding: 0.4em 0.6em;
-  background-color: #fff;
+  background-color: #000;
   color: #000;
   border: none;
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: 0.4s;
+  color: #fff;
 }
 
 .search_form button svg {
@@ -193,11 +199,11 @@
 }
 
 .search_form button:hover {
-  background-color: #eee;
+  background-color: #000;
 }
 
 @media (orientation: landscape) {
   .navbar .mobile {
-    gap: 4px;
+    gap: 30px;
   }
 }

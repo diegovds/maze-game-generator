@@ -11,7 +11,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
-const MobileNavbar = ({ openMenu }) => {
+const MobileNavbar = () => {
   const checkbox = useRef();
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
@@ -21,13 +21,7 @@ const MobileNavbar = ({ openMenu }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleChange = (event) => {
-    if (event.target.checked) {
-      setShowMenu(true);
-      openMenu(true);
-    } else {
-      setShowMenu(false);
-      openMenu(false);
-    }
+    event.target.checked ? setShowMenu(true) : setShowMenu(false);
   };
 
   const handleSubmit = (e) => {
@@ -38,7 +32,6 @@ const MobileNavbar = ({ openMenu }) => {
     }
 
     navigate(`/search?q=${query}`);
-    checkbox.current.click();
     e.target.reset();
     setQuery("");
   };
@@ -48,23 +41,36 @@ const MobileNavbar = ({ openMenu }) => {
       <div className={styles.navbar}>
         <NavLink to="/" className={styles.brand}>
           <FaPuzzlePiece />
-          My <span>Blockly</span> Maze
         </NavLink>
+        <form
+          onSubmit={handleSubmit}
+          className={styles.search_form}
+          style={showMenu ? { display: "none" } : {}}
+        >
+          <input
+            className={styles.input}
+            type="search"
+            placeholder="Busca..."
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button>
+            <HiSearch />
+          </button>
+        </form>
         <div
           className={`${styles.menu} ${isMobileOnly ? styles.mobile : ""}`}
           id={showMenu ? styles.hidden : ""}
         >
-          <form onSubmit={handleSubmit} className={styles.search_form}>
-            <input
-              className={styles.input}
-              type="search"
-              placeholder="Nome ou código do jogo..."
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <button>
-              <HiSearch />
-            </button>
-          </form>
+          <NavLink
+            to="/"
+            onClick={() => {
+              checkbox.current.click();
+            }}
+            style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <FaPuzzlePiece />
+            My <span>Blockly</span> Maze
+          </NavLink>
           <NavLink
             to="/"
             onClick={() => {
