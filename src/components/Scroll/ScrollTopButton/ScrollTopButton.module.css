@@ -1,0 +1,36 @@
+.scroll_top_button {
+  background: #add8e6;
+  box-sizing: border-box;
+  position: fixed;
+  right: -50px;
+  bottom: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 25%;
+  cursor: pointer;
+  visibility: hidden;
+  transition: 0.4s ease-in-out;
+  z-index: 2;
+  opacity: 0;
+}
+
+.scroll_top_button svg {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  color: #000;
+}
+
+.scroll_top_button_visible {
+  opacity: 1;
+  right: 20px;
+  visibility: visible;
+}
+
+@media (pointer: fine) {
+  .scroll_top_button:hover {
+    transform: scale(1.05);
+  }
+}
