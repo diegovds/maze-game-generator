@@ -2,9 +2,9 @@ import "./App.css";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import ScrollToTop from "react-scroll-to-top";
 
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
+import ScrollTopButton from "./components/Scroll/ScrollTopButton/ScrollTopButton";
 import Loading from "./components/Loading/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
@@ -62,10 +62,7 @@ function App() {
         <BrowserRouter>
           <ScrollToTopPage />
           <Analytics />
-          <ScrollToTop
-            smooth
-            style={{ backgroundColor: "#ADD8E6", height: 50, width: 50 }}
-          />
+          <ScrollTopButton />
           {isMobile ? <MobileNavbar openMenu={openMenu} /> : <Navbar />}
           <div className="container" id={showMenu ? "blurBackground" : ""}>
             <Routes>
