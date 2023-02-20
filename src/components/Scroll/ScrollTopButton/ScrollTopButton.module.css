@@ -34,6 +34,6 @@
 
 @media (pointer: fine) {
   .scroll_top_button:hover {
-    transform: scale(1.05);
+    scale: 1.05;
   }
 }
