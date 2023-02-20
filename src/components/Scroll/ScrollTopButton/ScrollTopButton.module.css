@@ -15,6 +15,7 @@
   opacity: 0;
   scale: 0;
   visibility: hidden;
+  rotate: -180deg;
 }
 
 .scroll_top_button svg {
@@ -28,7 +29,7 @@
   opacity: 1;
   scale: 1;
   visibility: visible;
-  rotate: 360deg;
+  transform: rotate(540deg);
 }
 
 @media (pointer: fine) {
