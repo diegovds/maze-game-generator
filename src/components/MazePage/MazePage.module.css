@@ -15,7 +15,7 @@
 
   border-radius: 20px;
   background-color: #fff;
-  box-shadow: 0 0 20px hsl(0deg 0% 24% / 0.25);
+  box-shadow: 0 0 20px hsl(0deg 0% 24% / 0.375);
   overflow: hidden;
 }
 

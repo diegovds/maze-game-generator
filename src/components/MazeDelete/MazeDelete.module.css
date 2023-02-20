@@ -17,7 +17,7 @@ p {
   border-radius: 15px;
   background-color: #fff;
   /*box-shadow: rgb(0 0 0 / 25%) 0px 4px 4px;*/
-  box-shadow: 0 0 20px hsl(0deg 0% 24% / 0.25);
+  box-shadow: 0 0 20px hsl(0deg 0% 24% / 0.375);
   word-wrap: break-word; /* com isso o conteúdo não vai vazar da div */
   box-sizing: border-box;
 }
