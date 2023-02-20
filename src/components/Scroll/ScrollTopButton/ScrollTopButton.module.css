@@ -2,7 +2,7 @@
   background: #add8e6;
   box-sizing: border-box;
   position: fixed;
-  right: -50px;
+  right: 20px;
   bottom: 36px;
   display: flex;
   justify-content: center;
@@ -10,10 +10,11 @@
   border: 0;
   border-radius: 25%;
   cursor: pointer;
-  visibility: hidden;
   transition: 0.4s ease-in-out;
   z-index: 2;
   opacity: 0;
+  scale: 0;
+  visibility: hidden;
 }
 
 .scroll_top_button svg {
@@ -25,7 +26,7 @@
 
 .scroll_top_button_visible {
   opacity: 1;
-  right: 20px;
+  scale: 1;
   visibility: visible;
 }
 
