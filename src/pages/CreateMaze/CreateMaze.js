@@ -31,7 +31,7 @@ const CreateMaze = () => {
   }
 
   if (error) {
-    return <LoadingError message={error.message} />;
+    return <LoadingError message={error} />;
   }
 
   return (

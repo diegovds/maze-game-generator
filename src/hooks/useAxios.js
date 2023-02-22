@@ -93,7 +93,9 @@ export const useAxios = () => {
         setData(data.id);
       })
       .catch((err) => {
-        setError(err);
+        String(err.response?.data?.message).includes("Usuário não encontrado")
+          ? setError("Usuário não encontrado 😢")
+          : setError("Ocorreu um erro, por favor tente mais tarde 👎");
       })
       .finally(() => {
         setIsFetching(false);
