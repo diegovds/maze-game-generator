@@ -15,6 +15,7 @@ import LoadingError from "../../components/LoadingError/LoadingError";
 // hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
+import { useAxios } from "../../hooks/useAxios";
 
 Modal.setAppElement("#root");
 
@@ -22,9 +23,7 @@ const Dashboard = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const [userData, setUserData] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState(null);
+  const { searchUserData, data: userData, isFetching, error } = useAxios();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [mazeDelete, setMazeDelete] = useState(undefined);
 
@@ -32,27 +31,9 @@ const Dashboard = () => {
     document.title = "My BLOCKLY Maze | Dashboard";
 
     setTimeout(() => {
-      searchUserData(uid);
+      searchUserData("/users/" + uid);
     }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
-  }, [uid]);
-
-  const searchUserData = async (uid) => {
-    await api
-      .get("/users/" + uid)
-      .then((data) => {
-        data = data.data.data;
-
-        setUserData(data);
-      })
-      .catch((e) => {
-        String(e.response.data.message).includes("Usuário não encontrado")
-          ? setError("Usuário não encontrado 😢")
-          : setError("Ocorreu um erro, por favor tente mais tarde 👎");
-      })
-      .finally(() => {
-        setIsFetching(false);
-      });
-  };
+  }, [searchUserData, uid]);
 
   function handleOpenModal() {
     setIsOpen(true);
@@ -91,7 +72,7 @@ const Dashboard = () => {
 
     setTimeout(() => {
       //setUserData(undefined); /** efeito de recarregamento */
-      searchUserData(uid);
+      searchUserData("/users/" + uid);
     }, 2000); // aguarda 2 segundos
   };
 
