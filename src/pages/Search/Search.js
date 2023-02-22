@@ -1,10 +1,9 @@
 import styles from "./Search.module.css";
 
-import api from "../../services/api";
-
 // hook
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useAxios } from "../../hooks/useAxios";
 
 // components
 import MazeDetail from "../../components/MazeDetail/MazeDetail";
@@ -15,47 +14,13 @@ const Search = () => {
   const [query] = useSearchParams();
   const search = query.get("q");
 
-  const [mazes, setMazes] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState(null);
+  const { getAllMazes, data: mazes, isFetching, error } = useAxios();
 
   useEffect(() => {
-    const getFilterMazes = async () => {
-      var filter = [];
-      setIsFetching(true);
-      setMazes(null);
+    getAllMazes("/mazes", search);
 
-      await api
-        .get("/mazes")
-        .then((data) => {
-          data = data.data.data;
-
-          data.forEach((item) => {
-            if (item.name.toLowerCase().includes(search.toLowerCase())) {
-              filter.push(item);
-            }
-
-            if (item.code !== null) {
-              if (
-                item.code.toLowerCase().includes(search.toLowerCase()) &&
-                filter.find((filtered) => filtered.id === item.id) === undefined
-              ) {
-                filter.push(item);
-              }
-            }
-          });
-          setMazes(filter);
-        })
-        .catch((err) => {
-          setError(err);
-        })
-        .finally(() => {
-          setIsFetching(false);
-        });
-    };
     document.title = "My BLOCKLY Maze | Busca";
-    getFilterMazes();
-  }, [search]);
+  }, [getAllMazes, search]);
 
   if (isFetching) {
     return <Loading />;

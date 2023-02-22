@@ -1,13 +1,13 @@
 //import styles from "./CreateMaze.module.css";
 
-import api from "../../services/api";
 import { useAuthValue } from "../../context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 import IframePage from "../../components/IframePage/IframePage";
 import { useMediaQuery } from "usehooks-ts";
+import { useAxios } from "../../hooks/useAxios";
 
 const CreateMaze = () => {
   const { user } = useAuthValue();
@@ -15,29 +15,12 @@ const CreateMaze = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 1115px)");
 
-  const [userId, setUserId] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState(null);
+  const { searchUserId, data: userId, isFetching, error } = useAxios();
 
   useEffect(() => {
-    const searchUserId = async () => {
-      await api
-        .get("/users/" + uid)
-        .then((data) => {
-          data = data.data.data;
-
-          setUserId(data.id);
-        })
-        .catch((err) => {
-          setError(err);
-        })
-        .finally(() => {
-          setIsFetching(false);
-        });
-    };
+    searchUserId("/users/" + uid);
     document.title = "My BLOCKLY Maze | Criação";
-    searchUserId();
-  }, [uid]);
+  }, [searchUserId, uid]);
 
   const redirect = (data) => {
     return navigate("/mazes/" + data);

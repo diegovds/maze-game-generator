@@ -1,10 +1,10 @@
 import styles from "./Maze.module.css";
-import api from "../../services/api";
 
 // hooks
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "usehooks-ts";
+import { useAxios } from "../../hooks/useAxios";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,32 +17,17 @@ import IframePage from "../../components/IframePage/IframePage";
 const Maze = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { getAMaze, data: maze, isFetching, error } = useAxios();
 
-  const [maze, setMaze] = useState(undefined);
-  const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState(null);
+  const [errorChildren, setErrorChildren] = useState(null);
   const [runGame, setRunGame] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1115px)");
 
   useEffect(() => {
-    const getAMaze = async () => {
-      await api
-        .get("/mazes/" + id)
-        .then((data) => {
-          data = data.data.data;
+    getAMaze("/mazes/" + id);
 
-          setMaze(data);
-        })
-        .catch(() => {
-          setError("Jogo não encontrado 😢");
-        })
-        .finally(() => {
-          setIsFetching(false);
-        });
-    };
     document.title = "My BLOCKLY Maze | " + id;
-    getAMaze();
-  }, [id]);
+  }, [getAMaze, id]);
 
   const loadGame = () => {
     maze.executions += 1;
@@ -56,7 +41,7 @@ const Maze = () => {
   };
 
   const errorReturn = (message) => {
-    setError(message);
+    setErrorChildren(message);
   };
 
   const notify = (status) => {
@@ -92,6 +77,10 @@ const Maze = () => {
 
   if (error) {
     return <LoadingError message={error} />;
+  }
+
+  if (errorChildren) {
+    return <LoadingError message={errorChildren} />;
   }
 
   if (runGame) {

@@ -1,7 +1,7 @@
 import styles from "./Home.module.css";
 
-import api from "../../services/api";
-import { useEffect, useState } from "react";
+import { useAxios } from "../../hooks/useAxios";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // components
@@ -10,29 +10,12 @@ import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 
 const Home = () => {
-  const [mazes, setMazes] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState(null);
+  const { getAllMazes, data: mazes, isFetching, error } = useAxios();
 
   useEffect(() => {
-    const getAllMazes = async () => {
-      await api
-        .get("/mazes")
-        .then((data) => {
-          data = data.data.data;
-
-          setMazes(data);
-        })
-        .catch((err) => {
-          setError(err);
-        })
-        .finally(() => {
-          setIsFetching(false);
-        });
-    };
+    getAllMazes("/mazes", false);
     document.title = "My BLOCKLY Maze | Home";
-    getAllMazes();
-  }, []);
+  }, [getAllMazes]);
 
   if (isFetching) {
     return <Loading />;
