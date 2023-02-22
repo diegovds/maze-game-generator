@@ -31,10 +31,8 @@ export const useAxios = () => {
           });
         }
 
-        if (filter.length > 0 && search) {
+        if (search) {
           setData(filter);
-        } else if (filter.length === 0 && search) {
-          setData(0);
         } else {
           setData(data);
         }
