@@ -15,12 +15,12 @@ const CreateMaze = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 1115px)");
 
-  const { searchUserId, data: userId, isFetching, error } = useAxios();
+  const { searchUserData, data, isFetching, error } = useAxios();
 
   useEffect(() => {
-    searchUserId("/users/" + uid);
+    searchUserData("/users/" + uid);
     document.title = "My BLOCKLY Maze | Criação";
-  }, [searchUserId, uid]);
+  }, [searchUserData, uid]);
 
   const redirect = (data) => {
     return navigate("/mazes/" + data);
@@ -41,7 +41,7 @@ const CreateMaze = () => {
       ) : (
         <IframePage
           link={
-            "https://mazegamebuilder.vercel.app/index.html?userId=" + userId
+            "https://mazegamebuilder.vercel.app/index.html?userId=" + data.id
           }
           redirect={redirect}
         />

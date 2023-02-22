@@ -84,13 +84,13 @@ export const useAxios = () => {
     });
   }, []);
 
-  const searchUserId = useCallback(async (endpoint) => {
+  const searchUserData = useCallback(async (endpoint) => {
     await api
       .get(endpoint)
       .then((data) => {
         data = data.data.data;
 
-        setData(data.id);
+        setData(data);
       })
       .catch((err) => {
         String(err.response?.data?.message).includes("Usuário não encontrado")
@@ -106,7 +106,7 @@ export const useAxios = () => {
     getAllMazes,
     getAMaze,
     updateAMaze,
-    searchUserId,
+    searchUserData,
     data,
     error,
     isFetching,
