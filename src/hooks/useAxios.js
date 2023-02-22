@@ -31,7 +31,7 @@ export const useAxios = () => {
           });
         }
 
-        if (filter.length > 0) {
+        if (filter.length > 0 && search) {
           setData(filter);
         } else if (filter.length === 0 && search) {
           setData(0);
