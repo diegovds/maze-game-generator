@@ -63,6 +63,27 @@ export const useAxios = () => {
       });
   }, []);
 
+  const updateAMaze = useCallback(async (maze) => {
+    return new Promise((resolve, reject) => {
+      const dataMaze = new FormData();
+      const execs = maze.executions + 1;
+
+      dataMaze.append("executions", execs);
+
+      api
+        .put("/mazes/" + maze.id, dataMaze)
+
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((e) => {
+          String(e.response?.data?.message).includes("Maze não encontrado")
+            ? reject("Jogo não encontrado 😢")
+            : reject("Ocorreu um erro, por favor tente mais tarde 👎");
+        });
+    });
+  }, []);
+
   const searchUserId = useCallback(async (endpoint) => {
     await api
       .get(endpoint)
@@ -82,6 +103,7 @@ export const useAxios = () => {
   return {
     getAllMazes,
     getAMaze,
+    updateAMaze,
     searchUserId,
     data,
     error,

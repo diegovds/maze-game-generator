@@ -1,7 +1,5 @@
 import styles from "./MazePage.module.css";
 
-import api from "../../services/api";
-
 import { useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -17,36 +15,32 @@ import {
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useAxios } from "../../hooks/useAxios";
 
 const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
   const [loading, setLoading] = useState(false);
   const [styleImg, setStyleImg] = useState("img_loading");
   const [skeleton, setSkeleton] = useState(true);
   const isMobile = useMediaQuery("(max-width: 1115px)");
+  const { updateAMaze } = useAxios();
 
   const goToMaze = async (width) => {
     if (width) {
       notify("no-execute");
     } else {
       setLoading(true);
-      const dataMaze = new FormData();
-      const execs = maze.executions + 1;
 
-      dataMaze.append("executions", execs);
-
-      api
-        .put("/mazes/" + maze.id, dataMaze)
-
-        .then((data) => {
+      try {
+        let ret = await updateAMaze(maze);
+        if (ret.data.data) {
           loadGame();
 
           //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
-        })
-        .catch((e) => {
-          String(e.response.data.message).includes("Maze não encontrado")
-            ? errorReturn("Jogo não encontrado 😢")
-            : errorReturn("Ocorreu um erro, por favor tente mais tarde 👎");
-        });
+        }
+      } catch (e) {
+        setLoading(false);
+        errorReturn(e);
+      }
     }
   };
 
