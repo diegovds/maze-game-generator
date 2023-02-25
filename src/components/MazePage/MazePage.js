@@ -11,6 +11,7 @@ import {
   cardAnimate,
   imageAnimate,
   textAnimate,
+  cardAnimateText,
 } from "../../components/FramerMotionOptions";
 
 import Skeleton from "react-loading-skeleton";
@@ -33,9 +34,10 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
       try {
         let ret = await updateAMaze(maze);
         if (ret.data.data) {
+          setLoading(false);
           loadGame();
 
-          //window.open("https://myblocklymaze-game.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels) + "&url_image=" +maze.url_image + "&reset=1", '_blank');
+          //window.open(`https://myblocklymaze-game.vercel.app/maze.html?levels=${maze.levels}&url_image=${maze.url_image}&reset=1`, '_blank');
         }
       } catch (e) {
         setLoading(false);
@@ -68,47 +70,51 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
             }}
           />
         </motion.div>
-        <motion.div className={styles.informations} variants={textAnimate}>
-          <h2>
+        <motion.div className={styles.informations} variants={cardAnimateText}>
+          <motion.h2 variants={textAnimate}>
             {maze.name} (Cód. {maze.code})
-          </h2>
-          <p className={styles.p_data}>
+          </motion.h2>
+          <motion.p className={styles.p_data} variants={textAnimate}>
             Criado por {maze.username} em {maze.created_at}
-          </p>
-          <p className={styles.p_data}>
+          </motion.p>
+          <motion.p className={styles.p_data} variants={textAnimate}>
             Quantidade de níveis: {JSON.parse(maze.levels).length}
-          </p>
-          <p className={styles.p_data}>Total de execuções: {maze.executions}</p>
+          </motion.p>
+          <motion.p className={styles.p_data} variants={textAnimate}>
+            Total de execuções: {maze.executions}
+          </motion.p>
           {/*<p className={styles.p_data}>Taxa de conclusão: {((maze.conclusions * 100) / maze.executions).toFixed(2)}%</p>*/}
-          <p className={styles.p_a}>
+          <motion.p className={styles.p_a} variants={textAnimate}>
             Ao clicar no botão abaixo a reprodução do Maze Game será iniciada.
-          </p>
+          </motion.p>
           {!loading && (
-            <button
+            <motion.button
               onClick={() => {
                 goToMaze(isMobile);
               }}
               className="btn"
+              variants={textAnimate}
             >
               Iniciar Maze Game
-            </button>
+            </motion.button>
           )}
           {loading && (
             <button className="btn" disabled>
               Aguarde...
             </button>
           )}
-          <button
+          <motion.button
             onClick={() => {
               clipboard();
               notify("copy");
             }}
             className="btn"
+            variants={textAnimate}
             id={styles.copy}
           >
             Copiar link
             <FaRegCopy />
-          </button>
+          </motion.button>
           {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
                     <Link to="/" className="btn btn-dark">Voltar</Link>*/}
         </motion.div>

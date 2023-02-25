@@ -3,45 +3,38 @@ const initial = { opacity: 0 };
 const whileInView = { opacity: 1 };
 
 const transition = {
-  duration: 1,
-  ease: [0.5, 0, 0, 1],
+  duration: 0.4,
+  ease: "easeIn",
   delay: 0.25,
 };
 
 const cardAnimate = {
-  hidden: { opacity: 0, y: "100%" },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      type: "spring",
-      bounce: 0.2,
-      duration: 1.75,
+      duration: 0.4,
+      ease: "easeIn",
       delay: 0.25,
-      delayChildren: 0.75,
       staggerChildren: 0.5,
+      delayChildren: 0.5,
     },
   },
+  hidden: { opacity: 0 },
 };
 
 const imageAnimate = {
-  hidden: { x: "-100%", opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    /*rotate: [0, 10, 0],*/
-    transition: { type: "spring", bounce: 0.2, duration: 1.75 },
-  },
+  visible: { opacity: 1, y: "0vh", transition: { duration: 0.4 } },
+  hidden: { opacity: 0, y: "-10vh" },
+};
+
+const cardAnimateText = {
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  hidden: { opacity: 0 },
 };
 
 const textAnimate = {
-  hidden: { x: "100%", opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    /*rotate: [0, -10, 0],*/
-    transition: { type: "spring", bounce: 0.2, duration: 1.75 },
-  },
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: "10%" },
 };
 
 const container = {
@@ -73,4 +66,5 @@ export {
   cardAnimate,
   imageAnimate,
   textAnimate,
+  cardAnimateText,
 };
