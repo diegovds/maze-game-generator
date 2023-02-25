@@ -115,8 +115,6 @@ const MazePage = ({ maze, loadGame, errorReturn, notify }) => {
             Copiar link
             <FaRegCopy />
           </motion.button>
-          {/**<a className="btn" target="_blank" rel="noopener noreferrer" href={"https://mazegame-phi.vercel.app/maze.html?levels=" + JSON.stringify(maze.levels)}>Ir para o Maze Game</a>
-                    <Link to="/" className="btn btn-dark">Voltar</Link>*/}
         </motion.div>
       </motion.div>
     </main>

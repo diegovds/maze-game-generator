@@ -18,12 +18,12 @@ const CreateMaze = () => {
   const { searchUserData, data, isFetching, error } = useAxios();
 
   useEffect(() => {
-    searchUserData("/users/" + uid);
+    searchUserData(`/users/${uid}`);
     document.title = "My BLOCKLY Maze | Criação";
   }, [searchUserData, uid]);
 
   const redirect = (data) => {
-    return navigate("/mazes/" + data);
+    return navigate(`/mazes/${data}`);
   };
 
   if (isFetching) {
@@ -40,9 +40,7 @@ const CreateMaze = () => {
         <LoadingError message="A criação de jogos não está disponível para essa largura de tela." />
       ) : (
         <IframePage
-          link={
-            "https://mazegamebuilder.vercel.app/index.html?userId=" + data.id
-          }
+          link={`https://mazegamebuilder.vercel.app/index.html?userId=${data.id}`}
           redirect={redirect}
         />
       )}

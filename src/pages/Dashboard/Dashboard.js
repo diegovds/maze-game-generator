@@ -31,7 +31,7 @@ const Dashboard = () => {
     document.title = "My BLOCKLY Maze | Dashboard";
 
     setTimeout(() => {
-      searchUserData("/users/" + uid);
+      searchUserData(`/users/${uid}`);
     }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
   }, [searchUserData, uid]);
 
@@ -49,7 +49,7 @@ const Dashboard = () => {
   const deleteMaze = async (id) => {
     await toast
       .promise(
-        api.delete("/mazes/" + id),
+        api.delete(`/mazes/${id}`),
         {
           pending: "Processando solicitação",
           success: "Jogo excluído com sucesso 👌",
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
     setTimeout(() => {
       //setUserData(undefined); /** efeito de recarregamento */
-      searchUserData("/users/" + uid);
+      searchUserData(`/users/${uid}`);
     }, 2000); // aguarda 2 segundos
   };
 

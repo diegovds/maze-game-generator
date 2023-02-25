@@ -69,7 +69,7 @@ export const useAxios = () => {
       dataMaze.append("executions", execs);
 
       api
-        .put("/mazes/" + maze.id, dataMaze)
+        .put(`/mazes/${maze.id}`, dataMaze)
 
         .then((data) => {
           resolve(data);
