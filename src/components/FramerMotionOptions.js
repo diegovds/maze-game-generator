@@ -3,8 +3,8 @@ const initial = { opacity: 0 };
 const whileInView = { opacity: 1 };
 
 const transition = {
-  duration: 0.4,
-  ease: "easeIn",
+  duration: 1,
+  ease: [0.5, 0, 0, 1],
   delay: 0.25,
 };
 
