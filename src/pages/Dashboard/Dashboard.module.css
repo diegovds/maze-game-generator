@@ -84,7 +84,8 @@
   max-width: 97%;
   margin: 0 auto;
   justify-content: space-evenly;
-  gap: 1rem 3rem;
+  gap: 3rem 3rem;
+  margin-bottom: 3rem;
 }
 
 .mazes_container p {
