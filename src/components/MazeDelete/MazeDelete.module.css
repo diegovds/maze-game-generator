@@ -12,6 +12,7 @@
   text-align: center;
   transition: transform 1s;
   transform-style: preserve-3d;
+  transition-delay: 0.1s;
 }
 
 .flip {
