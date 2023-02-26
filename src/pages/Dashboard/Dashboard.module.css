@@ -41,6 +41,7 @@
 .welcomeBanner p {
   max-width: 100%;
   color: #000;
+  margin: 0;
 }
 
 .welcomeBanner a:hover {
@@ -121,6 +122,10 @@
 
 .modal_content button {
   min-width: 5.625rem;
+}
+
+.modal_content h3 {
+  margin: 0;
 }
 
 @media screen and (min-width: 600px) {
