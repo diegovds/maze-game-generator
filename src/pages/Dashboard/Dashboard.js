@@ -30,9 +30,13 @@ const Dashboard = () => {
   useEffect(() => {
     document.title = "My BLOCKLY Maze | Dashboard";
 
-    setTimeout(() => {
+    const delay = setTimeout(() => {
       searchUserData(`/users/${uid}`);
     }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
+
+    return () => {
+      clearTimeout(delay);
+    };
   }, [searchUserData, uid]);
 
   function handleOpenModal() {
@@ -70,10 +74,14 @@ const Dashboard = () => {
         setMazeDelete(undefined);
       });
 
-    setTimeout(() => {
+    const delay = setTimeout(() => {
       //setUserData(undefined); /** efeito de recarregamento */
       searchUserData(`/users/${uid}`);
     }, 2000); // aguarda 2 segundos
+
+    return () => {
+      clearTimeout(delay);
+    };
   };
 
   const getMazeDelete = (maze) => {
