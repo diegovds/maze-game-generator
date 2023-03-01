@@ -45,6 +45,7 @@ A plataforma é dividida em outras duas aplicações:
 * [usehooks-ts](https://www.npmjs.com/package/usehooks-ts)
 * [validator](https://www.npmjs.com/package/validator)
 * [react-device-detect](https://www.npmjs.com/package/react-device-detect)
+* [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component)
 
 ...
 ## Iniciando ▶️

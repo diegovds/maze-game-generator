@@ -8,6 +8,8 @@ import { useElementSize } from "usehooks-ts";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 const MazeDetail = ({ maze }) => {
   const ref = useRef();
   const isVisible = useInView(ref);
@@ -15,7 +17,7 @@ const MazeDetail = ({ maze }) => {
   const [refFlipCardBack, { height }] = useElementSize();
 
   const [styleImg, setStyleImg] = useState("img_loading");
-  const [skeleton, setSkeleton] = useState(true);
+  const [skeleton, setSkeleton] = useState(undefined);
 
   return (
     <div className={styles.flip_card} ref={ref} style={{ height: height }}>
@@ -28,11 +30,14 @@ const MazeDetail = ({ maze }) => {
         ></div>
         <div className={styles.flip_card_back} ref={refFlipCardBack}>
           {skeleton && <Skeleton width={`100%`} />}
-          <img
+          <LazyLoadImage
             className={styleImg}
             src={maze.url_image}
             alt={maze.image}
-            onLoad={() => {
+            beforeLoad={() => {
+              setSkeleton(true);
+            }}
+            afterLoad={() => {
               setSkeleton(false);
               setStyleImg("img_loaded");
             }}
