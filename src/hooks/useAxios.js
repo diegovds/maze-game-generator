@@ -9,6 +9,10 @@ export const useAxios = () => {
   const getAllMazes = useCallback(async (endpoint, search) => {
     let filter = [];
 
+    setData(null);
+    setIsFetching(true);
+    setError(null);
+
     await api
       .get(endpoint)
       .then((data) => {
