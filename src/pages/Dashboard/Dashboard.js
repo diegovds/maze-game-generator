@@ -19,7 +19,7 @@ import { useAxios } from "../../hooks/useAxios";
 
 Modal.setAppElement("#root");
 
-const Dashboard = () => {
+const Dashboard = ({ newRegister, isNewRegister }) => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
@@ -30,14 +30,19 @@ const Dashboard = () => {
   useEffect(() => {
     document.title = "My BLOCKLY Maze | Dashboard";
 
-    const delay = setTimeout(() => {
-      searchUserData(`/users/${uid}`);
-    }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
+    if (isNewRegister) {
+      const delay = setTimeout(() => {
+        searchUserData(`/users/${uid}`);
+        newRegister(false);
+      }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
 
-    return () => {
-      clearTimeout(delay);
-    };
-  }, [searchUserData, uid]);
+      return () => {
+        clearTimeout(delay);
+      };
+    } else {
+      searchUserData(`/users/${uid}`);
+    }
+  }, [isNewRegister, searchUserData, uid, newRegister]);
 
   function handleOpenModal() {
     setIsOpen(true);

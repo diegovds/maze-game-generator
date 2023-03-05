@@ -32,6 +32,7 @@ import Analytics from "./components/Analytics";
 function App() {
   const [user, setUser] = useState(undefined);
   const [showMenu, setShowMenu] = useState(false);
+  const [isNewRegister, setIsNewRegister] = useState(false);
   const { auth } = useAuthentication();
 
   const isMobile = useMediaQuery("(max-width: 1115px)");
@@ -50,6 +51,10 @@ function App() {
 
   const openMenu = (open) => {
     setShowMenu(open);
+  };
+
+  const newRegister = (isNew) => {
+    setIsNewRegister(isNew);
   };
 
   if (loadingUser) {
@@ -77,7 +82,13 @@ function App() {
               />
               <Route
                 path="/register"
-                element={!user ? <Register /> : <Navigate to="/dashboard" />}
+                element={
+                  !user ? (
+                    <Register newRegister={newRegister} />
+                  ) : (
+                    <Navigate to="/dashboard" />
+                  )
+                }
               />
               <Route
                 path="/mazes/create"
@@ -85,7 +96,16 @@ function App() {
               />
               <Route
                 path="/dashboard"
-                element={user ? <Dashboard /> : <Navigate to="/login" />}
+                element={
+                  user ? (
+                    <Dashboard
+                      newRegister={newRegister}
+                      isNewRegister={isNewRegister}
+                    />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
             </Routes>
           </div>

@@ -6,7 +6,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 
-const Register = () => {
+const Register = ({ newRegister }) => {
   const {
     register,
     handleSubmit,
@@ -30,6 +30,7 @@ const Register = () => {
       password,
     };
 
+    newRegister(true);
     await createUser(user);
   };
 
