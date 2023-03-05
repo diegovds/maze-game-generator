@@ -5,10 +5,6 @@ import { useEffect, useRef, useCallback } from "react";
 const IframePage = ({ link, redirect }) => {
   const iframe = useRef();
 
-  useEffect(() => {
-    iframe.current.scrollIntoView();
-  }, []);
-
   const handleMessage = useCallback(
     (e) => {
       // para ter acesso ao dado temos que acessar a propriedade data
@@ -46,6 +42,7 @@ const IframePage = ({ link, redirect }) => {
         frameBorder="0"
         ref={iframe}
         allowFullScreen={true}
+        onLoad={() => iframe.current.scrollIntoView()}
       ></iframe>
     </div>
   );

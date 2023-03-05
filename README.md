@@ -1,6 +1,6 @@
 ## Front-end da plataforma My Blockly Maze [(acesso à plataforma)](https://myblocklymaze.vercel.app/)
 <div align="center">
-  <div style="display: flex;">
+  <div style="display: flex; flex-direction: column; gap: 20px;">
     <img height="250" width="500" src="https://i.imgur.com/C2xpI35.png" />
     <img height="250" width="500" src="https://i.imgur.com/Wo8U1Q4.png" />
   </div>
