@@ -72,6 +72,9 @@ const Dashboard = () => {
       )
       .catch(() => {
         setMazeDelete(undefined);
+      })
+      .finally(() => {
+        setMazeDelete(undefined);
       });
 
     const delay = setTimeout(() => {
@@ -167,6 +170,7 @@ const Dashboard = () => {
                 key={userData.id}
                 maze={userData}
                 getMazeDelete={getMazeDelete}
+                deleteDisabled={mazeDelete !== undefined ? true : false}
               />
             ) : (
               <MazeDelete

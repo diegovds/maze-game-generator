@@ -10,7 +10,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const MazeDelete = ({ maze, getMazeDelete, loadingDelete = false }) => {
+const MazeDelete = ({
+  maze,
+  getMazeDelete,
+  loadingDelete = false,
+  deleteDisabled,
+}) => {
   const ref = useRef();
   const isVisible = useInView(ref);
 
@@ -55,7 +60,7 @@ const MazeDelete = ({ maze, getMazeDelete, loadingDelete = false }) => {
           <Link to={`/mazes/${maze.id}`} className="btn">
             Detalhes
           </Link>
-          {!loadingDelete && (
+          {!loadingDelete && !deleteDisabled && (
             <button
               onClick={() => deleteMaze()}
               className="btn btn-outline btn-danger"
@@ -64,8 +69,17 @@ const MazeDelete = ({ maze, getMazeDelete, loadingDelete = false }) => {
             </button>
           )}
           {loadingDelete && (
-            <button className="btn" disabled>
+            <button
+              className="btn"
+              style={{ backgroundColor: "#f00" }}
+              disabled
+            >
               Aguarde...
+            </button>
+          )}
+          {deleteDisabled && (
+            <button className="btn" disabled>
+              Excluir
             </button>
           )}
         </div>
