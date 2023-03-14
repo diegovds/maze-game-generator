@@ -63,35 +63,29 @@ const Dashboard = () => {
   }
 
   const deleteMaze = async (id) => {
-    await toast
-      .promise(
-        api.delete(`/mazes/${id}`),
-        {
-          pending: "Processando solicitação",
-          success: "Jogo excluído com sucesso 👌",
-          error: "Ocorreu um erro ao tentar excluir o jogo 🤯",
-        },
-        {
-          position: "top-left",
-          autoClose: 2000,
-          closeButton: false,
-          hideProgressBar: true,
-          closeOnClick: false,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "colored",
-        }
-      )
-      .catch(() => {
-        setMazeDelete(undefined);
-      })
-      .finally(() => {
-        setMazeDelete(undefined);
-      });
+    await toast.promise(
+      api.delete(`/mazes/${id}`),
+      {
+        pending: "Processando solicitação",
+        success: "Jogo excluído com sucesso 👌",
+        error: "Ocorreu um erro ao tentar excluir o jogo 🤯",
+      },
+      {
+        position: "top-left",
+        autoClose: 2000,
+        closeButton: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+      }
+    );
 
     const delay = setTimeout(() => {
       //setUserData(undefined); /** efeito de recarregamento */
       searchUserData(`/users/${uid}`);
+      setMazeDelete(undefined);
     }, 2000); // aguarda 2 segundos
 
     return () => {

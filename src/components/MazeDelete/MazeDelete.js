@@ -57,7 +57,13 @@ const MazeDelete = ({
             <br />
             {maze.created_at}
           </p>
-          <Link to={`/mazes/${maze.id}`} className="btn">
+          <Link
+            to={`/mazes/${maze.id}`}
+            className="btn"
+            style={
+              loadingDelete || deleteDisabled ? { pointerEvents: "none" } : {}
+            }
+          >
             Detalhes
           </Link>
           {!loadingDelete && !deleteDisabled && (
@@ -69,16 +75,16 @@ const MazeDelete = ({
             </button>
           )}
           {loadingDelete && (
+            <button className="btn" disabled>
+              Aguarde...
+            </button>
+          )}
+          {deleteDisabled && (
             <button
               className="btn"
               style={{ backgroundColor: "#f00" }}
               disabled
             >
-              Aguarde...
-            </button>
-          )}
-          {deleteDisabled && (
-            <button className="btn" disabled>
               Excluir
             </button>
           )}
