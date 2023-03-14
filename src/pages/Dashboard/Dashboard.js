@@ -82,9 +82,9 @@ const Dashboard = () => {
       }
     );
 
-    const delay = setTimeout(() => {
+    const delay = setTimeout(async () => {
       //setUserData(undefined); /** efeito de recarregamento */
-      searchUserData(`/users/${uid}`);
+      await searchUserData(`/users/${uid}`);
       setMazeDelete(undefined);
     }, 2000); // aguarda 2 segundos
 
