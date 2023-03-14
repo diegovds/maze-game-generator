@@ -1,12 +1,15 @@
 import styles from "./Register.module.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 
-const Register = ({ newRegister }) => {
+import { Context } from "../../context/Context";
+
+const Register = () => {
+  const { dispatch } = useContext(Context);
   const {
     register,
     handleSubmit,
@@ -30,7 +33,12 @@ const Register = ({ newRegister }) => {
       password,
     };
 
-    newRegister(true);
+    dispatch({
+      type: "CHANGE_NEWREGISTER",
+      payload: {
+        newRegister: true,
+      },
+    });
     await createUser(user);
   };
 

@@ -32,7 +32,6 @@ import Analytics from "./components/Analytics";
 function App() {
   const { state, dispatch } = useContext(Context);
   const [showMenu, setShowMenu] = useState(false);
-  const [isNewRegister, setIsNewRegister] = useState(false);
   const { auth } = useAuthentication();
 
   const isMobile = useMediaQuery("(max-width: 1115px)");
@@ -56,10 +55,6 @@ function App() {
 
   const openMenu = (open) => {
     setShowMenu(open);
-  };
-
-  const newRegister = (isNew) => {
-    setIsNewRegister(isNew);
   };
 
   if (loadingUser) {
@@ -90,7 +85,7 @@ function App() {
               path="/register"
               element={
                 !state.user.userInfo ? (
-                  <Register newRegister={newRegister} />
+                  <Register />
                 ) : (
                   <Navigate to="/dashboard" />
                 )
@@ -105,14 +100,7 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                state.user.userInfo ? (
-                  <Dashboard
-                    newRegister={newRegister}
-                    isNewRegister={isNewRegister}
-                  />
-                ) : (
-                  <Navigate to="/login" />
-                )
+                state.user.userInfo ? <Dashboard /> : <Navigate to="/login" />
               }
             />
           </Routes>

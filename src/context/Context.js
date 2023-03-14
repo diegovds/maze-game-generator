@@ -1,9 +1,14 @@
 import { createContext, useReducer } from "react";
 
+import {
+  newRegisterInitialState,
+  newRegisterReducer,
+} from "../reducers/newRegisterReducer";
 import { userInitialState, userReducer } from "../reducers/userReducer";
 
 const initialState = {
   user: userInitialState,
+  newRegister: newRegisterInitialState,
 };
 
 export const Context = createContext({
@@ -13,6 +18,7 @@ export const Context = createContext({
 
 const mainReducer = (state, action) => ({
   user: userReducer(state.user, action),
+  newRegister: newRegisterReducer(state.newRegister, action),
 });
 
 export const ContextProvider = ({ children }) => {

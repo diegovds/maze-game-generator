@@ -20,8 +20,8 @@ import { Context } from "../../context/Context";
 
 Modal.setAppElement("#root");
 
-const Dashboard = ({ newRegister, isNewRegister }) => {
-  const { state } = useContext(Context);
+const Dashboard = () => {
+  const { state, dispatch } = useContext(Context);
   const uid = state.user.userInfo.uid;
 
   const { searchUserData, data: userData, isFetching, error } = useAxios();
@@ -31,10 +31,16 @@ const Dashboard = ({ newRegister, isNewRegister }) => {
   useEffect(() => {
     document.title = "My BLOCKLY Maze | Dashboard";
 
-    if (isNewRegister) {
+    if (state.newRegister.newRegister) {
       const delay = setTimeout(() => {
         searchUserData(`/users/${uid}`);
-        newRegister(false);
+
+        dispatch({
+          type: "CHANGE_NEWREGISTER",
+          payload: {
+            newRegister: false,
+          },
+        });
       }, 2000); // aguarda 2 segundos para chamar searchUserData(uid)
 
       return () => {
@@ -43,7 +49,7 @@ const Dashboard = ({ newRegister, isNewRegister }) => {
     } else {
       searchUserData(`/users/${uid}`);
     }
-  }, [isNewRegister, searchUserData, uid, newRegister]);
+  }, [state, dispatch, searchUserData, uid]);
 
   function handleOpenModal() {
     setIsOpen(true);
