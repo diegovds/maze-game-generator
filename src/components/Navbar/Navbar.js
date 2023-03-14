@@ -2,18 +2,18 @@ import { NavLink } from "react-router-dom";
 
 import { useAuthentication } from "../../hooks/useAuthentication";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FaPuzzlePiece } from "react-icons/fa";
 import { HiSearch } from "react-icons/hi";
 
-import { useAuthValue } from "../../context/AuthContext";
+import { Context } from "../../context/Context";
 
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
-  const { user } = useAuthValue();
+  const { state } = useContext(Context);
   const { logout } = useAuthentication();
 
   const [query, setQuery] = useState("");
@@ -57,7 +57,7 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
-        {!user && (
+        {!state.user.userInfo && (
           <>
             <li>
               <NavLink
@@ -77,7 +77,7 @@ const Navbar = () => {
             </li>
           </>
         )}
-        {user && (
+        {state.user.userInfo && (
           <>
             <li>
               <NavLink
@@ -105,7 +105,7 @@ const Navbar = () => {
             Sobre
           </NavLink>
         </li>
-        {user && (
+        {state.user.userInfo && (
           <li>
             <button onClick={logout}>Sair</button>
           </li>

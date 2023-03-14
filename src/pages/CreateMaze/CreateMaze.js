@@ -1,7 +1,7 @@
 //import styles from "./CreateMaze.module.css";
 
-import { useAuthValue } from "../../context/AuthContext";
-import { useEffect } from "react";
+import { Context } from "../../context/Context";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
@@ -10,8 +10,8 @@ import { useMediaQuery } from "usehooks-ts";
 import { useAxios } from "../../hooks/useAxios";
 
 const CreateMaze = () => {
-  const { user } = useAuthValue();
-  const uid = user.uid;
+  const { state } = useContext(Context);
+  const uid = state.user.userInfo.uid;
   const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 1115px)");
 

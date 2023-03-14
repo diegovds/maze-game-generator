@@ -10,12 +10,12 @@ import Navbar from "./components/Navbar/Navbar";
 import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
 
 // Hooks
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useAuthentication } from "./hooks/useAuthentication";
 
 // Context
-import { AuthProvider } from "./context/AuthContext";
+import { Context } from "./context/Context";
 
 // Pages
 import Home from "./pages/Home/Home";
@@ -30,20 +30,25 @@ import NotFound from "./pages/404/NotFound";
 import Analytics from "./components/Analytics";
 
 function App() {
-  const [user, setUser] = useState(undefined);
+  const { state, dispatch } = useContext(Context);
   const [showMenu, setShowMenu] = useState(false);
   const [isNewRegister, setIsNewRegister] = useState(false);
   const { auth } = useAuthentication();
 
   const isMobile = useMediaQuery("(max-width: 1115px)");
 
-  const loadingUser = user === undefined;
+  const loadingUser = state.user.userInfo === undefined;
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      dispatch({
+        type: "CHANGE_USERINFO",
+        payload: {
+          userInfo: user,
+        },
+      });
     });
-  }, [auth]);
+  }, [auth, dispatch]);
 
   useEffect(() => {
     setShowMenu(false); /** remove o blurBackground ao redimensionar a janela */
@@ -63,54 +68,56 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider value={{ user }}>
-        <BrowserRouter>
-          <ScrollToTopPage />
-          <Analytics />
-          <ScrollTopButton />
-          {isMobile ? <MobileNavbar openMenu={openMenu} /> : <Navbar />}
-          <div className="container" id={showMenu ? "blurBackground" : ""}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/mazes/:id" element={<Maze />} />
-              <Route path="*" element={<NotFound />} />
-              <Route
-                path="/login"
-                element={!user ? <Login /> : <Navigate to="/dashboard" />}
-              />
-              <Route
-                path="/register"
-                element={
-                  !user ? (
-                    <Register newRegister={newRegister} />
-                  ) : (
-                    <Navigate to="/dashboard" />
-                  )
-                }
-              />
-              <Route
-                path="/mazes/create"
-                element={user ? <CreateMaze /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/dashboard"
-                element={
-                  user ? (
-                    <Dashboard
-                      newRegister={newRegister}
-                      isNewRegister={isNewRegister}
-                    />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </AuthProvider>
+      <BrowserRouter>
+        <ScrollToTopPage />
+        <Analytics />
+        <ScrollTopButton />
+        {isMobile ? <MobileNavbar openMenu={openMenu} /> : <Navbar />}
+        <div className="container" id={showMenu ? "blurBackground" : ""}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/mazes/:id" element={<Maze />} />
+            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/login"
+              element={
+                !state.user.userInfo ? <Login /> : <Navigate to="/dashboard" />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                !state.user.userInfo ? (
+                  <Register newRegister={newRegister} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
+              }
+            />
+            <Route
+              path="/mazes/create"
+              element={
+                state.user.userInfo ? <CreateMaze /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                state.user.userInfo ? (
+                  <Dashboard
+                    newRegister={newRegister}
+                    isNewRegister={isNewRegister}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

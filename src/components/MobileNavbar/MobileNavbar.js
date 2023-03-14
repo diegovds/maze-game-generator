@@ -6,14 +6,14 @@ import { isMobileOnly } from "react-device-detect";
 
 import { NavLink } from "react-router-dom";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useNavigate } from "react-router-dom";
-import { useAuthValue } from "../../context/AuthContext";
+import { Context } from "../../context/Context";
 
 const MobileNavbar = () => {
   const checkbox = useRef();
-  const { user } = useAuthValue();
+  const { state } = useContext(Context);
   const { logout } = useAuthentication();
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ const MobileNavbar = () => {
           >
             Home
           </NavLink>
-          {!user && (
+          {!state.user.userInfo && (
             <>
               <NavLink
                 to="/login"
@@ -102,7 +102,7 @@ const MobileNavbar = () => {
               </NavLink>
             </>
           )}
-          {user && (
+          {state.user.userInfo && (
             <>
               <NavLink
                 to="/mazes/create"
@@ -134,7 +134,7 @@ const MobileNavbar = () => {
           >
             Sobre
           </NavLink>
-          {user && (
+          {state.user.userInfo && (
             <>
               <button
                 className={styles.btn_logout}

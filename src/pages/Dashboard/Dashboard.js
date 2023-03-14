@@ -13,15 +13,16 @@ import Loading from "../../components/Loading/Loading";
 import LoadingError from "../../components/LoadingError/LoadingError";
 
 // hooks
-import { useAuthValue } from "../../context/AuthContext";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAxios } from "../../hooks/useAxios";
+
+import { Context } from "../../context/Context";
 
 Modal.setAppElement("#root");
 
 const Dashboard = ({ newRegister, isNewRegister }) => {
-  const { user } = useAuthValue();
-  const uid = user.uid;
+  const { state } = useContext(Context);
+  const uid = state.user.userInfo.uid;
 
   const { searchUserData, data: userData, isFetching, error } = useAxios();
   const [modalIsOpen, setIsOpen] = useState(false);
