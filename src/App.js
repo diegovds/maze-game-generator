@@ -1,16 +1,16 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
+import Loading from "./components/Loading/Loading";
+import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
+import Navbar from "./components/Navbar/Navbar";
 import ScrollToTopPage from "./components/Scroll/ScrollToTopPage";
 import ScrollTopButton from "./components/Scroll/ScrollTopButton/ScrollTopButton";
-import Loading from "./components/Loading/Loading";
-import Navbar from "./components/Navbar/Navbar";
-import MobileNavbar from "./components/MobileNavbar/MobileNavbar";
 
 // Hooks
-import { useState, useEffect, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useAuthentication } from "./hooks/useAuthentication";
 
@@ -18,16 +18,16 @@ import { useAuthentication } from "./hooks/useAuthentication";
 import { Context } from "./context/Context";
 
 // Pages
-import Home from "./pages/Home/Home";
+import Analytics from "./components/Analytics";
+import NotFound from "./pages/404/NotFound";
 import About from "./pages/About/About";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
 import CreateMaze from "./pages/CreateMaze/CreateMaze";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Search from "./pages/Search/Search";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 import Maze from "./pages/Maze/Maze";
-import NotFound from "./pages/404/NotFound";
-import Analytics from "./components/Analytics";
+import Register from "./pages/Register/Register";
+import Search from "./pages/Search/Search";
 
 function App() {
   const { state, dispatch } = useContext(Context);
@@ -56,6 +56,10 @@ function App() {
   const openMenu = (open) => {
     setShowMenu(open);
   };
+
+  useEffect(() => {
+    window.location.assign('https://myblocklymaze-v2.vercel.app/')
+  }, []);
 
   if (loadingUser) {
     return <Loading />;
